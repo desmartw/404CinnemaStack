@@ -1,1 +1,3 @@
-System.out.println("hello github");
+public abstract class User {
+	protected String password;
+}
