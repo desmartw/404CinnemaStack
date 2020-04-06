@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class VeteranUser extends User {
 	public String militaryID;

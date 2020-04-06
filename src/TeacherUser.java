@@ -1,6 +1,6 @@
+import java.util.ArrayList;
 
-
-public class TeacherUSer extends User {
+public class TeacherUser extends User {
 	public String teacherID;
 	
 	public TeacherUser() {

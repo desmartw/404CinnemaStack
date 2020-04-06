@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class StudentUser extends User {
 	public String studentIDNum;
