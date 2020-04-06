@@ -8,6 +8,7 @@
 public abstract class Ticket {
 	public String name;
 	public String seatNumber;
+	public int militaryTime;
 	public double price;
 	protected int ticketNumber;
 	
@@ -23,6 +24,9 @@ public abstract class Ticket {
 	public int getTicketNumber() {
 		return ticketNumber;
 	}
+	public int getMilitaryTime() {
+		return militaryTime;
+	}
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -35,11 +39,15 @@ public abstract class Ticket {
 	public void setTicketNumber(int ticketNumber) {
 		this.ticketNumber = ticketNumber;
 	}
+	public void setMilitaryTime(int militaryTime) {
+		this.militaryTime = militaryTime;
+	}
 	
 	public String toString() {
 		return "Name: " + name + 
 				"Seat number: " + seatNumber +
 				"Price: " + price +
+				"Time of show (24hr): "+militaryTime+
 				"Ticket Number: "+ ticketNumber;
 	}
 
