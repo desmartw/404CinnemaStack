@@ -13,7 +13,7 @@ public class GenerateUser {
 	}
 	
 	public static User choices() {
-		System.out.println("Enter a number based on what you want to do.");
+		System.out.println("\nEnter a number based on what you want to do.");
 		System.out.println("1. Login\n2. Create an Account\n3. Continue as Guest");
 		int response = scan.nextInt();
 		scan.nextLine();
@@ -22,7 +22,7 @@ public class GenerateUser {
 		}
 		else if (response == 2){
 			db.enterUser();
-			System.out.print("Please log in to your new account.");
+			System.out.println("Please log in to your new account.");
 			return login();
 		}
 		else {
@@ -72,7 +72,7 @@ public class GenerateUser {
         String ID = (String) userObject.get("ID");
         String type = (String) userObject.get("type");
         
-		if (type.equals("handicaped"))
+		if (type.equals("handicapped"))
 			return new HandicappedUser(username, password, email, wallet, tickets, cart, age, rewardPoints, discountRate, ID);
 		if (type.equals("student"))
 			return new StudentUser(username, password, email, wallet, tickets, cart, age, rewardPoints, discountRate, ID);
@@ -88,7 +88,6 @@ public class GenerateUser {
 			return new StandardUser(username, password, email, wallet, tickets, cart, age, rewardPoints, discountRate, ID);
 		else
 			return guestUser();
-			
 	}
 	
 	public static User guestUser() {
