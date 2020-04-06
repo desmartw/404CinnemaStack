@@ -18,11 +18,7 @@ public class MovieTicket extends Ticket {
 	}
 	public MovieTicket(String name, String seatNumber,
 			double price, int militaryTime, int ticketNumber) {
-		this.name = name;
-		this.seatNumber = seatNumber;
-		this.price = price;
-		this.militaryTime = militaryTime;
-		this.ticketNumber = ticketNumber;
+		super(name, seatNumber,price, militaryTime,ticketNumber);
 	}
 
 }
