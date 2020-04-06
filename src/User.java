@@ -17,7 +17,7 @@ public abstract class User {
 		username = "bob123";
 		password = "password";
 		email = "bob123@email.com";
-		wallet = new Currency[3];
+		wallet = new Currency[2];
 		tickets = new ArrayList<Ticket>();
 		cart =  new ArrayList<Ticket>();
 		age = 18;
