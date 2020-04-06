@@ -16,6 +16,8 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import Driver.Service;
+
 
 public class Database {
 	JSONArray userList;
@@ -27,18 +29,22 @@ public class Database {
 		scan = new Scanner(System.in);
 	}
 	
+	// parsing
 	private static void parseUserObject(JSONObject user) 
     {
         JSONObject userObject = (JSONObject) user.get("user");
         
         String email = (String) userObject.get("email");    
-        System.out.println(email);
+        System.out.println("Email:",email);
          
         String username = (String) userObject.get("username");    
         System.out.println(username);
          
         String password = (String) userObject.get("password");  
         System.out.println(password);
+        
+        String age = (String) userObject.get("age");  
+        System.out.println(age);
     }
 	
 	private String parseUsername(JSONObject user) 
@@ -59,6 +65,9 @@ public class Database {
         return (String) userObject.get("email");   
 	}
 	
+	
+	
+	// setup a user
 	public void enterUser() {
 		String username = validateUsername();
 		String password = validatePassword();
@@ -224,17 +233,7 @@ public class Database {
         return emails;
 	}
 	
-	public void wipeDatabase() {
-		userList = new JSONArray();
-		try (FileWriter file = new FileWriter("users.json")) {
-            file.write(userList.toJSONString());
-            file.flush();
- 
-        } catch (IOException e) {
-            e.printStackTrace();
-        } 
-	}
-	
+	// read database
 	public JSONArray readUserList() {
         JSONParser jsonParser = new JSONParser();
         JSONArray readUserList = new JSONArray();
@@ -270,6 +269,33 @@ public class Database {
         } catch (IOException e) {
             e.printStackTrace();
         } 
+	}
+	
+	// remove things
+	public void wipeDatabase() {
+		userList = new JSONArray();
+		try (FileWriter file = new FileWriter("users.json")) {
+            file.write(userList.toJSONString());
+            file.flush();
+ 
+        } catch (IOException e) {
+            e.printStackTrace();
+        } 
+	}
+	
+	public static void main(String[] args) {
+		//Database database = new Database();
+		/*
+		database.readAllCredentials();
+		System.out.println();
+		database.wipeDatabase();
+		database.readAllCredentials();
+		System.out.println();
+		*/
+		//database.validateUsername();
+		//database.enterUser();
+		//database.readAllCredentials();
+		System.out.println("hello")
 	}
 
 }
