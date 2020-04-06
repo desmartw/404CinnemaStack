@@ -85,7 +85,7 @@ public class GenerateUser {
 		if (type.equals("admin"))
 			return new AdminUser(username, password, email, wallet, tickets, cart, age, rewardPoints, discountRate, ID);
 		if (type.equals("standard"))
-			return new standardUser(username, password, email, wallet, tickets, cart, age, rewardPoints, discountRate, ID);
+			return new StandardUser(username, password, email, wallet, tickets, cart, age, rewardPoints, discountRate, ID);
 		else
 			return guestUser();
 			

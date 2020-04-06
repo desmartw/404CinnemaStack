@@ -1,8 +1,8 @@
 import java.util.ArrayList;
-public class standardUser extends User{
+public class StandardUser extends User{
 	public String ID;
 	
-	public standardUser() {
+	public StandardUser() {
 		username = "";
 		password = "";
 		email = "";
@@ -15,7 +15,7 @@ public class standardUser extends User{
 		ID = "";
 	}
 	
-	public standardUser(String username, String password, String email,
+	public StandardUser(String username, String password, String email,
 			Currency[] wallet, ArrayList<Ticket> tickets,
 			ArrayList<Ticket> cart, int age, int rewardPoints, 
 			double discountRate, String ID) {
