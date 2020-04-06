@@ -20,15 +20,8 @@ public class VeteranUser extends User {
 			Currency[] wallet, ArrayList<Ticket> tickets,
 			ArrayList<Ticket> cart, int age, int rewardPoints, 
 			double discountRate, String militaryID) {
-		this.username = username;
-		this.password = password;
-		this.email = email;
-		this.wallet = wallet;
-		this.tickets = tickets;
-		this.cart =  cart;
-		this.age = age;
-		this.rewardPoints = rewardPoints;
-		this.discountRate = discountRate;
+		super(username, password, email, wallet,
+				tickets, cart, age, rewardPoints, discountRate);
 		this.militaryID = militaryID;
 	}
 
