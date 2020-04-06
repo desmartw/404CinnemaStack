@@ -140,7 +140,14 @@ public class Driver {
 	
 	public static void main(String[] args) {
 		Database database = new Database();
+		/*
 		database.readAllCredentials();
+		System.out.println();
+		database.wipeDatabase();
+		database.readAllCredentials();
+		System.out.println();
+		*/
+		//database.validateUsername();
 		database.enterUser();
 		database.readAllCredentials();
 		
