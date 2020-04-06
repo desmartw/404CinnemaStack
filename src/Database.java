@@ -1,5 +1,7 @@
+import java.util.Scanner;
 
 import java.io.FileWriter;
+
 import java.io.IOException;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -10,13 +12,14 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 
-public class ReadAndWriteJSON {
+public class Database {
 
 	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
 		
 		//TODO: Streamline this process with methods
 		
+		/*
 		// writing
 		JSONObject userDetails = new JSONObject();
 		userDetails.put("username", "johndoe123");
@@ -30,9 +33,9 @@ public class ReadAndWriteJSON {
 		JSONObject userObject2 = new JSONObject();
 		userObject2.put("user", userDetails2);
 		
-		JSONArray userList = new JSONArray();
-		userList.add(userObject);
-		userList.add(userObject2);
+		//JSONArray userList = new JSONArray();
+		//userList.add(userObject);
+		//userList.add(userObject2);
 		
         try (FileWriter file = new FileWriter("users.json")) {
  
@@ -42,8 +45,58 @@ public class ReadAndWriteJSON {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        
-        // reading
+        */
+		
+		
+	}
+	
+	//attributes
+	JSONArray userList;
+	
+	public Database() {
+		userList = new JSONArray();
+	}
+	
+	private static void parseUserObject(JSONObject user) 
+    {
+        JSONObject userObject = (JSONObject) user.get("user");
+         
+        String username = (String) userObject.get("username");    
+        System.out.println(username);
+         
+        String password = (String) userObject.get("password");  
+        System.out.println(password);
+    }
+	
+	public void enterUser() {
+		Scanner scan = new Scanner(System.in);
+		
+		System.out.println("Enter a username");
+		String username = scan.nextLine();
+		
+		System.out.println("Enter a password");
+		String password = scan.nextLine();
+		
+		// writing
+		JSONObject userDetails = new JSONObject();
+		userDetails.put("username", username);
+		userDetails.put("password", password);
+		JSONObject userObject = new JSONObject();
+		userObject.put("user", userDetails);
+		userList.add(userObject);
+		
+		try (FileWriter file = new FileWriter("users.json")) {
+			 
+            file.write(userList.toJSONString());
+            file.flush();
+ 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+	}
+	
+	public void readAllCredentials() {
+		// reading
         JSONParser jsonParser = new JSONParser();
          
         try (FileReader reader = new FileReader("users.json"))
@@ -65,16 +118,5 @@ public class ReadAndWriteJSON {
             e.printStackTrace();
         }
 	}
-	
-	private static void parseUserObject(JSONObject user) 
-    {
-        JSONObject userObject = (JSONObject) user.get("user");
-         
-        String username = (String) userObject.get("username");    
-        System.out.println(username);
-         
-        String password = (String) userObject.get("password");  
-        System.out.println(password);
-    }
 
 }
