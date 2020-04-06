@@ -24,4 +24,8 @@ public class GuestUser extends User {
 		this.tickets = tickets;
 	}
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> ccaaf57be8b03cf3b2e5a711f2684079bc491989

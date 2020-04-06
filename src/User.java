@@ -102,5 +102,9 @@ public abstract class User {
 		this.discountRate = discountRate;
 	}
 	
+	public void emptyCart() {
+		this.cart = null; 
+	}
+	
 	
 }
