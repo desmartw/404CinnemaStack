@@ -23,5 +23,9 @@ public class GuestUser extends User {
 		this.wallet = wallet;
 		this.tickets = tickets;
 	}
+	
+	public String getType() {
+		return "guest";
+	}
 
 }
