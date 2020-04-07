@@ -5,6 +5,7 @@
  *
  */
 import java.util.ArrayList;
+import java.util.List;
 
 public class Event {
 	private String name;
@@ -31,24 +32,24 @@ public class Event {
 	/**
 	 * Parameterized constructor
 	 * @param name
-	 * @param militaryTimes
+	 * @param militaryTimes2
 	 * @param type
 	 * @param rating
 	 * @param numOfRatings
-	 * @param comments
-	 * @param dates
+	 * @param comments2
+	 * @param dates2
 	 * @param price
 	 */
 	public Event(String name, ArrayList<String> militaryTimes, String type, int rating, 
-			int numOfRatings, ArrayList<String> comments, ArrayList<String> dates, 
+			int numOfRatings, ArrayList<String> comments2, ArrayList<String> dates2, 
 			Double price) {
 		this.name = name;
 		this.militaryTimes = militaryTimes;
 		this.type = type;
 		this.rating = rating;
 		this.numOfRatings = numOfRatings;
-		this.comments = comments;
-		this.dates = dates;
+		this.comments = comments2;
+		this.dates = dates2;
 		this.price = price;
 	}
 	/**
@@ -64,7 +65,7 @@ public class Event {
 		System.out.println("Rating: " + rating);
 		System.out.print("Comments: | ");
 		comments.forEach(comment ->{System.out.print(comment + " | ");});
-		System.out.println("\nDates: | ");
+		System.out.print("\nDates: | ");
 		dates.forEach(date ->{System.out.print(date + " | ");});
 		System.out.println("\nPrice: " + price);
 	}
