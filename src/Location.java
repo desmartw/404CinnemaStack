@@ -3,12 +3,11 @@ import java.io.FileWriter;
 import java.io.IOException;  // Import the IOException class to handle errors
 
 public class Location {
-	public static final int ROWS = 20;
-	public static final int COLUMNS = 20;
+	public static final int ROWS = 5;
+	public static final int COLUMNS = 5;
 	public String name;
 	public String description;
-	public int rowNumber;
-	public int seatNumber;
+	public int seatNumber; // between 1 & rows*columns
 	public String [][] seatingGrid;
 	public Event event;
 	public int totalTickets;
@@ -16,20 +15,22 @@ public class Location {
 	public Location() {
 		name = "Mall";
 		description = "A run-down old mall";
-		rowNumber = 1;
 		seatNumber=1;
 		seatingGrid = new String[ROWS][COLUMNS];
 		event = new Event();
 		totalTickets = ROWS*COLUMNS;
 	}
-	public Location(String name, String description, int rowNumber, int seatNumber,  Event event) {
+
+	//Simplified constructor for DB
+	public Location(String name, String description, int seatNumber, Event event) {
 		this.name = name;
-		this.description=description;
-		this.rowNumber =rowNumber;
-		this.seatNumber = seatNumber;
-		seatingGrid = new String[ROWS][COLUMNS];
+		this.description = description;
 		this.event = event;
+		this.seatNumber= seatNumber;
+		seatingGrid = new String[ROWS][COLUMNS];
+		
 	}
+	
 	/*
 	 * fills the seatGrid with [X] for display
 	 */
@@ -78,7 +79,7 @@ public class Location {
 	      myWriter.write
 	      ("*********************"
 	      +"**** Name: "+ event.getName()
-	      +"**** Time: "+event.getMilitaryTime()
+	      +"**** Time: "+event.getMilitaryTimes()
 	      +"**** Seat: "+rowNumber+" "+seatNumber
 	      +"*********************");
 	      myWriter.close();
