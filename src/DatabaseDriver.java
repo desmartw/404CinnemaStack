@@ -5,7 +5,7 @@ public class DatabaseDriver {
 		UserDatabase db = new UserDatabase();
 		db.readAllCredentials();
 		User user = GenerateUser.generateUser();
-		db.readAllCredentials();
+		//db.readAllCredentials();
 	}
 
 }
