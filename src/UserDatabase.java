@@ -509,7 +509,7 @@ public class UserDatabase {
         {
             System.out.println(readUserList);
             //Iterate over user array
-            readUserList.forEach( emp -> parseUserObject( (JSONObject) emp ) );
+            readUserList.forEach( user -> parseUserObject( (JSONObject) user ) );
             
         } catch (FileNotFoundException e) {
             e.printStackTrace();

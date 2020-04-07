@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class Event {
 	private String name;
-	private ArrayList<Integer> militaryTimes;
+	private ArrayList<String> militaryTimes;
 	private String type;
 	private int rating = 0;
 	private int numOfRatings = 0;
@@ -20,7 +20,7 @@ public class Event {
 	 */
 	public Event() {
 		name = "";
-		militaryTimes = new ArrayList<Integer>();
+		militaryTimes = new ArrayList<String>();
 		type = "";
 		rating = 0;
 		numOfRatings = 0;
@@ -39,7 +39,7 @@ public class Event {
 	 * @param dates
 	 * @param price
 	 */
-	public Event(String name, ArrayList<Integer> militaryTimes, String type, int rating, 
+	public Event(String name, ArrayList<String> militaryTimes, String type, int rating, 
 			int numOfRatings, ArrayList<String> comments, ArrayList<String> dates, 
 			Double price) {
 		this.name = name;
@@ -85,10 +85,10 @@ public class Event {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public ArrayList<Integer> getMilitaryTimes() {
+	public ArrayList<String> getMilitaryTimes() {
 		return militaryTimes;
 	}
-	public void setMilitaryTimes(ArrayList<Integer> militaryTimes) {
+	public void setMilitaryTimes(ArrayList<String> militaryTimes) {
 		this.militaryTimes = militaryTimes;
 	}
 	public String getType() {
@@ -133,12 +133,10 @@ public class Event {
 		rating += this.rating;
 		this.numOfRatings++;
 	}
-	
 	// returns the average rating of event
 	public int getEventRating() {
 		return this.rating/this.numOfRatings;
 	}
-	
 	// allows user to post a comment to be stored in an arraylist
 	public void addUserComment(User user, String comment, ArrayList<String> comments) {
 		comments.add("Posted by: "+ user.getUsername() + "\n" + comment);
