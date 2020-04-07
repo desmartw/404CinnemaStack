@@ -17,27 +17,10 @@ public class Driver {
 	
 	// welcomes the user with greeting messages
 	private static void welcomeUser() {
-		System.out.println("
-||   / |  / /                                                  
-||  /  | / /  ___     //  ___      ___      _   __      ___    
-|| / /||/ / //___) ) // //   ) ) //   ) ) // ) )  ) ) //___) ) 
-||/ / |  / //       // //       //   / / // / /  / / //        
-|  /  | / ((____   // ((____   ((___/ / // / /  / / ((____     ");
-	        System.out.println("\n" + "\n");
-	        System.out.println("
- __  ___  ___    
-  / /   //   ) ) 
- / /   //   / /  
-/ /   ((___/ /   "
-	System.out.println("
-  _____ _                             _____ _             _    
- / ____(_)                           / ____| |           | |   
-| |     _ _ __   ___ _ __ ___   __ _| (___ | |_ __ _  ___| | __
-| |    | | '_ \ / _ \ '_ ` _ \ / _` |\___ \| __/ _` |/ __| |/ /
-| |____| | | | |  __/ | | | | | (_| |____) | || (_| | (__|   < 
- \_____|_|_| |_|\___|_| |_| |_|\__,_|_____/ \__\__,_|\___|_|\_\");
 		System.out.println("-------------------------------------------------------");
-		System.out.println("Please enjoy the fine services we have to offer...\n");
+		System.out.println("                Welcome to CinemaStack!");
+		System.out.println("-------------------------------------------------------");
+		System.out.println("~~~ Please enjoy the fine services we have to offer ~~~\n");
 	}
 	
 	// function to end or continue the program loop
