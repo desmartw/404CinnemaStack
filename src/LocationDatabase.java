@@ -121,7 +121,7 @@ public class LocationDatabase {
 	        //TODO validate event
 	    	return null;
 	    }
-	    public void readAllEvents() {
+	    public void readAllLocations() {
 			// reading
 	        JSONParser jsonParser = new JSONParser();
 	        JSONArray readLocationList = readLocationList();
