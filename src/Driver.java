@@ -9,7 +9,7 @@ public class Driver {
 	
 	// all the services that the program will offer, to be used in different functions
 	public enum Service {EXIT, SEARCH, LOGIN, VIEW_POPULAR, VIEW_ACCOUNT, SEARCH_BY_MOVIE, SEARCH_BY_ACTOR,
-				  		 SEARCH_BY_DATE, SEARCH_BY_SHOWTIME, SEARCH_BY_RATING, BUY_TICKETS, VIEW_CART, 
+				  		 SEARCH_BY_DATE, SEARCH_BY_RATING, BUY_TICKETS, VIEW_CART, 
 				  		 EMPTY_CART, RENEW_LOOP, RENEW_CHOICE, GO_BACK_A_CHOICE}; 
 	
 	// holds the choice history of the user
@@ -31,7 +31,7 @@ public class Driver {
 	// starts over because they go back to the initial actions
 	private static Service getTopChoice() {
 		System.out.println("Please enter one of the numbers below corresponding to the action you wish to take...");
-		if (user.getType() == "guest") { // TODO this check for guest user is invalid must be changed
+		if (user.getType() == "guest") {
 			return getUserChoice(new Service[] {Service.EXIT, Service.LOGIN, Service.SEARCH, Service.VIEW_POPULAR});
 		} else {
 			return getUserChoice(new Service[] {Service.EXIT, Service.VIEW_ACCOUNT, Service.SEARCH, Service.VIEW_POPULAR});
@@ -78,8 +78,6 @@ public class Driver {
 						return "View your account information";
 					case SEARCH_BY_MOVIE:
 						return "Search for events by movie title";
-					case SEARCH_BY_ACTOR:
-						return "Search for events by actor name";
 					case SEARCH_BY_DATE:
 						return "Search for events within a date range";
 					case SEARCH_BY_RATING:
@@ -116,7 +114,8 @@ public class Driver {
 				initiateSearch();
 				break;
 			case LOGIN:
-				login();
+				user = GenerateUser.generateUser();
+				goBackToPreviousChoice();
 				break;
 			case VIEW_POPULAR:
 				viewPopularEvents();
@@ -127,9 +126,6 @@ public class Driver {
 			case SEARCH_BY_MOVIE:
 				searchByMovie();
 				break;
-			case SEARCH_BY_ACTOR:
-				searchByActor();
-				break;
 			case SEARCH_BY_DATE:
 				searchByDateRange();
 				break;
@@ -139,14 +135,10 @@ public class Driver {
 			case BUY_TICKETS:
 				purchaseTickets();
 				break;
-			case VIEW_OTHER_USER:
-				// TODO add a way to request a user, probs just username
-				// TODO String uname = requestUsername(); 
-				User otherUser = db.getUser(uname);
-				viewAccount(otherUser);
-				break;
 			case VIEW_CART:
 				// TODO view cart
+				
+				goBackToPreviousChoice();
 				break;
 			case EMPTY_CART:
 				// TODO empty the whole cart - this is not a purchase but will be called after a purchase
@@ -219,12 +211,6 @@ public class Driver {
 		// TODO give next options
 	}
 	
-	private static void searchByActor() {
-		// TODO search the database for any event with specified actor times given by the movie name
-		// TODO display the results
-		// TODO give next options
-	}
-	
 	private static void searchByDateRange() {
 		// TODO have user enter two dates
 		// TODO search database for events within those dates
@@ -246,15 +232,6 @@ public class Driver {
 		// TODO display next option e.g choose an event and see its schedule, go back, go to beginning
 	}
 	
-	//******************* FUNCTIONS CALLED AFTER SELECTING LOGIN ********************//
-	
-	private static void login() {
-		// TODO prompt user for login
-		// TODO return a successful or unsuccessful account, place it into user
-		// TODO if successful, viewAccount(user) and then go back to their previous choice
-	    // TODO if unsuccessful, continue as guest and tell user and go back to their previous choice		
-	}
-	
 	//******************* FUNCTIONS CALLED AFTER SELECTING VIEW_POPULAR ********************//
 	
 	private static void viewPopularEvents() {
@@ -262,26 +239,21 @@ public class Driver {
 		// TODO access ratings to show the top X events
 		// TODO display the top events
 		// TODO ask next options
+		
 	}
 	
 	//****************** FUNCTIONS CALLED AFTER SELECTING VIEW_ACCOUNT ********************//
 	
 	private static void viewAccount() {
 		// TODO show shopping cart, all account fields
-	}
-	
-	// used when a user has been searched for and to be viewed by another user
-	private static void viewAccount(User user) {
-		// TODO show ALL user information from the logged in account
+		goBackToPreviousChoice();
 	}
 	
 	//******************* FUNCTIONS CALLED AFTER SELECTING BUY_TICKET ********************//
 
 	private static void purchaseTickets() {
-		// TODO access user cart
-		// TODO access currency, if guest ask for currency
-		// TODO display receipt of transaction
-		// TODO go to top options
+		Currency[] userWallet = user.getWallet();
+		
 	}
 	
 	public static void main(String[] args) {
@@ -294,15 +266,11 @@ public class Driver {
 		welcomeUser();
 		
 		// get the user to login or continue as guest
-		user = db.generateUser();
-		
-		// start program loop
-		while(!done()) {
+		user = GenerateUser.generateUser();
 			
-			// request a service from the user
-			Service choice = getTopChoice();
-			actOnChoice(choice);
-		}
+		// request a service from the user
+		Service choice = getTopChoice();
+		actOnChoice(choice);
 		
 		// close input stream
 		in.close();
