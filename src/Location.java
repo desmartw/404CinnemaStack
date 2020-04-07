@@ -18,16 +18,16 @@ public class Location {
 		description = "A run-down old mall";
 		rowNumber = 1;
 		seatNumber=1;
-		seatingGrid = new String[20][20];
+		seatingGrid = new String[ROWS][COLUMNS];
 		event = new Event();
 		totalTickets = ROWS*COLUMNS;
 	}
-	public Location(String name, String description, int rowNumber, int seatNumber, String[][] seatGrid, Event event) {
+	public Location(String name, String description, int rowNumber, int seatNumber,  Event event) {
 		this.name = name;
 		this.description=description;
 		this.rowNumber =rowNumber;
 		this.seatNumber = seatNumber;
-		this.seatingGrid= seatGrid;
+		seatingGrid = new String[ROWS][COLUMNS];
 		this.event = event;
 	}
 	/*
