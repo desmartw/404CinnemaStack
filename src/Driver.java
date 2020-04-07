@@ -9,8 +9,8 @@ public class Driver {
 	
 	// all the services that the program will offer, to be used in different functions
 	public enum Service {EXIT, SEARCH, LOGIN, VIEW_POPULAR, VIEW_ACCOUNT, SEARCH_BY_MOVIE, SEARCH_BY_ACTOR,
-				  		  SEARCH_BY_DATE, SEARCH_BY_SHOWTIME, SEARCH_BY_RATING, BUY_TICKETS, VIEW_OTHER_USER,
-				  		  VIEW_CART, EMPTY_CART, RENEW_LOOP, RENEW_CHOICE, GO_BACK_A_CHOICE}; 
+				  		 SEARCH_BY_DATE, SEARCH_BY_SHOWTIME, SEARCH_BY_RATING, BUY_TICKETS, VIEW_CART, 
+				  		 EMPTY_CART, RENEW_LOOP, RENEW_CHOICE, GO_BACK_A_CHOICE}; 
 	
 	// holds the choice history of the user
 	private static Stack<Service> choiceHistory = new Stack<Service>();
@@ -31,57 +31,71 @@ public class Driver {
 	// starts over because they go back to the initial actions
 	private static Service getTopChoice() {
 		System.out.println("Please enter one of the numbers below corresponding to the action you wish to take...");
-		if (user == null) { // TODO this check for guest user is invalid must be changed
-			// display options
-			System.out.println("0: Exit");
-			System.out.println("1: Login to an account");
-			System.out.println("2: Search for events");
-			System.out.println("3: View popular events");
-			
-			// get choice as an integer
-			int intChoice = in.nextInt();
-			
-			// translate integer choice to the Service enum
-			switch(intChoice) {
-				case 0: return Service.EXIT;
-				case 1: return Service.LOGIN;
-				case 2: return Service.SEARCH;
-				case 3: return Service.VIEW_POPULAR;
-				default:
-					// renew the prompt by going through the loop again
-					return Service.RENEW_LOOP; // TODO this service may cause dysfunctionality and need to be changed so remove todo if it doesn't
-			}
+		if (user.getType() == "guest") { // TODO this check for guest user is invalid must be changed
+			return getUserChoice(new Service[] {Service.EXIT, Service.LOGIN, Service.SEARCH, Service.VIEW_POPULAR});
 		} else {
-			// display options
-			System.out.println("0: Exit");
-			System.out.println("1: View your account");
-			System.out.println("2: Search for events");
-			System.out.println("3: View popular events");
-			
-			//get choice as an integer
-			int intChoice = in.nextInt();
-			
-			// translate integer choice to the Service enum
-			switch(intChoice) {
-				case 0: return Service.EXIT;
-				case 1: return Service.VIEW_ACCOUNT;
-				case 2: return Service.SEARCH;
-				case 3: return Service.VIEW_POPULAR;
-				default:
-					// renew the prompt
-					return Service.RENEW_LOOP; // TODO this service may cause dysfunctionality and need to be changed so remove todo if it doesn't
-			}
+			return getUserChoice(new Service[] {Service.EXIT, Service.VIEW_ACCOUNT, Service.SEARCH, Service.VIEW_POPULAR});
 		}
 	}
 	
-	// TODO helper method to return a message for each Service
-	private static String getServiceMessage(Service service) {
-		return "";
+	// helper method to get user input with a set of service options easier
+	private static Service getUserChoice(Service[] options) {
+		int choice = -1;
+		int count = 0;
+		while(choice < 0 || choice >= options.length) { 
+			if (count > 0)
+				System.out.println("Invalid input... please try again...");
+			// enumerate the options
+			for (int i = 0; i < options.length; i++) {
+				System.out.println("~ " + i + " " + getServiceMessage(options[i]));
+			}
+			// capture user input
+			choice = in.nextInt();
+			in.nextLine();
+			count++;
+		}
+		
+		// return the chosen service
+		return options[choice];
 	}
 	
-	// TODO helper method to make displaying user options easy
-	private static void displayOptions(Service[] options) {
+	// helper method to return a message for each Service
+	private static String getServiceMessage(Service service) {
 		
+		// translate service to corresponding message
+				switch(service) {
+					case RENEW_LOOP:
+						return "Go to the front page";
+					case EXIT:
+						return "Exit the program";
+					case SEARCH:
+						return "Search for events";
+					case LOGIN:
+						return "Login or sign up for an account";
+					case VIEW_POPULAR:
+						return "View popular events";
+					case VIEW_ACCOUNT:
+						return "View your account information";
+					case SEARCH_BY_MOVIE:
+						return "Search for events by movie title";
+					case SEARCH_BY_ACTOR:
+						return "Search for events by actor name";
+					case SEARCH_BY_DATE:
+						return "Search for events within a date range";
+					case SEARCH_BY_RATING:
+						return "Search for events by rating";
+					case BUY_TICKETS:
+						return "Purchase the tickets in your cart";
+					case VIEW_CART:
+						return "View the current tickets in your shopping cart";
+					case EMPTY_CART:
+						return "Empty your current shopping cart";
+					case GO_BACK_A_CHOICE:
+						return "Go back to previous page";
+						default:
+							return "An invalid Service has been used";
+							
+				}
 	}
 	
 	// checks what choice the user made and acts appropriately
