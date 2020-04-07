@@ -128,16 +128,17 @@ public class Event {
 		this.price = price;
 	}
 	
-	
 	// keeps a runnning total of rating
 	public void addUserRating(int rating) {
 		rating += this.rating;
 		this.numOfRatings++;
 	}
+	
 	// returns the average rating of event
 	public int getEventRating() {
 		return this.rating/this.numOfRatings;
 	}
+	
 	// allows user to post a comment to be stored in an arraylist
 	public void addUserComment(User user, String comment, ArrayList<String> comments) {
 		comments.add("Posted by: "+ user.getUsername() + "\n" + comment);
