@@ -58,8 +58,6 @@ public abstract class Ticket {
 	public void setMilitaryTime(int militaryTime) {
 		this.militaryTime = militaryTime;
 	}
-	
-	
 	public String toString() {
 		return "Name: " + name + 
 				"Seat number: " + seatNumber +

@@ -50,6 +50,37 @@ public class Event {
 				"Actors: "+ actors);
 	}
 	//TODO add notifications
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getLocation() {
+		return location;
+	}
+	public void setLocation(String location) {
+		this.location = location;
+	}
+	public int getMilitaryTime() {
+		return militaryTime;
+	}
+	public void setMilitaryTime(int militaryTime) {
+		this.militaryTime = militaryTime;
+	}
+	public String getGenre() {
+		return genre;
+	}
+	public void setGenre(String genre) {
+		this.genre = genre;
+	}
+	public ArrayList<String> getActors() {
+		return actors;
+	}
+	public void setActors(ArrayList<String> actors) {
+		this.actors = actors;
+	}
+	
 	
 
 }
