@@ -12,7 +12,9 @@ public abstract class Ticket {
 	public double price;
 	protected int ticketNumber;
 	
-	
+	/**
+	 * default const
+	 */
 	public Ticket() {
 		name = "";
 		seatNumber="";
@@ -20,6 +22,14 @@ public abstract class Ticket {
 		price = 0;
 		ticketNumber = 0;
 	}	
+	/**
+	 * Paramaterized constructor
+	 * @param name
+	 * @param seatNumber
+	 * @param price
+	 * @param militaryTime
+	 * @param ticketNumber
+	 */
 	public Ticket(String name, String seatNumber, double price, 
 			int militaryTime,int ticketNumber) {
 		this.name = name;
@@ -28,6 +38,7 @@ public abstract class Ticket {
 		this.militaryTime = militaryTime;
 		this.ticketNumber = ticketNumber;
 	}
+	// Getters and setters
 	public String getName() {
 		return name;
 	}
@@ -58,6 +69,10 @@ public abstract class Ticket {
 	public void setMilitaryTime(int militaryTime) {
 		this.militaryTime = militaryTime;
 	}
+	
+	/**
+	 * ToString
+	 */
 	public String toString() {
 		return "Name: " + name + 
 				"Seat number: " + seatNumber +

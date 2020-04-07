@@ -1,7 +1,10 @@
 import java.util.ArrayList;
 public class StandardUser extends User{
 	public String ID;
-	
+	/**
+	 * User with no discount rate
+	 * does not fit in any other category
+	 */
 	public StandardUser() {
 		username = "";
 		password = "";
@@ -14,7 +17,19 @@ public class StandardUser extends User{
 		discountRate = 0;
 		ID = "";
 	}
-	
+	/**
+	 * Paramaterized constructor
+	 * @param username
+	 * @param password
+	 * @param email
+	 * @param wallet
+	 * @param tickets
+	 * @param cart
+	 * @param age
+	 * @param rewardPoints
+	 * @param discountRate
+	 * @param ID
+	 */
 	public StandardUser(String username, String password, String email,
 			Currency[] wallet, ArrayList<Ticket> tickets,
 			ArrayList<Ticket> cart, int age, int rewardPoints, 

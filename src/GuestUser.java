@@ -18,12 +18,20 @@ public class GuestUser extends User {
 		discountRate = 0; 
 	}
 	
+	/**
+	 * Sets up a guest user account
+	 * @param age
+	 * @param wallet
+	 * @param tickets
+	 */
 	public GuestUser(int age, Currency[] wallet, ArrayList<Ticket> tickets) {
 		this.age = age;
 		this.wallet = wallet;
 		this.tickets = tickets;
 	}
-	
+	/**
+	 * returns type 
+	 */
 	public String getType() {
 		return "guest";
 	}

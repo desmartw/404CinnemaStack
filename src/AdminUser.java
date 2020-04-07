@@ -1,8 +1,15 @@
-import java.util.ArrayList;
 
+import java.util.ArrayList;
+/**
+ * @author wilsdesmarteau
+ * 
+ */
 public class AdminUser extends User {
 	public String adminID;
 	
+	/*
+	 * Default Constructor
+	 */
 	public AdminUser() {
 		username = "adminBob123";
 		password = "password";
@@ -15,7 +22,9 @@ public class AdminUser extends User {
 		discountRate = .1;
 		adminID= "123LoveToAdmin";
 	}
-	
+	/*
+	 * Parameterized COnstructor
+	 */
 	public AdminUser(String username, String password, String email,
 			Currency[] wallet, ArrayList<Ticket> tickets,
 			ArrayList<Ticket> cart, int age, int rewardPoints, 

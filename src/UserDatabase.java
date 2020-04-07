@@ -23,11 +23,18 @@ public class UserDatabase {
 	FileWriter file;
 	Scanner scan;
 	
+	/**
+	 * default constructor
+	 */
 	public UserDatabase() {
 		userList = new JSONArray();
 		scan = new Scanner(System.in);
 	}
 	
+	/**
+	 * finds user info from the database
+	 * @param user
+	 */
 	private void parseUserObject(JSONObject user) 
     {
         JSONObject userObject = (JSONObject) user.get("user");
@@ -41,6 +48,11 @@ public class UserDatabase {
         System.out.println("Discount: " + (String) userObject.get("discount"));
     }
 	
+	/**
+	 * Searches for a specific user
+	 * @param user
+	 * @return
+	 */
 	public JSONObject findUser(String user) {
 		userList = readUserList();
 		Iterator i = userList.iterator();
@@ -54,16 +66,27 @@ public class UserDatabase {
         return null;
 	}
 	
+	/**
+	 * Finds users password
+	 * @param user
+	 * @return
+	 */
 	public String getUserPassword(String user) {
 		JSONObject userObject = findUser(user);
 		return (String) userObject.get("password");
 	}
 	
+	/**
+	 * Returns type of user
+	 * @param user
+	 * @return
+	 */
 	public String getType(String user) {
 		JSONObject userObject = findUser(user);
 		return (String) userObject.get("type");
 	}
-
+	
+	// Parse methods find and return respective variables
 	public String parseUsername(JSONObject user) 
     {
         JSONObject userObject = (JSONObject) user.get("user");
@@ -107,6 +130,9 @@ public class UserDatabase {
 		return (String) userObject.get("type");  
 	}
 	
+	/**
+	 * Adds a user to the database
+	 */
 	public void enterUser() {
 		System.out.println();
 		String username = validateUsername();
@@ -144,6 +170,10 @@ public class UserDatabase {
         } 
 	}
 	
+	/**
+	 * Checks validity of username
+	 * @return username if valid
+	 */
 	public String validateUsername() {
 		String username = "";
 		ArrayList<String> users = getAllUsernames();
@@ -165,6 +195,10 @@ public class UserDatabase {
 		return username;
 	}
 	
+	/**
+	 * Checks that email meets conditions
+	 * @return email - string
+	 */
 	public String validateEmail() {
 		String email = "";
 		ArrayList<String> emails = getAllEmails();
@@ -188,7 +222,10 @@ public class UserDatabase {
 		}
 		return email;
 	}
-	
+	/**
+	 * Checks that password meets conditions
+	 * @return password - string
+	 */
 	public String validatePassword() {
 		String password = "";
 		System.out.println("\nPassword Setup\n--------------");
@@ -221,6 +258,10 @@ public class UserDatabase {
 		return password;
 	}
 	
+	/**
+	 * Checks that age meets conditions
+	 * @return age - string
+	 */
 	public String validateAge() {
 		int age = 0;
 		while(true) {
@@ -244,6 +285,10 @@ public class UserDatabase {
 		return String.valueOf(age);
 	}
 	
+	/**
+	 * Checks that ID meets conditions
+	 * @return ID - string
+	 */
 	public String validateID(String type) {
 		String ID = "";
 		String message = "";
@@ -287,6 +332,11 @@ public class UserDatabase {
 		return ID;
 	}
 	
+	/**
+	 * Checks discount is deserved to type of user
+	 * @param type
+	 * @return
+	 */
 	public String validateDiscount(String type) {
 		if (type.equals("student") || type.equals("veteran") || type.equals("teacher") || type.equals("employee") || type.equals("handicapped"))
 			return ".1";
@@ -294,6 +344,10 @@ public class UserDatabase {
 			return "0";
 	}
 	
+	/**
+	 * Makes sure type of user is valid
+	 * @return type - string
+	 */
 	public String validateType() {
 		System.out.println("Do you have a disability?");
 		System.out.println("1. Yes\n2. No");
@@ -330,7 +384,10 @@ public class UserDatabase {
 			return "standard";
 	}
 	
-	
+	/**
+	 * reads a password from database
+	 * @return password - string
+	 */
 	public String readPassword() {
 		final String password, message = "Enter password";
 		if (System.console() == null ) {
@@ -345,6 +402,10 @@ public class UserDatabase {
 		return password;
 	}
 	
+	/**
+	 * returns array list of usernames
+	 * 
+	 */
 	public ArrayList<String> getAllUsernames() {
 		ArrayList<String> users = new ArrayList<String>();
 		JSONParser jsonParser = new JSONParser();
@@ -362,6 +423,10 @@ public class UserDatabase {
         return users;
 	}
 	
+	/**
+	 * returns array list of passwords
+	 * @return
+	 */
 	public ArrayList<String> getAllPasswords() {
 		ArrayList<String> passwords = new ArrayList<String>();
 		JSONParser jsonParser = new JSONParser();
@@ -377,7 +442,10 @@ public class UserDatabase {
         }
         return passwords;
 	}
-	
+	/**
+	 * returns array list of emails
+	 * @return
+	 */
 	public ArrayList<String> getAllEmails() {
 		ArrayList<String> emails = new ArrayList<String>();
 		JSONParser jsonParser = new JSONParser();
@@ -393,7 +461,9 @@ public class UserDatabase {
         }
         return emails;
 	}
-	
+	/**
+	 * clears data from database JSON file
+	 */
 	public void wipeDatabase() {
 		userList = new JSONArray();
 		try (FileWriter file = new FileWriter("users.json")) {
@@ -404,7 +474,10 @@ public class UserDatabase {
             e.printStackTrace();
         } 
 	}
-	
+	/**
+	 * reads a list of users from JSON file
+	 * @return
+	 */
 	public JSONArray readUserList() {
         JSONParser jsonParser = new JSONParser();
         JSONArray readUserList = new JSONArray();
@@ -425,6 +498,9 @@ public class UserDatabase {
         return readUserList;
 	}
 	
+	/**
+	 * reads entire file
+	 */
 	public void readAllCredentials() {
 		// reading
         JSONParser jsonParser = new JSONParser();

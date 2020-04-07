@@ -3,6 +3,9 @@ import java.util.ArrayList;
 public class HandicappedUser extends User {
 	public String handicappedTagNum;
 	
+	/**
+	 * User subclass handicapped
+	 */
 	public HandicappedUser() {
 		username = "handicappedBob123";
 		password = "password";
@@ -15,7 +18,19 @@ public class HandicappedUser extends User {
 		discountRate = .1;
 		handicappedTagNum = "123CantWalk";
 	}
-	
+	/**
+	 * Paramaterized constructor
+	 * @param username
+	 * @param password
+	 * @param email
+	 * @param wallet
+	 * @param tickets
+	 * @param cart
+	 * @param age
+	 * @param rewardPoints
+	 * @param discountRate
+	 * @param handicappedTagNum
+	 */
 	public HandicappedUser(String username, String password, String email,
 			Currency[] wallet, ArrayList<Ticket> tickets,
 			ArrayList<Ticket> cart, int age, int rewardPoints, 

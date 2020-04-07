@@ -12,7 +12,9 @@ public abstract class User {
 	protected int rewardPoints;
 	protected double discountRate;
 	
-	
+	/**
+	 * Base user class
+	 */
 	public User() {
 		username = "bob123";
 		password = "password";
@@ -24,6 +26,18 @@ public abstract class User {
 		rewardPoints = 0;
 		discountRate = .1;
 	}
+	/**
+	 * Paramaterized constructor
+	 * @param username
+	 * @param password
+	 * @param email
+	 * @param wallet
+	 * @param tickets
+	 * @param cart
+	 * @param age
+	 * @param rewardPoints
+	 * @param discountRate
+	 */
 	public User(String username, String password, String email,
 			Currency[] wallet, ArrayList<Ticket> tickets,
 			ArrayList<Ticket> cart, int age, int rewardPoints, 
@@ -39,6 +53,7 @@ public abstract class User {
 		this.discountRate = discountRate;
 	}
 	
+	//Getters and setters
 	public String getPassword() {
 		return password;
 	}
@@ -102,10 +117,18 @@ public abstract class User {
 		this.discountRate = discountRate;
 	}
 	
+	
+	/**
+	 * emptys the array list cart
+	 */
 	public void emptyCart() {
 		this.cart = null; 
 	}
 	
+	/**
+	 * Returns type of user
+	 * @return
+	 */
 	public String getType() {
 		UserDatabase db = new UserDatabase();
 		return db.getType(this.username);

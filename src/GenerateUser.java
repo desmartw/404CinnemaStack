@@ -8,10 +8,18 @@ public class GenerateUser {
 	static Scanner scan = new Scanner(System.in);
 	static UserDatabase db = new UserDatabase();
 	
+	/**
+	 * prompts the user to sign up
+	 * @return 
+	 */
 	public static User generateUser() {
 		return choices();
 	}
 	
+	/**
+	 * Gives commands to sign up user
+	 * @return
+	 */
 	public static User choices() {
 		System.out.println("\nEnter a number based on what you want to do.");
 		System.out.println("1. Login\n2. Create an Account\n3. Continue as Guest");
@@ -30,6 +38,10 @@ public class GenerateUser {
 		}
 	}
 	
+	/**
+	 * Allows a signed up user to login to the system
+	 * @return
+	 */
 	public static User login() {
 		String username = "";
 		ArrayList<String> users = db.getAllUsernames();
@@ -58,7 +70,11 @@ public class GenerateUser {
 			}
 		}
 	}
-	
+	/**
+	 *  Returns a user from database by username
+	 * @param username
+	 * @return user account
+	 */
 	public static User returnUser(String username) {
 		JSONObject userObject = db.findUser(username);
 		String password = (String) userObject.get("password");
@@ -90,6 +106,10 @@ public class GenerateUser {
 			return guestUser();
 	}
 	
+	/**
+	 * crates a guest account
+	 * @return guest account
+	 */
 	public static User guestUser() {
 		int age = 0;
 		Currency[] wallet = new Currency[3];

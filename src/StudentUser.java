@@ -3,6 +3,9 @@ import java.util.ArrayList;
 public class StudentUser extends User {
 	public String studentIDNum;
 	
+	/**
+	 * Student user
+	 */
 	public StudentUser() {
 		username = "studentBob123";
 		password = "password";
@@ -15,7 +18,19 @@ public class StudentUser extends User {
 		discountRate = .1;
 		studentIDNum= "123LoveToStudy";
 	}
-	
+	/**
+	 * Paramaterized constructor
+	 * @param username
+	 * @param password
+	 * @param email
+	 * @param wallet
+	 * @param tickets
+	 * @param cart
+	 * @param age
+	 * @param rewardPoints
+	 * @param discountRate
+	 * @param studentIDNum
+	 */
 	public StudentUser(String username, String password, String email,
 			Currency[] wallet, ArrayList<Ticket> tickets,
 			ArrayList<Ticket> cart, int age, int rewardPoints, 

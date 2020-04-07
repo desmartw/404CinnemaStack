@@ -2,7 +2,9 @@ import java.util.ArrayList;
 
 public class EmployeeUser extends User {
 	public String employeeID;
-	
+	/*
+	 * Default constructor
+	 */
 	public EmployeeUser() {
 		username = "employedBob123";
 		password = "password";
@@ -15,7 +17,19 @@ public class EmployeeUser extends User {
 		discountRate = .1;
 		employeeID = "123LoveToWork";
 	}
-	
+	/**
+	 * Paramaterized constructor
+	 * @param username
+	 * @param password
+	 * @param email
+	 * @param wallet
+	 * @param tickets
+	 * @param cart
+	 * @param age
+	 * @param rewardPoints
+	 * @param discountRate
+	 * @param employeeID
+	 */
 	public EmployeeUser(String username, String password, String email,
 			Currency[] wallet, ArrayList<Ticket> tickets,
 			ArrayList<Ticket> cart, int age, int rewardPoints, 

@@ -3,6 +3,9 @@ import java.util.ArrayList;
 public class VeteranUser extends User {
 	public String militaryID;
 	
+	/**
+	 * vertertan user
+	 */
 	public VeteranUser() {
 		username = "vetBob123";
 		password = "password";
@@ -16,6 +19,19 @@ public class VeteranUser extends User {
 		militaryID = "123LovetoShoot";
 	}
 	
+	/**
+	 * Paramaterized constructor
+	 * @param username
+	 * @param password
+	 * @param email
+	 * @param wallet
+	 * @param tickets
+	 * @param cart
+	 * @param age
+	 * @param rewardPoints
+	 * @param discountRate
+	 * @param militaryID
+	 */
 	public VeteranUser(String username, String password, String email,
 			Currency[] wallet, ArrayList<Ticket> tickets,
 			ArrayList<Ticket> cart, int age, int rewardPoints, 

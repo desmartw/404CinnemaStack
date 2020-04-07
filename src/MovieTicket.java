@@ -16,6 +16,14 @@ public class MovieTicket extends Ticket {
 		militaryTime = 1200;
 		ticketNumber = 00231;
 	}
+	/**
+	 * Paramaterized constructor
+	 * @param name
+	 * @param seatNumber
+	 * @param price
+	 * @param militaryTime
+	 * @param ticketNumber
+	 */
 	public MovieTicket(String name, String seatNumber,
 			double price, int militaryTime, int ticketNumber) {
 		super(name, seatNumber,price, militaryTime,ticketNumber);
