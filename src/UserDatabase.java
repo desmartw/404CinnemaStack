@@ -59,6 +59,11 @@ public class UserDatabase {
 		JSONObject userObject = findUser(user);
 		return (String) userObject.get("password");
 	}
+	
+	public String getType(String user) {
+		JSONObject userObject = findUser(user);
+		return (String) userObject.get("type");
+	}
 
 	public String parseUsername(JSONObject user) 
     {

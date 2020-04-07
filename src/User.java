@@ -106,5 +106,10 @@ public abstract class User {
 		this.cart = null; 
 	}
 	
+	public String getType() {
+		UserDatabase db = new UserDatabase();
+		return db.getType(this.username);
+	}
+	
 	
 }
