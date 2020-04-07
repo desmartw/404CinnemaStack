@@ -69,6 +69,16 @@ public class Event {
 		System.out.println("\nPrice: " + price);
 	}
 	
+	
+	// returns time one element per line
+	public void printMilitaryTimes() {
+		for(int i =0; i<militaryTimes.size(); i++) {
+			System.out.println(militaryTimes.get(i)+"\n");
+		}
+	}
+	
+	
+	//getters and setters
 	public String getName() {
 		return name;
 	}
@@ -76,9 +86,6 @@ public class Event {
 		this.name = name;
 	}
 	public ArrayList<Integer> getMilitaryTimes() {
-		return militaryTimes;
-	}
-	public String printMilitaryTimes() {
 		return militaryTimes;
 	}
 	public void setMilitaryTimes(ArrayList<Integer> militaryTimes) {
@@ -120,39 +127,21 @@ public class Event {
 	public void setPrice(Double price) {
 		this.price = price;
 	}
-	//TODO add notifications
-	/*
-	public String getName() {
-		return name;
+	
+	
+	// keeps a runnning total of rating
+	public void addUserRating(int rating) {
+		rating += this.rating;
+		this.numOfRatings++;
 	}
-	public void setName(String name) {
-		this.name = name;
+	// returns the average rating of event
+	public int getEventRating() {
+		return this.rating/this.numOfRatings;
 	}
-	public String getLocation() {
-		return location;
+	// allows user to post a comment to be stored in an arraylist
+	public void addUserComment(User user, String comment, ArrayList<String> comments) {
+		comments.add("Posted by: "+ user.getUsername() + "\n" + comment);
 	}
-	public void setLocation(String location) {
-		this.location = location;
-	}
-	public int getMilitaryTime() {
-		return militaryTime;
-	}
-	public void setMilitaryTime(int militaryTime) {
-		this.militaryTime = militaryTime;
-	}
-	public String getGenre() {
-		return genre;
-	}
-	public void setGenre(String genre) {
-		this.genre = genre;
-	}
-	public ArrayList<String> getActors() {
-		return actors;
-	}
-	public void setActors(ArrayList<String> actors) {
-		this.actors = actors;
-	}
-	*/
 	
 	
 
