@@ -49,7 +49,7 @@ public class EventDatabase {
 		eventDetails.put("rating", rating);
 		eventDetails.put("numOfRatings", numOfRatings);
 		eventDetails.put("comments", comments);
-		eventDetails.put("dates ", dates );
+		eventDetails.put("dates", dates);
 		eventDetails.put("price", price);
 		
 		JSONObject eventObject = new JSONObject();
@@ -68,31 +68,16 @@ public class EventDatabase {
         } 
 	}
 	
-	public JSONArray readEventList() {
-		JSONParser jsonParser = new JSONParser();
-        JSONArray readEventList = new JSONArray();
-        
-        try (FileReader reader = new FileReader("events.json"))
-        {
-            //Read JSON file
-            Object obj = jsonParser.parse(reader);
-            readEventList = (JSONArray) obj;
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        
-        return readEventList;
-	}
-	
 	public String validateName() {
 		String name = "";
+		ArrayList<String> names = getAllEventNames();
 		while(true) {
 			System.out.println("Enter the name of your event:");
 			name = scan.nextLine();
+			if (names.contains(name)) {
+				System.out.println("Event name already exists.");
+				continue;
+			}
 			if (name.length() == 0) {
 				System.out.println("The name of your event cannot be empty.");
 				continue;
@@ -202,19 +187,162 @@ public class EventDatabase {
 		}
 		return Integer.toString(price);
 	}
+	
+	public JSONArray readEventList() {
+		JSONParser jsonParser = new JSONParser();
+        JSONArray readEventList = new JSONArray();
+        
+        try (FileReader reader = new FileReader("events.json"))
+        {
+            //Read JSON file
+            Object obj = jsonParser.parse(reader);
+            readEventList = (JSONArray) obj;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        
+        return readEventList;
+	}
 			
 	public void readAllEvents() {
 		// reading
         JSONParser jsonParser = new JSONParser();
         JSONArray readEventList = readEventList();
-        try (FileReader reader = new FileReader("users.json"))
+        try (FileReader reader = new FileReader("events.json"))
         {
-            System.out.println(readEventList);
-            //Iterate over user array
+            //System.out.println(readEventList);
+            //Iterate over event array
             readEventList.forEach( event -> parseEventObject( (JSONObject) event ) );
             
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+	}
+	
+	// Parse methods find and return respective variables
+	public String parseName(JSONObject event) 
+    {
+        JSONObject eventObject = (JSONObject) event.get("event");
+        return (String) eventObject.get("name");    
+    }
+	
+	/**
+	 * Searches for a specific event
+	 * @param user
+	 * @return
+	 */
+	public JSONObject findEventByName(String name) {
+		eventList = readEventList();
+		Iterator i = eventList.iterator();
+        while (i.hasNext()) {
+        	JSONObject eventObject = (JSONObject) i.next();
+        	eventObject = (JSONObject) eventObject.get("event");
+        	String currentName = (String) eventObject.get("name");
+        	if (name.equals(currentName))
+        		return eventObject;
+        }
+        return null;
+	}
+	
+	public Event returnEventObjectByName(String name) {
+		JSONObject eventObject = findEventByName(name);
+		
+		String times = (String) eventObject.get("militaryTimes");
+		//String str[] = times.split(" ");
+		//ArrayList<String> militaryTimes = new ArrayList<String>(Arrays.asList(str));
+		//militaryTimes.addAll(Arrays.asList(str));
+		ArrayList<String> militaryTimes = new ArrayList<String>();
+		militaryTimes.addAll(Arrays.asList(times.toLowerCase().split(" ")));
+		
+		
+		String type = (String) eventObject.get("type");
+		int rating = Integer.parseInt((String) eventObject.get("rating"));
+		int numOfRatings = Integer.parseInt((String) eventObject.get("numOfRatings"));
+		
+		String coms = (String) eventObject.get("comments");
+		//str = coms.split(" ");
+		//ArrayList<String> comments = new ArrayList<String>(Arrays.asList(str));
+		//comments.addAll(Arrays.asList(str));
+		ArrayList<String> comments = new ArrayList<String>();
+		comments.addAll(Arrays.asList(coms.toLowerCase().split(" ")));
+		
+		String datesString = (String) eventObject.get("dates");
+		//str = datesString.split(" ");
+		//ArrayList<String> dates = new ArrayList<String>(Arrays.asList(str));
+		//dates.addAll(Arrays.asList(str));
+		ArrayList<String> dates = new ArrayList<String>();
+		dates.addAll(Arrays.asList(datesString.toLowerCase().split(" ")));
+		
+		Double price = Double.parseDouble((String) eventObject.get("price"));
+		
+		return new Event(name, militaryTimes, type, rating, numOfRatings, comments, dates, price);
+		/*
+		
+		
+		
+		
+
+		
+		
+		eventDetails.put("rating", rating);
+		eventDetails.put("numOfRatings", numOfRatings);
+		eventDetails.put("comments", comments);
+		eventDetails.put("dates", dates);
+		eventDetails.put("price", price);
+		*/
+		
+		/*
+		String password = (String) userObject.get("password");
+		String email = (String) userObject.get("email");
+		Currency[] wallet = new Currency[3];
+		ArrayList<Ticket> tickets = new ArrayList<Ticket>();
+		ArrayList<Ticket> cart =  new ArrayList<Ticket>();
+        int age = Integer.parseInt((String) userObject.get("age"));
+        int rewardPoints = Integer.parseInt((String) userObject.get("points"));
+        double discountRate = Double.parseDouble((String) userObject.get("discount"));
+        String ID = (String) userObject.get("ID");
+        String type = (String) userObject.get("type");
+        */
+	}
+	
+	
+	/*
+	public Event returnEventObjectByJSONObject (JSONObject eventObject) {
+		
+	}
+	
+	public ArrayList<String> getAllEventNames() {
+		ArrayList<String> names = new ArrayList<String>();
+		JSONParser jsonParser = new JSONParser();
+        JSONArray readEventList = readEventList();
+        
+        //JSONObject eventObject = new JSONObject();
+        try (FileReader reader = new FileReader("events.json"))
+        {
+        	readEventList.forEach( event -> names.add(parseName((JSONObject) event)));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } 
+        return names;
+	}
+	*/
+	/**
+	 * clears data from database JSON file
+	 */
+	public void wipeDatabase() {
+		eventList = new JSONArray();
+		try (FileWriter file = new FileWriter("events.json")) {
+            file.write(eventList.toJSONString());
+            file.flush();
+ 
         } catch (IOException e) {
             e.printStackTrace();
         } 
@@ -231,5 +359,7 @@ public class EventDatabase {
         System.out.println("Dates: " + (String) eventObject.get("dates"));
         System.out.println("Price: " + (String) eventObject.get("price"));
 	}
+	
+	
 	
 }
