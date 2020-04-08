@@ -15,7 +15,7 @@ public class Event {
 	private int numOfRatings = 0;
 	private ArrayList<String> comments;
 	private ArrayList<String> dates; //MMDDYYYY
-	private Double price;
+	private double price;
 	/**
 	 * Default constructor
 	 */
@@ -121,10 +121,10 @@ public class Event {
 	public void setDates(ArrayList<String> dates) {
 		this.dates = dates;
 	}
-	public Double getPrice() {
+	public double getPrice() {
 		return price;
 	}
-	public void setPrice(Double price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 	
