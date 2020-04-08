@@ -268,8 +268,7 @@ public class Driver {
 	//******************* FUNCTIONS CALLED AFTER SELECTING VIEW_POPULAR ********************//
 	
 	private static void viewPopularEvents() {
-		// TODO ask user how many popular events to show
-		// TODO access ratings to show the top X events
+		// TODO access ratings to show the top events
 		// TODO display the top events
 		// TODO ask next options
 		//(DatabaseDriver.returnEvent("Frozen 2")).printEvent();
@@ -352,22 +351,34 @@ public class Driver {
 		if(userWallet[choice] != null) {
 			System.out.println("-----------------------------------");
 			System.out.println("~         Printing Reciept        ~");
-			System.out.println(" Charging card "+ userWallet[choice]);
+			System.out.println(" Charging card XXXX XXXX XXXX " + userWallet[choice].substring(userWallet[choice].length()-4));
 			System.out.println(" Cart total: " + user.getCartTotal());
+			System.out.println("~         Printing Done           ~");
+			System.out.println("-----------------------------------");
 		} else {
 			System.out.println("You need to add a payment method! ");
-			System.out.println("Enter a 16 digit card number: ");
+			System.out.println("Enter your 16 digit card number with no spaces or dashes: ");
 			while(true) {
-				if(in.nextLine().length() == 16) {
-					cardNum = in.nextLine();
-					userWallet[choice] = cardNum;
-				} else {
-					System.out.println("Card number format incorrect try again: ");
+				cardNum = in.nextLine();
+				if(!(cardNum.length() == 16)) {
+					System.out.println("Please enter exactly 16 digits of just the card's numbers");
+					continue;
 				}
+				if(!(cardNum.matches("[0-9]+"))) {
+					System.out.println("Please only enter numbers");
+					continue;
+				}
+				System.out.println("-----------------------------------");
+				System.out.println("~         Printing Reciept        ~");
+				System.out.println(" Charging card XXXX XXXX XXXX " + cardNum.substring(cardNum.length()-4));
+				System.out.println(" Cart total: " + user.getCartTotal());
+				System.out.println("~         Printing Done           ~");
+				System.out.println("-----------------------------------");
+				break;
 			}
 		}
-		System.out.println("~         Printing Done           ~");
-		System.out.println("-----------------------------------");
+		System.out.println("Success! Emptying your cart now ... ");
+		user.setCart(new ArrayList<Ticket>());
 	}
 	
 	public static void main(String[] args) {
