@@ -1,4 +1,5 @@
 import java.io.File;  // Import the File class
+import java.util.ArrayList;
 import java.io.FileWriter;
 import java.io.IOException;  // Import the IOException class to handle errors
 
@@ -9,7 +10,7 @@ public class Location {
 	public String description;
 	public int seatNumber; // between 1 & rows*columns
 	public String [][] seatingGrid;
-	public Event event;
+	public ArrayList<Event> events;
 	public int totalTickets;
 	
 	public Location() {
@@ -17,15 +18,15 @@ public class Location {
 		description = "A run-down old mall";
 		seatNumber=1;
 		seatingGrid = new String[ROWS][COLUMNS];
-		event = new Event();
+		events = new ArrayList<Event>();
 		totalTickets = ROWS*COLUMNS;
 	}
 
 	//Simplified constructor for DB
-	public Location(String name, String description, int seatNumber, Event event) {
+	public Location(String name, String description, int seatNumber, ArrayList<Event> event) {
 		this.name = name;
 		this.description = description;
-		this.event = event;
+		this.events = event;
 		this.seatNumber= seatNumber;
 		seatingGrid = new String[ROWS][COLUMNS];
 		
@@ -57,8 +58,9 @@ public class Location {
 	 */
 
 	public void CreateTicketFile() {
+		for(int i=0; i< 0; i++) {
 	    try {
-	      File myObj = new File(event.getName()+"Ticket.txt");
+	      File myObj = new File(events.get(i).getName()+"Ticket.txt");
 	      if (myObj.createNewFile()) {
 	        System.out.println("File created: " + myObj.getName());
 	        totalTickets--;
@@ -69,18 +71,20 @@ public class Location {
 	      System.out.println("An error occurred.");
 	      e.printStackTrace();
 	    }
+		}
 	 }
 	 /**
 	  * writes ticket information to ticket file
 	  */
 	 public void WriteTicket() {
+		 for(int i=0; i< 0; i++) {
 		try{
-	      FileWriter myWriter = new FileWriter(event.getName()+"Ticket.txt");
+	      FileWriter myWriter = new FileWriter(events.get(i).getName()+"Ticket.txt");
 	      myWriter.write
 	      ("*********************"
-	      +"**** Name: "+ event.getName()
-	      +"**** Time: "+event.getMilitaryTimes()
-	      +"**** Seat: "+rowNumber+" "+seatNumber
+	      +"**** Name: "+ events.get(i).getName()
+	      +"**** Time: "+events.get(i).getMilitaryTimes()
+	      +"**** Seat:  "+seatNumber
 	      +"*********************");
 	      myWriter.close();
 	      System.out.println("Successfully made your ticket.");
@@ -89,6 +93,7 @@ public class Location {
 	      e.printStackTrace();
 	    }
 	  }
+		 }
 	
 	 
 	 

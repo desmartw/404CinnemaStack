@@ -40,16 +40,16 @@ public class LocationDatabase {
 	        String name = validateName();
 	        String description = validateDescription();
 	        int seatNumber = validateSeatNumber();
-	        Event event = validateEvent();
+	        ArrayList<Event> events = validateEvents();
 	        
 	        JSONObject locationDetails = new JSONObject();
 	        
 	        locationDetails.put("Name",  name);
 	        locationDetails.put("SeatNumber", seatNumber);
-	        locationDetails.put("Event", event);
+	        locationDetails.put("Events", events);
 	        
 	        JSONObject locationObject = new JSONObject();
-	        locationObject.put("location", locationDetails);
+	        locationObject.put("Location", locationDetails);
 	        
 	        locationList = readLocationList();
 	        locationList.add(locationObject);
@@ -134,8 +134,9 @@ public class LocationDatabase {
 	    }
 	    	
 	
-	    public Event validateEvent() {
+	    public ArrayList<Event> validateEvents() {
 	        //TODO validate event
+	    	
 	    	return null;
 	    }
 	    
@@ -163,14 +164,15 @@ public class LocationDatabase {
 		 * @param location
 		 */
 		public void parseLocationObject(JSONObject location) {
-			JSONObject locationObject = (JSONObject) location.get("location");
-	        System.out.println("\nName: " + (String) locationObject.get("name")); 
-	        System.out.println("\nDescription: "+ (String) locationObject.get("description"));
-	        System.out.println("\nSeat Number: "+ (int) locationObject.get("seatNumber"));
-	        System.out.println("\nEvent: "+ (Event) locationObject.get("event"));
+			JSONObject locationObject = (JSONObject) location.get("Location");
+	        System.out.println("\nName: " + (String) locationObject.get("Name")); 
+	        System.out.println("\nDescription: "+ (String) locationObject.get("Description"));
+	        System.out.println("\nSeat Number: "+ (int) locationObject.get("SeatNumber"));
+	        System.out.println("\nEvents: "+ (Event) locationObject.get("Events"));
+	        }
 		}
 	    
-	}
+	
 
 
 
