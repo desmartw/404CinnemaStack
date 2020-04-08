@@ -18,7 +18,11 @@ public class Event {
 	private ArrayList<String> comments;
 	private ArrayList<String> dates; //MMDDYYYY
 	private double price;
+<<<<<<< HEAD
 	private String [][] seatingGrid;
+=======
+	
+>>>>>>> 39ceb3056e8b02b0e563885cae1d09577e29a44e
 	/**
 	 * Default constructor
 	 */
@@ -33,6 +37,7 @@ public class Event {
 		price = 0.0;
 		seatingGrid = new String[COLUMNS][ROWS];
 	}
+	
 	/**
 	 * Parameterized constructor
 	 * @param name
@@ -58,8 +63,9 @@ public class Event {
 		this.seatingGrid = new String[COLUMNS][ROWS];
 
 	}
+	
 	/**
-	 * printEvent method returns all attributes of event 
+	 * printEvent method returns all attributes of this event 
 	 */
 	public void printEvent() {
 		System.out.println("\nName of event: "+ name);
@@ -76,7 +82,9 @@ public class Event {
 		System.out.println("\nPrice: " + price);
 	}
 	
-	// returns time one element per line
+	/**
+	 * This function prints out the times the event is happening in military time
+	 */
 	public void printMilitaryTimes() {
 		for(int i =0; i<militaryTimes.size(); i++) {
 			System.out.println(militaryTimes.get(i)+"\n");
@@ -134,7 +142,10 @@ public class Event {
 		this.price = price;
 	}
 	
-	// keeps a runnning total of rating
+	/**
+	 * This function adds a rating to the running average
+	 * @param rating - new rating to be added to the average rating
+	 */
 	public void addUserRating(int rating) {
 		rating += this.rating;
 		this.numOfRatings++;
@@ -143,8 +154,13 @@ public class Event {
 	public int getEventRating() {
 		return this.rating/this.numOfRatings;
 	}
-	// allows user to post a comment to be stored in an arraylist
-	public void addUserComment(User user, String comment, ArrayList<String> comments) {
+	
+	/**
+	 * Adds a user's comment to the list of comments held in this event
+	 * @param user - User who makes the comment
+	 * @param comment - String of what the user wants to comment
+	 */
+	public void addUserComment(User user, String comment) {
 		comments.add("Posted by: "+ user.getUsername() + "\n" + comment);
 	}
 	
