@@ -37,6 +37,7 @@ public class Driver {
 	// helper method to get user input with a set of service options easier
 	private static Service getUserChoice(Service[] options) {
 		String choice = "";
+		int intChoice = -1;
 		while(true) { 
 			for (int i = 0; i < options.length; i++) {
 				System.out.println("~ " + i + " " + getServiceMessage(options[i]));
@@ -48,7 +49,7 @@ public class Driver {
 				System.out.println("Choice must be an integer");
 				continue;
 			}
-			int intChoice = Integer.parseInt(choice);
+			intChoice = Integer.parseInt(choice);
 			if (intChoice < 0 || intChoice >= options.length) {
 				System.out.println("Choice must be an integer listed above");
 				continue;
@@ -57,7 +58,7 @@ public class Driver {
 		}
 		
 		// return the chosen service
-		return options[choice];
+		return options[intChoice];
 	}
 	
 	// helper method to return a message for each Service
