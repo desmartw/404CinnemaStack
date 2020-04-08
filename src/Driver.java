@@ -323,8 +323,36 @@ public class Driver {
 	//******************* FUNCTIONS CALLED AFTER SELECTING BUY_TICKET ********************//
 
 	private static void purchaseTickets() {
+		boolean tf = true;
+		String cardNum = "";
 		Currency[] userWallet = user.getWallet();
-		
+		ArrayList<Ticket> userCart = user.getCart();
+		System.out.println("Purchasing your cart!!");
+		System.out.println();
+		if(userWallet[1] != null) {
+			System.out.println("-----------------------------------");
+			System.out.println("~         Printing Reciept        ~");
+			System.out.println(" Charging card "+ userWallet[1]);
+			for(int i=0; i< userCart.size(); i++) {
+				System.out.println(userCart.get(i).getName());
+				System.out.println(userCart.get(i).getPrice());
+				userCart.remove(i);
+		} 
+		} else {
+			System.out.println("You need to add a payment method! ");
+			System.out.println("Enter a 16 digit card number: ");
+			while(tf) {
+				if(in.nextLine().length() == 16) {
+					cardNum = in.nextLine();
+					userWallet[1] = cardNum;
+					tf = false;
+				} else {
+					System.out.println("Card number format incorrect try again: ");
+				}
+			}
+		}
+		System.out.println("~         Printing Done           ~");
+		System.out.println("-----------------------------------");
 	}
 	
 	public static void main(String[] args) {
