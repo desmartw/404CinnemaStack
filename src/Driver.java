@@ -377,7 +377,8 @@ public class Driver {
 				break;
 			}
 		}
-		System.out.println("Success! Emptying your cart now ... ");
+		System.out.println("Success! Emptying your cart to tickets now ... ");
+		//TODO when we move this function into user, we need to do tickets.addAll(cart);
 		user.setCart(new ArrayList<Ticket>());
 	}
 	
