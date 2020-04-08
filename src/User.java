@@ -5,7 +5,7 @@ public abstract class User {
 	protected String password;
 	protected String username;
 	protected String email;
-	protected Currency[] wallet;
+	protected String[] wallet;
 	protected ArrayList<Ticket> tickets;
 	protected ArrayList<Ticket> cart;
 	protected int age;
@@ -19,7 +19,7 @@ public abstract class User {
 		username = "bob123";
 		password = "password";
 		email = "bob123@email.com";
-		wallet = new Currency[2];
+		wallet = new String[3];
 		tickets = new ArrayList<Ticket>();
 		cart =  new ArrayList<Ticket>();
 		age = 18;
@@ -27,7 +27,7 @@ public abstract class User {
 		discountRate = .1;
 	}
 	/**
-	 * Paramaterized constructor
+	 * Parameterized constructor
 	 * @param username
 	 * @param password
 	 * @param email
@@ -39,7 +39,7 @@ public abstract class User {
 	 * @param discountRate
 	 */
 	public User(String username, String password, String email,
-			Currency[] wallet, ArrayList<Ticket> tickets,
+			String[] wallet, ArrayList<Ticket> tickets,
 			ArrayList<Ticket> cart, int age, int rewardPoints, 
 			double discountRate) {
 		this.username = username;
@@ -75,10 +75,10 @@ public abstract class User {
 		this.email = email;
 	}
 	
-	public Currency[] getWallet() {
+	public String[] getWallet() {
 		return wallet;
 	}
-	public void setWallet(Currency[] wallet) {
+	public void setWallet(String[] wallet) {
 		this.wallet = wallet;
 	}
 	
@@ -119,7 +119,7 @@ public abstract class User {
 	
 	
 	/**
-	 * emptys the array list cart
+	 * empties the array list cart
 	 */
 	public void emptyCart() {
 		this.cart = null; 

@@ -20,7 +20,7 @@ public class GenerateUser {
 	 * Gives commands to sign up user
 	 * @return
 	 */
-	public static User choices() {
+	public static User choices() { // TODO validate integer choice
 		System.out.println("\nEnter a number based on what you want to do.");
 		System.out.println("1. Login\n2. Create an Account\n3. Continue as Guest");
 		int response = scan.nextInt();
@@ -79,7 +79,7 @@ public class GenerateUser {
 		JSONObject userObject = db.findUser(username);
 		String password = (String) userObject.get("password");
 		String email = (String) userObject.get("email");
-		Currency[] wallet = new Currency[3];
+		String[] wallet = new String[3];
 		ArrayList<Ticket> tickets = new ArrayList<Ticket>();
 		ArrayList<Ticket> cart =  new ArrayList<Ticket>();
         int age = Integer.parseInt((String) userObject.get("age"));
@@ -112,7 +112,7 @@ public class GenerateUser {
 	 */
 	public static User guestUser() {
 		int age = 0;
-		Currency[] wallet = new Currency[3];
+		String[] wallet = new String[3];
 		ArrayList<Ticket> tickets = new ArrayList<Ticket>();
 		while(true) {
 			System.out.println("Enter your current age:");
