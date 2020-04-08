@@ -29,7 +29,9 @@ public class EventDatabase {
 		eventList = new JSONArray();
 		scan = new Scanner(System.in);
 	}
-	
+	/**
+	 * enables user to add an event to the eventList
+	 */
 	public void enterEvent() {
 		System.out.println();
 		String name = validateName();
@@ -68,6 +70,10 @@ public class EventDatabase {
         } 
 	}
 	
+	/**
+	 * Makes sure name of event is valid
+	 * @return name - string
+	 */
 	public String validateName() {
 		String name = "";
 		ArrayList<String> names = getAllEventNames();
@@ -87,7 +93,10 @@ public class EventDatabase {
 		}
 		return name;
 	}
-	
+	/**
+	 * Makes sure time of event is valid
+	 * @return time- string
+	 */
 	public String validateMilitaryTimes() {
 		String times = "";
 		String time = "";
@@ -116,7 +125,10 @@ public class EventDatabase {
 		}
 		return times;
 	}
-	
+	/**
+	 * Makes sure type of event is valid
+	 * @return type - String
+	 */
 	public String validateType() {
 		String type = "";
 		List<String> types = new ArrayList<String>();
@@ -134,7 +146,10 @@ public class EventDatabase {
 		}
 		return type;
 	}
-	
+	/**
+	 * Makes sure date of event is valid
+	 * @return dates - string
+	 */
 	public String validateDates() {
 		String dates = "";
 		String date = "";
@@ -163,7 +178,10 @@ public class EventDatabase {
 		}
 		return dates;
 	}
-	
+	/**
+	 * Makes sure price of event is valid
+	 * @return price- string
+	 */
 	public String validatePrice() {
 		Integer price = null;
 		while(true) {
@@ -187,7 +205,10 @@ public class EventDatabase {
 		}
 		return Integer.toString(price);
 	}
-	
+	/**
+	 *  reads Array list of events 
+	 * @return list of events- JSONArray
+	 */
 	public JSONArray readEventList() {
 		JSONParser jsonParser = new JSONParser();
         JSONArray readEventList = new JSONArray();
@@ -207,7 +228,9 @@ public class EventDatabase {
         
         return readEventList;
 	}
-			
+	/**
+	 * reads all events and prints to console
+	 */
 	public void readAllEvents() {
 		// reading
         JSONParser jsonParser = new JSONParser();
@@ -249,7 +272,11 @@ public class EventDatabase {
         }
         return null;
 	}
-	
+	/**
+	 * searches for an event and returns info based on a name
+	 * @param name
+	 * @return event 
+	 */
 	public Event returnEventObjectByName(String name) {
 		JSONObject eventObject = findEventByName(name);
 		
@@ -347,7 +374,10 @@ public class EventDatabase {
             e.printStackTrace();
         } 
 	}
-	
+	/**
+	 * parses event form json object
+	 * @param event
+	 */
 	public void parseEventObject(JSONObject event) {
 		JSONObject eventObject = (JSONObject) event.get("event");
         System.out.println("\nName: " + (String) eventObject.get("name"));  
