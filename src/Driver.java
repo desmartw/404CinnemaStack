@@ -350,7 +350,7 @@ public class Driver {
 		int choice = getValidatedChoice(3);
 		if(userWallet[choice] != null) {
 			System.out.println("-----------------------------------");
-			System.out.println("~         Printing Reciept        ~");
+			System.out.println("~         Printing Receipt        ~");
 			System.out.println(" Charging card XXXX XXXX XXXX " + userWallet[choice].substring(userWallet[choice].length()-4));
 			System.out.println(" Cart total: " + user.getCartTotal());
 			System.out.println("~         Printing Done           ~");
@@ -369,7 +369,7 @@ public class Driver {
 					continue;
 				}
 				System.out.println("-----------------------------------");
-				System.out.println("~         Printing Reciept        ~");
+				System.out.println("~         Printing Receipt        ~");
 				System.out.println(" Charging card XXXX XXXX XXXX " + cardNum.substring(cardNum.length()-4));
 				System.out.println(" Cart total: " + user.getCartTotal());
 				System.out.println("~         Printing Done           ~");
