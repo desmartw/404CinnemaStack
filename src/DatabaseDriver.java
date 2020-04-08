@@ -70,10 +70,9 @@ public class DatabaseDriver {
 		//printAllEvents();
 		//Event event = returnEvent("Frozen 2");
 		//event.printEvent();
-		enterComment("Frozen 2", "I loved it so much it gave me chills");
-		printAllEvents();
-		
-		
+		//enterComment("Frozen 2", "I loved it so much it gave me chills");
+		//printAllEvents();
+		enterNewEvent();
 	}
 
 }
