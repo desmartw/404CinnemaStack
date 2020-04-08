@@ -42,7 +42,7 @@ public class Event {
 	 */
 	public Event(String name, ArrayList<String> militaryTimes, String type, int rating, 
 			int numOfRatings, ArrayList<String> comments2, ArrayList<String> dates2, 
-			Double price) {
+			double price) {
 		this.name = name;
 		this.militaryTimes = militaryTimes;
 		this.type = type;

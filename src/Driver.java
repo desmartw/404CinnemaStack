@@ -3,7 +3,6 @@ import java.util.ArrayList;
 
 public class Driver {
 
-	private static boolean done = false;
 	public static User user;
 	private static Scanner in;
 	
@@ -50,7 +49,7 @@ public class Driver {
 			// capture user input
 			choice = in.nextLine();
 			// validate choice is an integer
-			if (!(choice.matches("[0-9]+"))) {
+			if (!(choice.matches("[0-9]+") || choice.length() == 0)) {
 				System.out.println("Choice must be an integer");
 				continue;
 			}
@@ -134,7 +133,7 @@ public class Driver {
 				goBackChoice();
 				break;
 			case SEARCH_BY_NAME:
-				searchByMovie();
+				searchByName();
 				break;
 			case SEARCH_BY_DATE:
 				searchByDateRange();
@@ -151,11 +150,16 @@ public class Driver {
 				break;
 			case EMPTY_CART:
 				user.setCart(new ArrayList<Ticket>());
+				goBackChoice();
 				break;
 			case RENEW_CHOICE:
+				// remove the choice taken to RENEW_CHOICE
+				choiceHistory.remove(choiceHistory.size()-1);
 				renewChoice();
 				break;
 			case GO_BACK:
+				// remove the choice taken to GO_BACK
+				choiceHistory.remove(choiceHistory.size()-1);
 				goBackChoice();
 				break;
 			// other functions should be set up so that this won't occur but 
@@ -210,14 +214,13 @@ public class Driver {
 	//******************* FUNCTIONS CALLED AFTER SELECTING SEARCH ********************//
 	
 	private static void initiateSearch() {
-		// TODO ask search by what - something like Service choice = getSearchChoice
-		// TODO call proper search - actOnChoice(choice)
+		System.out.println("Select the criteria you wish to search by: \n");
+		Service choice = getUserChoice(new Service[] {Service.EXIT, Service.SEARCH_BY_DATE, Service.SEARCH_BY_NAME,
+													  Service.SEARCH_BY_RATING, Service.GO_BACK});
+		actOnChoice(choice);
 	}
 	
-	private static void searchByMovie() {
-		// TODO search the database for any movie times given by the movie name
-		// TODO display the results
-		// TODO give next options
+	private static void searchByName() {
 		
 	}
 	
@@ -284,6 +287,7 @@ public class Driver {
 			System.out.println("Ticket:");
 			System.out.println(userCart.get(i).toString());
 		}
+		System.out.println();
 	}
 	
 	private static void viewTickets() {
@@ -298,6 +302,7 @@ public class Driver {
 			System.out.println("Ticket:");
 			System.out.println(userTix.get(i).toString());
 		}
+		System.out.println();
 	}
 	
 	private static void viewWallet() {
