@@ -1,5 +1,5 @@
 import java.util.Scanner;
-import java.util.Stack;
+import java.util.ArrayList;
 
 public class Driver {
 
@@ -8,12 +8,12 @@ public class Driver {
 	private static Scanner in;
 	
 	// all the services that the program will offer, to be used in different functions
-	public enum Service {EXIT, SEARCH, LOGIN, VIEW_POPULAR, VIEW_ACCOUNT, SEARCH_BY_MOVIE, SEARCH_BY_ACTOR,
+	public enum Service {EXIT, SEARCH, LOGIN, VIEW_POPULAR, VIEW_ACCOUNT, SEARCH_BY_NAME,
 				  		 SEARCH_BY_DATE, SEARCH_BY_RATING, BUY_TICKETS, VIEW_CART, 
-				  		 EMPTY_CART, RENEW_LOOP, RENEW_CHOICE, GO_BACK_A_CHOICE}; 
+				  		 EMPTY_CART, RENEW_LOOP, RENEW_CHOICE, GO_BACK}; 
 	
 	// holds the choice history of the user
-	private static Stack<Service> choiceHistory = new Stack<Service>();
+	private static ArrayList<Service> choiceHistory = new ArrayList<Service>();
 	
 	// welcomes the user with greeting messages
 	private static void welcomeUser() {
@@ -21,12 +21,6 @@ public class Driver {
 		System.out.println("                Welcome to CinemaStack!");
 		System.out.println("-------------------------------------------------------");
 		System.out.println("~~~ Please enjoy the fine services we have to offer ~~~\n");
-	}
-	
-	// function to end or continue the program loop
-	// ends if done is true, continues if done is false
-	private static boolean done() {
-		return done;
 	}
 	
 	// Gives the user actions to take upon entering the app, or when the loop
@@ -78,7 +72,7 @@ public class Driver {
 						return "View popular events";
 					case VIEW_ACCOUNT:
 						return "View your account information";
-					case SEARCH_BY_MOVIE:
+					case SEARCH_BY_NAME:
 						return "Search for events by movie title";
 					case SEARCH_BY_DATE:
 						return "Search for events within a date range";
@@ -90,7 +84,7 @@ public class Driver {
 						return "View the current tickets in your shopping cart";
 					case EMPTY_CART:
 						return "Empty your current shopping cart";
-					case GO_BACK_A_CHOICE:
+					case GO_BACK:
 						return "Go back to previous page";
 						default:
 							return "An invalid Service has been used";
@@ -107,17 +101,18 @@ public class Driver {
 		// translate choice to corresponding action
 		switch(choice) {
 			case RENEW_LOOP:
-				// does nothing so the loop reruns
+				Service aChoice = getTopChoice();
+				actOnChoice(aChoice);
 				break;
 			case EXIT:
-				done = true;
+				System.exit(0);
 				break;
 			case SEARCH:
 				initiateSearch();
 				break;
 			case LOGIN:
 				user = GenerateUser.generateUser();
-				goBackToPreviousChoice();
+				goBackChoice();
 				break;
 			case VIEW_POPULAR:
 				viewPopularEvents();
@@ -125,7 +120,7 @@ public class Driver {
 			case VIEW_ACCOUNT:
 				viewAccount();
 				break;
-			case SEARCH_BY_MOVIE:
+			case SEARCH_BY_NAME:
 				searchByMovie();
 				break;
 			case SEARCH_BY_DATE:
@@ -140,21 +135,21 @@ public class Driver {
 			case VIEW_CART:
 				// TODO view cart
 				
-				goBackToPreviousChoice();
+				goBackChoice();
 				break;
 			case EMPTY_CART:
-				// TODO empty the whole cart - this is not a purchase but will be called after a purchase
+				// TODO empty the whole cart 
 				break;
 			case RENEW_CHOICE:
 				renewChoice();
 				break;
-			case GO_BACK_A_CHOICE:
-				goBackToPreviousChoice();
+			case GO_BACK:
+				goBackChoice();
 				break;
 			// other functions should be set up so that this won't occur but 
 			// any improper case will just go back
 				default:
-					goBackToPreviousChoice();
+					goBackChoice();
 		}
 	}
 	
@@ -162,41 +157,41 @@ public class Driver {
 	 *  @param choice - Service choice to be added on top of the history stack
 	 */
 	private static void addChoiceToHistory(Service choice) {
-		choiceHistory.push(choice);
+		choiceHistory.add(choice);
 	}
 	
 	// deletes the latest choice and renews the previous choice
-	private static void goBackToPreviousChoice() {
+	private static void goBackChoice() {
 		
-		// checks if the history is empty - this shouldn't happen but should be checked
-		if (choiceHistory.peek() == null) {
-			
-			// displays the initial options
-			actOnChoice(Service.RENEW_LOOP);
+		// check if at least two choices have been made
+		if (choiceHistory.size() > 1) {
+			// remove the latest choice and renew the choice
+			choiceHistory.remove(choiceHistory.size()-1);
+			renewChoice();
+		} else if (choiceHistory.size() == 1) {
+			// renew the choice
+			renewChoice();
 		} else {
-			
-			// removes the latest choice
-			choiceHistory.pop();
-			
-			// checks if the choice popped was the first choice made
-			if (choiceHistory.peek() == null) {
-				actOnChoice(Service.RENEW_LOOP); 
-			} else {
-				actOnChoice(choiceHistory.peek());
-			}
+			// choiceHistory shouldn't be empty but show top choices if so
+			Service choice = getTopChoice();
+			actOnChoice(choice);
 		}
 	}
 	
 	// re-calls the function associated to the latest choice, if none, go through the loop again
 	private static void renewChoice() {
 		
-		// makes sure a choice has been made - this should always be the case but should be checked anyways
-		if (choiceHistory.peek() != null) {
-			actOnChoice(choiceHistory.peek());
+		// check if a choice has been made
+		if (!choiceHistory.isEmpty()) {
+			// save the latest choice
+			Service latestChoice = choiceHistory.get(choiceHistory.size()-1);
+			// delete the latest choice from history since actOnChoice will add it to the history
+			choiceHistory.remove(choiceHistory.size()-1);
+			actOnChoice(latestChoice);
 		} else {
-			
-			// if no choice in history, display the initial options
-			actOnChoice(Service.RENEW_LOOP); // just reruns the loop
+			// call top options if no choice has been made - should never happen
+			Service choice = getTopChoice();
+			actOnChoice(choice);
 		}
 	}
 	
@@ -250,7 +245,6 @@ public class Driver {
 	
 	private static void viewAccount() {
 		// TODO show shopping cart, all account fields
-		goBackToPreviousChoice();
 	}
 	
 	//******************* FUNCTIONS CALLED AFTER SELECTING BUY_TICKET ********************//
