@@ -352,19 +352,15 @@ public class Driver {
 		if(userWallet[choice] != null) {
 			System.out.println("-----------------------------------");
 			System.out.println("~         Printing Reciept        ~");
-			System.out.println(" Charging card "+ userWallet[1]);
-			for(int i=0; i< userCart.size(); i++) {
-				System.out.println(userCart.get(i).getName());
-				System.out.println(userCart.get(i).getPrice());
-				userCart.remove(i);
-		} 
+			System.out.println(" Charging card "+ userWallet[choice]);
+			System.out.println(" Cart total: " + user.getCartTotal());
 		} else {
 			System.out.println("You need to add a payment method! ");
 			System.out.println("Enter a 16 digit card number: ");
 			while(true) {
 				if(in.nextLine().length() == 16) {
 					cardNum = in.nextLine();
-					userWallet[1] = cardNum;
+					userWallet[choice] = cardNum;
 				} else {
 					System.out.println("Card number format incorrect try again: ");
 				}
