@@ -26,12 +26,16 @@ public class ScheduleDatabase {
 	    JSONArray scheduleList;
 	    FileWriter file;
 	    Scanner scan;
-
+	    /**
+	     * default constructor
+	     */
 	    public ScheduleDatabase() {
 	        scheduleList = new JSONArray();
 	        scan = new Scanner(System.in);
 	    }
-
+	    /**
+	     * allows creation of new schedules
+	     */
 	    public void enterSchedule() {
 	        System.out.println();
 	        ArrayList<Event> events = validateArrayList();
@@ -53,7 +57,10 @@ public class ScheduleDatabase {
 	        scheduleList = readScheduleList();
 	        scheduleList.add(scheduleObject);
 	    }
-	    
+	    /**
+	     * reads a list of schedules and retuns JSON array
+	     * @return
+	     */
 	    public JSONArray readScheduleList() {
 			JSONParser jsonParser = new JSONParser();
 	        JSONArray readScheduleList = new JSONArray();
@@ -73,7 +80,10 @@ public class ScheduleDatabase {
 	        
 	        return readScheduleList;
 		}
-
+	    /**
+	     * Makes sure name of Schedule is valid
+	     * @return
+	     */
 	    public String validateName() {
 	        String name = "";
 	        while (true) {
@@ -88,7 +98,10 @@ public class ScheduleDatabase {
 	        }
 	        return name;
 	    }
-
+	    /**
+	     * Makes sure genre of Schedule is valid
+	     * @return
+	     */
 	    public String validateGenre() {
 	        String genre = "stop";
 	        while(true) {
@@ -105,7 +118,10 @@ public class ScheduleDatabase {
 	        }
 	        return genre;
 	    }
-	    
+	    /**
+	     * Makes sure count of schedule is valid
+	     * @return
+	     */
 	    public int validateCount() {
 	    	int count = -1;
 	    	while(true) {
@@ -122,7 +138,9 @@ public class ScheduleDatabase {
 	    	return count;
 	    }
 	    	
-	
+	    /**
+	     * reads and prints all schedules to console
+	     */
 	    public void readAllSchedules() {
 			// reading
 	        JSONParser jsonParser = new JSONParser();
@@ -139,7 +157,10 @@ public class ScheduleDatabase {
 	            e.printStackTrace();
 	        } 
 		}
-		
+		/**
+		 * reads from JSONobject and prints attributes
+		 * @param schedule
+		 */
 		public void parseScheduleObject(JSONObject schedule) {
 			JSONObject scheduleObject = (JSONObject) schedule.get("schedule");
 			System.out.println("\nScheduleList: "+ (Event) scheduleObject.get("events"));

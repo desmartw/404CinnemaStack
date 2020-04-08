@@ -25,12 +25,16 @@ public class LocationDatabase {
 	    JSONArray locationList;
 	    FileWriter file;
 	    Scanner scan;
-
+	    /**
+	     * default constructor
+	     */
 	    public LocationDatabase() {
 	        locationList = new JSONArray();
 	        scan = new Scanner(System.in);
 	    }
-
+	    /**
+	     * Allows creation of new locations
+	     */
 	    public void enterLocation() {
 	        System.out.println();
 	        String name = validateName();
@@ -50,7 +54,10 @@ public class LocationDatabase {
 	        locationList = readLocationList();
 	        locationList.add(locationObject);
 	    }
-	    
+	    /**
+	     * returns a JSONarray of locations
+	     * @return
+	     */
 	    public JSONArray readLocationList() {
 			JSONParser jsonParser = new JSONParser();
 	        JSONArray readLocationList = new JSONArray();
@@ -70,7 +77,10 @@ public class LocationDatabase {
 	        
 	        return readLocationList;
 		}
-
+	    /**
+	     * checks name is valid
+	     * @return
+	     */
 	    public String validateName() {
 	        String name = "";
 	        while (true) {
@@ -85,7 +95,10 @@ public class LocationDatabase {
 	        }
 	        return name;
 	    }
-
+	    /**
+	     *  Makes sure seatNumber of location is valid
+	     * @return
+	     */
 	    public int validateSeatNumber() {
 	        int seatNum = 0;
 	        while(true) {
@@ -100,6 +113,10 @@ public class LocationDatabase {
 	        }
 	        return seatNum;
 	    }
+	    /**
+	     * Makes sure description of location is valid
+	     * @return
+	     */
 	    public String validateDescription() {
 	    	String description = "";
 	    	while(true) {
@@ -121,6 +138,10 @@ public class LocationDatabase {
 	        //TODO validate event
 	    	return null;
 	    }
+	    
+	    /**
+	     * reads and prints locations to console
+	     */
 	    public void readAllLocations() {
 			// reading
 	        JSONParser jsonParser = new JSONParser();
@@ -137,7 +158,10 @@ public class LocationDatabase {
 	            e.printStackTrace();
 	        } 
 		}
-		
+		/**
+		 * creates a location from a JSON object
+		 * @param location
+		 */
 		public void parseLocationObject(JSONObject location) {
 			JSONObject locationObject = (JSONObject) location.get("location");
 	        System.out.println("\nName: " + (String) locationObject.get("name")); 
