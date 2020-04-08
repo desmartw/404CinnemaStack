@@ -6,10 +6,10 @@
  *
  */
 public abstract class Ticket {
-	public String name;
-	public String seatNumber;
-	public int militaryTime;
-	public double price;
+	private String name;
+	private String seatNumber;
+	private int militaryTime;
+	private double price;
 	protected int ticketNumber;
 	
 	/**

@@ -2,6 +2,7 @@
 import java.util.ArrayList;
 
 public abstract class User {
+	public static final double SALES_TAX = 0.07;
 	protected String password;
 	protected String username;
 	protected String email;
@@ -134,5 +135,15 @@ public abstract class User {
 		return db.getType(this.username);
 	}
 	
-	
+	public double getCartTotal() {
+		double cost = 0;
+		if (cart.isEmpty()) {
+			return cost;
+		} else {
+			for (int i=0; i < cart.size(); i++) {
+				cost += cart.get(i).getPrice();
+			}
+			return cost*(1.0-discountRate)*(1.0+SALES_TAX);
+		}
+	}
 }

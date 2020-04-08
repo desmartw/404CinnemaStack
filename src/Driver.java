@@ -40,13 +40,24 @@ public class Driver {
 	
 	// helper method to get user input with a set of service options easier
 	private static Service getUserChoice(Service[] options) {
+		
+		// present the options
+		for (int i = 0; i < options.length; i++) {
+			System.out.println("~ " + i + " " + getServiceMessage(options[i]));
+		}
+		
+		// capture user choice
+		int intChoice = getValidatedChoice(options.length);
+		
+		// return the chosen service
+		return options[intChoice];
+	}
+	
+	// helper method that validates user has entered in an integer corresponding to options presented
+	private static int getValidatedChoice(int numOptions) {
 		String choice = "";
 		int intChoice = -1;
-		while(true) { 
-			for (int i = 0; i < options.length; i++) {
-				System.out.println("~ " + i + " " + getServiceMessage(options[i]));
-			}
-			// capture user input
+		while(true) {
 			choice = in.nextLine();
 			// validate choice is an integer
 			if (!(choice.matches("[0-9]+") || choice.length() == 0)) {
@@ -54,15 +65,13 @@ public class Driver {
 				continue;
 			}
 			intChoice = Integer.parseInt(choice);
-			if (intChoice < 0 || intChoice >= options.length) {
-				System.out.println("Choice must be an integer listed above");
+			if (intChoice < 0 || intChoice >= numOptions) {
+				System.out.println("Choice must be an integer corresponding to an action");
 				continue;
 			}
 			break;
 		}
-		
-		// return the chosen service
-		return options[intChoice];
+		return intChoice;
 	}
 	
 	// helper method to return a message for each Service
@@ -109,6 +118,7 @@ public class Driver {
 		addChoiceToHistory(choice);
 		
 		// translate choice to corresponding action
+		// all choices that do not lead to more options are followed by goBackChoice()
 		switch(choice) {
 			case RENEW_FRONT:
 				Service aChoice = getTopChoice();
@@ -147,7 +157,6 @@ public class Driver {
 				break;
 			case VIEW_CART:
 				viewCart();
-				goBackChoice();
 				break;
 			case EMPTY_CART:
 				user.setCart(new ArrayList<Ticket>());
@@ -330,13 +339,17 @@ public class Driver {
 	//******************* FUNCTIONS CALLED AFTER SELECTING BUY_TICKET ********************//
 
 	private static void purchaseTickets() {
-		boolean tf = true;
 		String cardNum = "";
 		String[] userWallet = user.getWallet();
 		ArrayList<Ticket> userCart = user.getCart();
 		System.out.println("Purchasing your cart!!");
 		System.out.println();
-		if(userWallet[1] != null) {
+		System.out.println("Choose payment option, if you choose an empty slot, don't worry!");
+		System.out.println("We will simply then ask for your payment information. Now enter\n"
+				          +"the slot number you choose to proceed with:");
+		viewWallet();
+		int choice = getValidatedChoice(3);
+		if(userWallet[choice] != null) {
 			System.out.println("-----------------------------------");
 			System.out.println("~         Printing Reciept        ~");
 			System.out.println(" Charging card "+ userWallet[1]);
@@ -348,11 +361,10 @@ public class Driver {
 		} else {
 			System.out.println("You need to add a payment method! ");
 			System.out.println("Enter a 16 digit card number: ");
-			while(tf) {
+			while(true) {
 				if(in.nextLine().length() == 16) {
 					cardNum = in.nextLine();
 					userWallet[1] = cardNum;
-					tf = false;
 				} else {
 					System.out.println("Card number format incorrect try again: ");
 				}
