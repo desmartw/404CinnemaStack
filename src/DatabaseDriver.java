@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class DatabaseDriver {
 	public static EventDatabase ev = new EventDatabase();
@@ -9,6 +11,10 @@ public class DatabaseDriver {
 	// print all the attributes of all events
 	public static void printAllEvents() {
 		ev.readAllEvents();
+	}
+	
+	public static ArrayList<Event> returnAllEventsAsArrayList() {
+		return ev.returnAllEventsAsArrayList();
 	}
 	
 	public static void enterNewEvent() {
@@ -72,7 +78,8 @@ public class DatabaseDriver {
 		//event.printEvent();
 		//enterComment("Frozen 2", "I loved it so much it gave me chills");
 		//printAllEvents();
-		enterNewEvent();
+		//enterNewEvent();
+		ArrayList<Event> events = returnAllEventsAsArrayList();
 	}
 
 }

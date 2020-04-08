@@ -268,6 +268,31 @@ public class EventDatabase {
         }
 	}
 	
+	
+	public ArrayList<Event> returnAllEventsAsArrayList() {
+		ArrayList<Event> events = new ArrayList<Event>();
+		
+		JSONParser jsonParser = new JSONParser();
+        JSONArray readEventList = readEventList();
+        try (FileReader reader = new FileReader("events.json"))
+        {
+            //System.out.println(readEventList);
+            //Iterate over event array
+            readEventList.forEach( event -> {
+            	JSONObject currEvent = (JSONObject) event;
+            	String name = parseName(currEvent);
+            	Event eventObject = returnEventObjectByName(name);
+            	events.add(eventObject);
+            });
+            
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+		return events;
+	}
+	
 	// Parse methods find and return respective variables
 	public String parseName(JSONObject event) 
     {
@@ -323,6 +348,10 @@ public class EventDatabase {
 		} else {
 			return null;
 		}
+	}
+	
+	public Event returnEventObjectFromJSONObject(JSONObject object) {
+		
 	}
 	
 	public ArrayList<String> getAllEventNames() {
