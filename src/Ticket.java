@@ -74,11 +74,11 @@ public abstract class Ticket {
 	 * ToString
 	 */
 	public String toString() {
-		return "Name: " + name + 
-				"Seat number: " + seatNumber +
-				"Price: " + price +
-				"Time of show (24hr): "+militaryTime+
-				"Ticket Number: "+ ticketNumber;
+		return "--------------" + "\nName: " + name + "--------------" +
+				"\nSeat number: " + seatNumber +
+				"\nPrice: " + price +
+				"\nTime of show (24hr): "+militaryTime+
+				"\nTicket Number: "+ ticketNumber;
 	}
 
 }

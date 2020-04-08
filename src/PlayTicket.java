@@ -29,4 +29,7 @@ public class PlayTicket extends Ticket {
 		super(name, seatNumber,price, militaryTime,ticketNumber);
 	}
 
+	public String toString() {
+		return super.toString(); // TODO add extra info for toString
+	}
 }

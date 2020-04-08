@@ -274,12 +274,30 @@ public class Driver {
 	
 	private static void viewCart() {
 		ArrayList<Ticket> userCart = user.getCart();
-		// TODO show it
+		System.out.println("-------------------------------------------------------");
+		System.out.println("                    Shopping Cart");
+		System.out.println("-------------------------------------------------------\n");
+		if (userCart.isEmpty()) {
+			System.out.println("Empty");
+		}
+		for (int i = 0; i < userCart.size(); i++) {
+			System.out.println("Ticket:");
+			System.out.println(userCart.get(i).toString());
+		}
 	}
 	
 	private static void viewTickets() {
 		ArrayList<Ticket> userTix = user.getTickets();
-		// TODO show it
+		System.out.println("-------------------------------------------------------");
+		System.out.println("                  Purchased Tickets");
+		System.out.println("-------------------------------------------------------\n");
+		if (userTix.isEmpty()) {
+			System.out.println("Empty");
+		}
+		for (int i = 0; i < userTix.size(); i++) {
+			System.out.println("Ticket:");
+			System.out.println(userTix.get(i).toString());
+		}
 	}
 	
 	private static void viewWallet() {
