@@ -54,7 +54,7 @@ public class Driver {
 	}
 	
 	// helper method that validates user has entered in an integer corresponding to options presented
-	private static int getValidatedChoice(int numOptions) {
+	public static int getValidatedChoice(int numOptions) {
 		String choice = "";
 		int intChoice = -1;
 		while(true) {
@@ -139,7 +139,7 @@ public class Driver {
 				viewPopularEvents();
 				break;
 			case VIEW_ACCOUNT:
-				viewAccount();
+				user.viewAccount();
 				goBackChoice();
 				break;
 			case SEARCH_BY_NAME:
@@ -152,11 +152,11 @@ public class Driver {
 				searchByRating();
 				break;
 			case BUY_TICKETS:
-				purchaseTickets();
+				user.purchaseTickets();
 				goBackChoice();
 				break;
 			case VIEW_CART:
-				viewCart();
+				user.viewCart();
 				break;
 			case EMPTY_CART:
 				user.setCart(new ArrayList<Ticket>());
@@ -273,113 +273,6 @@ public class Driver {
 		// TODO ask next options
 		//(DatabaseDriver.returnEvent("Frozen 2")).printEvent();
 		DatabaseDriver.displayAllEvents();
-	}
-	
-	//****************** FUNCTIONS CALLED AFTER SELECTING VIEW_ACCOUNT ********************//
-	
-	private static void viewAccount() {
-		System.out.println("-------------------------------------------------------");
-		System.out.println("          " + user.getUsername());
-		System.out.println("-------------------------------------------------------\n");
-		System.out.println("Type of Account: " + user.getType());
-		System.out.println("Email: " + user.getEmail());
-		System.out.println("Age: " + user.getAge());
-		System.out.println("Cool Points " + user.getRewardPoints() + " Cool Points");
-		System.out.println("Discount Rate: " + user.getDiscountRate() + "%\n"); // TODO make sure discount rate is properly shown
-		viewWallet();
-		System.out.println();
-		viewCart();
-		System.out.println();
-		viewTickets();
-		System.out.println();
-	}
-	
-	private static void viewCart() {
-		ArrayList<Ticket> userCart = user.getCart();
-		System.out.println("-------------------------------------------------------");
-		System.out.println("                    Shopping Cart");
-		System.out.println("-------------------------------------------------------\n");
-		if (userCart.isEmpty()) {
-			System.out.println("Empty");
-		}
-		for (int i = 0; i < userCart.size(); i++) {
-			System.out.println("Ticket:");
-			System.out.println(userCart.get(i).toString());
-		}
-		System.out.println();
-	}
-	
-	private static void viewTickets() {
-		ArrayList<Ticket> userTix = user.getTickets();
-		System.out.println("-------------------------------------------------------");
-		System.out.println("                  Purchased Tickets");
-		System.out.println("-------------------------------------------------------\n");
-		if (userTix.isEmpty()) {
-			System.out.println("Empty");
-		}
-		for (int i = 0; i < userTix.size(); i++) {
-			System.out.println("Ticket:");
-			System.out.println(userTix.get(i).toString());
-		}
-		System.out.println();
-	}
-	
-	private static void viewWallet() {
-		String[] userWallet = user.getWallet();
-		for (int i = 0; i < userWallet.length; i++) {
-			System.out.print("Slot " + i + ": ");
-			if (userWallet[i] == null) {
-				System.out.println("Empty");
-			} else {
-				System.out.println(userWallet[i]);
-			}
-		}
-	}
-	//******************* FUNCTIONS CALLED AFTER SELECTING BUY_TICKET ********************//
-
-	private static void purchaseTickets() {
-		String cardNum = "";
-		String[] userWallet = user.getWallet();
-		ArrayList<Ticket> userCart = user.getCart();
-		System.out.println("Purchasing your cart!!");
-		System.out.println();
-		System.out.println("Choose payment option, if you choose an empty slot, don't worry!");
-		System.out.println("We will simply then ask for your payment information. Now enter\n"
-				          +"the slot number you choose to proceed with:");
-		viewWallet();
-		int choice = getValidatedChoice(3);
-		if(userWallet[choice] != null) {
-			System.out.println("-----------------------------------");
-			System.out.println("~         Printing Receipt        ~");
-			System.out.println(" Charging card XXXX XXXX XXXX " + userWallet[choice].substring(userWallet[choice].length()-4));
-			System.out.println(" Cart total: " + user.getCartTotal());
-			System.out.println("~         Printing Done           ~");
-			System.out.println("-----------------------------------");
-		} else {
-			System.out.println("You need to add a payment method! ");
-			System.out.println("Enter your 16 digit card number with no spaces or dashes: ");
-			while(true) {
-				cardNum = in.nextLine();
-				if(!(cardNum.length() == 16)) {
-					System.out.println("Please enter exactly 16 digits of just the card's numbers");
-					continue;
-				}
-				if(!(cardNum.matches("[0-9]+"))) {
-					System.out.println("Please only enter numbers");
-					continue;
-				}
-				System.out.println("-----------------------------------");
-				System.out.println("~         Printing Receipt        ~");
-				System.out.println(" Charging card XXXX XXXX XXXX " + cardNum.substring(cardNum.length()-4));
-				System.out.println(" Cart total: " + user.getCartTotal());
-				System.out.println("~         Printing Done           ~");
-				System.out.println("-----------------------------------");
-				break;
-			}
-		}
-		System.out.println("Success! Emptying your cart to tickets now ... ");
-		//TODO when we move this function into user, we need to do tickets.addAll(cart);
-		user.setCart(new ArrayList<Ticket>());
 	}
 	
 	public static void main(String[] args) {
