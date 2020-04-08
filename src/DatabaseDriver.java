@@ -62,7 +62,8 @@ public class DatabaseDriver {
 		//printAllEvents();
 		//enterNewEvent();
 		printAllEvents();
-		(returnEvent("Frozen 2")).printEvent();
+		Event event = returnEvent("Frozen 2");
+		event.printEvent();
 		
 		
 		

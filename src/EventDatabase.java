@@ -281,9 +281,6 @@ public class EventDatabase {
 		JSONObject eventObject = findEventByName(name);
 		
 		String times = (String) eventObject.get("militaryTimes");
-		//String str[] = times.split(" ");
-		//ArrayList<String> militaryTimes = new ArrayList<String>(Arrays.asList(str));
-		//militaryTimes.addAll(Arrays.asList(str));
 		ArrayList<String> militaryTimes = new ArrayList<String>();
 		militaryTimes.addAll(Arrays.asList(times.toLowerCase().split(" ")));
 		
@@ -293,55 +290,16 @@ public class EventDatabase {
 		int numOfRatings = Integer.parseInt((String) eventObject.get("numOfRatings"));
 		
 		String coms = (String) eventObject.get("comments");
-		//str = coms.split(" ");
-		//ArrayList<String> comments = new ArrayList<String>(Arrays.asList(str));
-		//comments.addAll(Arrays.asList(str));
 		ArrayList<String> comments = new ArrayList<String>();
 		comments.addAll(Arrays.asList(coms.toLowerCase().split(" ")));
 		
 		String datesString = (String) eventObject.get("dates");
-		//str = datesString.split(" ");
-		//ArrayList<String> dates = new ArrayList<String>(Arrays.asList(str));
-		//dates.addAll(Arrays.asList(str));
 		ArrayList<String> dates = new ArrayList<String>();
 		dates.addAll(Arrays.asList(datesString.toLowerCase().split(" ")));
 		
 		Double price = Double.parseDouble((String) eventObject.get("price"));
 		
 		return new Event(name, militaryTimes, type, rating, numOfRatings, comments, dates, price);
-		/*
-		
-		
-		
-		
-
-		
-		
-		eventDetails.put("rating", rating);
-		eventDetails.put("numOfRatings", numOfRatings);
-		eventDetails.put("comments", comments);
-		eventDetails.put("dates", dates);
-		eventDetails.put("price", price);
-		*/
-		
-		/*
-		String password = (String) userObject.get("password");
-		String email = (String) userObject.get("email");
-		Currency[] wallet = new Currency[3];
-		ArrayList<Ticket> tickets = new ArrayList<Ticket>();
-		ArrayList<Ticket> cart =  new ArrayList<Ticket>();
-        int age = Integer.parseInt((String) userObject.get("age"));
-        int rewardPoints = Integer.parseInt((String) userObject.get("points"));
-        double discountRate = Double.parseDouble((String) userObject.get("discount"));
-        String ID = (String) userObject.get("ID");
-        String type = (String) userObject.get("type");
-        */
-	}
-	
-	
-	/*
-	public Event returnEventObjectByJSONObject (JSONObject eventObject) {
-		
 	}
 	
 	public ArrayList<String> getAllEventNames() {
@@ -360,7 +318,15 @@ public class EventDatabase {
         } 
         return names;
 	}
-	*/
+	
+	//TODO
+	public void addCommentToEvent(String name, String comment) {
+		
+		JSONObject event = findEventByName(name);
+		
+		event.put("comment", "Sammie");
+	}
+	
 	/**
 	 * clears data from database JSON file
 	 */
