@@ -317,15 +317,22 @@ public class Driver {
 	}
 	
 	private static void viewWallet() {
-		Currency[] userWallet = user.getWallet();
-		// TODO show it
+		String[] userWallet = user.getWallet();
+		for (int i = 0; i < userWallet.length; i++) {
+			System.out.print("Slot " + i + ": ");
+			if (userWallet[i] == null) {
+				System.out.println("Empty");
+			} else {
+				System.out.println(userWallet[i]);
+			}
+		}
 	}
 	//******************* FUNCTIONS CALLED AFTER SELECTING BUY_TICKET ********************//
 
 	private static void purchaseTickets() {
 		boolean tf = true;
 		String cardNum = "";
-		Currency[] userWallet = user.getWallet();
+		String[] userWallet = user.getWallet();
 		ArrayList<Ticket> userCart = user.getCart();
 		System.out.println("Purchasing your cart!!");
 		System.out.println();
