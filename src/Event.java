@@ -70,7 +70,6 @@ public class Event {
 		System.out.println("\nPrice: " + price);
 	}
 	
-	
 	// returns time one element per line
 	public void printMilitaryTimes() {
 		for(int i =0; i<militaryTimes.size(); i++) {

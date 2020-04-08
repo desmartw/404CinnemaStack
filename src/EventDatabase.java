@@ -248,6 +248,26 @@ public class EventDatabase {
         }
 	}
 	
+	/**
+	 * reads all events and prints to the user's screen
+	 */
+	public void readAllEventsForUser() {
+		// reading
+        JSONParser jsonParser = new JSONParser();
+        JSONArray readEventList = readEventList();
+        try (FileReader reader = new FileReader("events.json"))
+        {
+            //System.out.println(readEventList);
+            //Iterate over event array
+            readEventList.forEach( event -> parseEventObjectForUser( (JSONObject) event ) );
+            
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+	}
+	
 	// Parse methods find and return respective variables
 	public String parseName(JSONObject event) 
     {
@@ -356,6 +376,25 @@ public class EventDatabase {
         System.out.println("Price: " + (String) eventObject.get("price"));
 	}
 	
+	/**
+	 * parses event from json object and sets up the display for the user
+	 * @param event
+	 */
+	public void parseEventObjectForUser(JSONObject event) {
+		JSONObject eventObject = (JSONObject) event.get("event");
+		/*
+		String type = (String) eventObject.get("type");
+		String output = type.substring(0, 1).toUpperCase() + type.substring(1);
+		System.out.println("\n" + output + "\n-----");
+		*/
+		String name = (String) eventObject.get("name");
+		String dash = new String(new char[name.length()+3]).replace("\0", "-");
+		//System.out.println("\n");
+		System.out.println(" " + dash);
+		System.out.println(("| "+name+"  |")); 
+		System.out.println(" " + dash);
+		//System.out.println("CinemaStack audience rating: " + (String) eventObject.get("rating"));
+	}
 	
 	
 }

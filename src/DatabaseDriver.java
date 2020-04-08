@@ -23,6 +23,10 @@ public class DatabaseDriver {
 		return ev.returnEventObjectByName(name);
 	}
 	
+	public static void displayAllEvents() {
+		ev.readAllEventsForUser();
+	}
+	
 	public static void enterComment(String eventName, String comment) {
 		ev.addCommentToEvent(eventName, comment);
 		System.out.println("Comment saved.");

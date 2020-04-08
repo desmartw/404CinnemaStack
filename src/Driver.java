@@ -211,6 +211,7 @@ public class Driver {
 		// TODO search the database for any movie times given by the movie name
 		// TODO display the results
 		// TODO give next options
+		
 	}
 	
 	private static void searchByDateRange() {
@@ -241,7 +242,8 @@ public class Driver {
 		// TODO access ratings to show the top X events
 		// TODO display the top events
 		// TODO ask next options
-		
+		//(DatabaseDriver.returnEvent("Frozen 2")).printEvent();
+		DatabaseDriver.displayAllEvents();
 	}
 	
 	//****************** FUNCTIONS CALLED AFTER SELECTING VIEW_ACCOUNT ********************//
