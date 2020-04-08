@@ -230,7 +230,8 @@ public class Driver {
 			System.out.println("No event by that name found ... reloading Search page");
 			goBackChoice();
 		} else {
-			System.out.println("Event found")
+			System.out.println("Event found ... loading Event information ...\n");
+			event.printEvent();
 		}
 	}
 	
