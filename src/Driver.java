@@ -5,15 +5,11 @@ public class Driver {
 
 	public static User user;
 	private static Scanner in;
-	private static UserDatabase db;
-	private static EventDatabase edb;
-	private static LocationDatabase ldb;
-	private static ScheduleDatabase sdb;
 	
 	// all the services that the program will offer, to be used in different functions
 	public enum Service {EXIT, SEARCH, LOGIN, VIEW_POPULAR, VIEW_ACCOUNT, SEARCH_BY_NAME,
 				  		 SEARCH_BY_DATE, SEARCH_BY_RATING, BUY_TICKETS, VIEW_CART, 
-				  		 EMPTY_CART, RENEW_LOOP, RENEW_CHOICE, GO_BACK}; 
+				  		 EMPTY_CART, RENEW_FRONT, RENEW_CHOICE, GO_BACK}; 
 	
 	// holds the choice history of the user
 	private static ArrayList<Service> choiceHistory = new ArrayList<Service>();
@@ -74,7 +70,7 @@ public class Driver {
 		
 		// translate service to corresponding message
 				switch(service) {
-					case RENEW_LOOP:
+					case RENEW_FRONT:
 						return "Go to the front page";
 					case EXIT:
 						return "Exit the program";
@@ -114,7 +110,7 @@ public class Driver {
 		
 		// translate choice to corresponding action
 		switch(choice) {
-			case RENEW_LOOP:
+			case RENEW_FRONT:
 				Service aChoice = getTopChoice();
 				actOnChoice(aChoice);
 				break;
@@ -147,6 +143,7 @@ public class Driver {
 				break;
 			case BUY_TICKETS:
 				purchaseTickets();
+				goBackChoice();
 				break;
 			case VIEW_CART:
 				viewCart();
@@ -154,6 +151,7 @@ public class Driver {
 				break;
 			case EMPTY_CART:
 				user.setCart(new ArrayList<Ticket>());
+				System.out.println("Cart emptied ... reloading previous page ...");
 				goBackChoice();
 				break;
 			case RENEW_CHOICE:
@@ -232,7 +230,7 @@ public class Driver {
 			System.out.println("No event by that name found ... reloading Search page");
 			goBackChoice();
 		} else {
-			// TODO list all fields
+			System.out.println("Event found")
 		}
 	}
 	
@@ -329,7 +327,6 @@ public class Driver {
 	}
 	
 	public static void main(String[] args) {
-		
 		// create input stream
 		in = new Scanner(System.in);
 		
