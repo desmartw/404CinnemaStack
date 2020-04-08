@@ -23,6 +23,11 @@ public class Driver {
 		System.out.println("~~~ Please enjoy the fine services we have to offer ~~~\n");
 	}
 	
+	// displays a farewell upon exiting the application
+	private static void displayFarewell() {
+		// TODO add cool farewell with dope text image
+	}
+	
 	// Gives the user actions to take upon entering the app, or when the loop
 	// starts over because they go back to the initial actions
 	private static Service getTopChoice() {
@@ -111,6 +116,7 @@ public class Driver {
 				actOnChoice(aChoice);
 				break;
 			case EXIT:
+				displayFarewell();
 				System.exit(0);
 				break;
 			case SEARCH:
@@ -125,6 +131,7 @@ public class Driver {
 				break;
 			case VIEW_ACCOUNT:
 				viewAccount();
+				goBackChoice();
 				break;
 			case SEARCH_BY_NAME:
 				searchByMovie();
@@ -139,12 +146,11 @@ public class Driver {
 				purchaseTickets();
 				break;
 			case VIEW_CART:
-				// TODO view cart
-				
+				viewCart();
 				goBackChoice();
 				break;
 			case EMPTY_CART:
-				// TODO empty the whole cart 
+				user.setCart(new ArrayList<Ticket>());
 				break;
 			case RENEW_CHOICE:
 				renewChoice();
@@ -250,9 +256,36 @@ public class Driver {
 	//****************** FUNCTIONS CALLED AFTER SELECTING VIEW_ACCOUNT ********************//
 	
 	private static void viewAccount() {
-		// TODO show shopping cart, all account fields
+		System.out.println("-------------------------------------------------------");
+		System.out.println(user.getUsername());
+		System.out.println("-------------------------------------------------------\n");
+		System.out.println("Type of Account: " + user.getType());
+		System.out.println("Email: " + user.getEmail());
+		System.out.println("Age: " + user.getAge());
+		System.out.println("Cool Points " + user.getRewardPoints() + " Cool Points");
+		System.out.println("Discount Rate: " + user.getDiscountRate() + "%\n"); // TODO make sure discount rate is properly shown
+		viewWallet();
+		System.out.println();
+		viewCart();
+		System.out.println();
+		viewTickets();
+		System.out.println();
 	}
 	
+	private static void viewCart() {
+		ArrayList<Ticket> userCart = user.getCart();
+		// TODO show it
+	}
+	
+	private static void viewTickets() {
+		ArrayList<Ticket> userTix = user.getTickets();
+		// TODO show it
+	}
+	
+	private static void viewWallet() {
+		Currency[] userWallet = user.getWallet();
+		// TODO show it
+	}
 	//******************* FUNCTIONS CALLED AFTER SELECTING BUY_TICKET ********************//
 
 	private static void purchaseTickets() {
