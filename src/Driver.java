@@ -5,6 +5,10 @@ public class Driver {
 
 	public static User user;
 	private static Scanner in;
+	private static UserDatabase db;
+	private static EventDatabase edb;
+	private static LocationDatabase ldb;
+	private static ScheduleDatabase sdb;
 	
 	// all the services that the program will offer, to be used in different functions
 	public enum Service {EXIT, SEARCH, LOGIN, VIEW_POPULAR, VIEW_ACCOUNT, SEARCH_BY_NAME,
@@ -221,7 +225,15 @@ public class Driver {
 	}
 	
 	private static void searchByName() {
-		
+		System.out.println("Enter the event name you wish to search: ");
+		String name = in.nextLine();
+		Event event = DatabaseDriver.returnEvent(name);
+		if (event == null) {
+			System.out.println("No event by that name found ... reloading Search page");
+			goBackChoice();
+		} else {
+			// TODO list all fields
+		}
 	}
 	
 	private static void searchByDateRange() {
@@ -317,7 +329,6 @@ public class Driver {
 	}
 	
 	public static void main(String[] args) {
-		UserDatabase db = new UserDatabase();
 		
 		// create input stream
 		in = new Scanner(System.in);

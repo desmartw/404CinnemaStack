@@ -299,27 +299,30 @@ public class EventDatabase {
 	 */
 	public Event returnEventObjectByName(String name) {
 		JSONObject eventObject = findEventByName(name);
-		
-		String times = (String) eventObject.get("militaryTimes");
-		ArrayList<String> militaryTimes = new ArrayList<String>();
-		militaryTimes.addAll(Arrays.asList(times.toLowerCase().split(" ")));
-		
-		
-		String type = (String) eventObject.get("type");
-		int rating = Integer.parseInt((String) eventObject.get("rating"));
-		int numOfRatings = Integer.parseInt((String) eventObject.get("numOfRatings"));
-		
-		String coms = (String) eventObject.get("comments");
-		ArrayList<String> comments = new ArrayList<String>();
-		comments.addAll(Arrays.asList(coms.toLowerCase().split(" ")));
-		
-		String datesString = (String) eventObject.get("dates");
-		ArrayList<String> dates = new ArrayList<String>();
-		dates.addAll(Arrays.asList(datesString.toLowerCase().split(" ")));
-		
-		Double price = Double.parseDouble((String) eventObject.get("price"));
-		
-		return new Event(name, militaryTimes, type, rating, numOfRatings, comments, dates, price);
+		if (eventObject != null) {
+			String times = (String) eventObject.get("militaryTimes");
+			ArrayList<String> militaryTimes = new ArrayList<String>();
+			militaryTimes.addAll(Arrays.asList(times.toLowerCase().split(" ")));
+			
+			
+			String type = (String) eventObject.get("type");
+			int rating = Integer.parseInt((String) eventObject.get("rating"));
+			int numOfRatings = Integer.parseInt((String) eventObject.get("numOfRatings"));
+			
+			String coms = (String) eventObject.get("comments");
+			ArrayList<String> comments = new ArrayList<String>();
+			comments.addAll(Arrays.asList(coms.toLowerCase().split(" ")));
+			
+			String datesString = (String) eventObject.get("dates");
+			ArrayList<String> dates = new ArrayList<String>();
+			dates.addAll(Arrays.asList(datesString.toLowerCase().split(" ")));
+			
+			Double price = Double.parseDouble((String) eventObject.get("price"));
+			
+			return new Event(name, militaryTimes, type, rating, numOfRatings, comments, dates, price);
+		} else {
+			return null;
+		}
 	}
 	
 	public ArrayList<String> getAllEventNames() {
