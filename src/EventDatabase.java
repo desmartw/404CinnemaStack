@@ -319,12 +319,12 @@ public class EventDatabase {
         return names;
 	}
 	
-	//TODO
 	public void addCommentToEvent(String name, String comment) {
 		
-		JSONObject event = findEventByName(name);
-		
-		event.put("comment", "Sammie");
+		JSONObject eventObject = findEventByName(name);
+		String coms = (String) eventObject.get("comments");
+		coms += comment + " ";
+		eventObject.put("comments", coms);
 	}
 	
 	/**

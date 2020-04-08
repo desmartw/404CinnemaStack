@@ -23,6 +23,11 @@ public class DatabaseDriver {
 		return ev.returnEventObjectByName(name);
 	}
 	
+	public static void enterComment(String eventName, String comment) {
+		ev.addCommentToEvent(eventName, comment);
+		System.out.println("Comment saved.");
+	}
+	
 	public static void enterNewLocation() {
 		lv.enterLocation();
 	}
@@ -50,7 +55,6 @@ public class DatabaseDriver {
 	
 	
 	
-	
 	// find an event based on its name, return an Event object
 	
 	
@@ -60,11 +64,10 @@ public class DatabaseDriver {
 		//User user = GenerateUser.generateUser();
 		//db.readAllCredentials();
 		//printAllEvents();
-		//enterNewEvent();
+		//Event event = returnEvent("Frozen 2");
+		//event.printEvent();
+		enterComment("Frozen 2", "I loved it so much it gave me chills");
 		printAllEvents();
-		Event event = returnEvent("Frozen 2");
-		event.printEvent();
-		
 		
 		
 	}
