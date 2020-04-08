@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Event {
+	public static final int ROWS = 5;
+	public static final int COLUMNS = 5;
 	private String name;
 	private ArrayList<String> militaryTimes;
 	private String type;
@@ -16,6 +18,7 @@ public class Event {
 	private ArrayList<String> comments;
 	private ArrayList<String> dates; //MMDDYYYY
 	private double price;
+	private String [][] seatingGrid;
 	/**
 	 * Default constructor
 	 */
@@ -28,6 +31,7 @@ public class Event {
 		comments = new ArrayList<String>();
 		dates = new ArrayList<String>();
 		price = 0.0;
+		seatingGrid = new String[COLUMNS][ROWS];
 	}
 	/**
 	 * Parameterized constructor
@@ -51,6 +55,8 @@ public class Event {
 		this.comments = comments2;
 		this.dates = dates2;
 		this.price = price;
+		this.seatingGrid = new String[COLUMNS][ROWS];
+
 	}
 	/**
 	 * printEvent method returns all attributes of event 
@@ -140,6 +146,27 @@ public class Event {
 	// allows user to post a comment to be stored in an arraylist
 	public void addUserComment(User user, String comment, ArrayList<String> comments) {
 		comments.add("Posted by: "+ user.getUsername() + "\n" + comment);
+	}
+	
+	/*
+	 * fills the seatGrid with [X] for display
+	 */
+	public void setSeatGrid() {
+		for(int i =0; i < ROWS; i++) {
+			for(int j =0; j < COLUMNS; j++) {
+				seatingGrid[i][j] = "[X]";
+			}
+		}
+	}
+	/*
+	 * prints the seat grid for seat selection
+	 */
+	public void showSeatGrid(String[][] seatGrid) {
+		for(int i =0; i < ROWS; i++) {
+			for(int j =0; j < COLUMNS; j++) {
+				System.out.println(seatGrid[i][j]);
+			}
+		}
 	}
 	
 	

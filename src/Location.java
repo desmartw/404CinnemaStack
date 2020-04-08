@@ -4,12 +4,10 @@ import java.io.FileWriter;
 import java.io.IOException;  // Import the IOException class to handle errors
 
 public class Location {
-	public static final int ROWS = 5;
-	public static final int COLUMNS = 5;
+	
 	public String name;
 	public String description;
 	public int seatNumber; // between 1 & rows*columns
-	public String [][] seatingGrid;
 	public ArrayList<Event> events;
 	public int totalTickets;
 	
@@ -17,9 +15,8 @@ public class Location {
 		name = "Mall";
 		description = "A run-down old mall";
 		seatNumber=1;
-		seatingGrid = new String[ROWS][COLUMNS];
 		events = new ArrayList<Event>();
-		totalTickets = ROWS*COLUMNS;
+		totalTickets = 0;
 	}
 
 	//Simplified constructor for DB
@@ -28,37 +25,13 @@ public class Location {
 		this.description = description;
 		this.events = event;
 		this.seatNumber= seatNumber;
-		seatingGrid = new String[ROWS][COLUMNS];
-		
 	}
-	
-	/*
-	 * fills the seatGrid with [X] for display
-	 */
-	public void setSeatGrid() {
-		for(int i =0; i < ROWS; i++) {
-			for(int j =0; j < COLUMNS; j++) {
-				seatingGrid[i][j] = "[X]";
-			}
-		}
-	}
-	/*
-	 * prints the seat grid for seat selection
-	 */
-	public void showSeatGrid(String[][] seatGrid) {
-		for(int i =0; i < ROWS; i++) {
-			for(int j =0; j < COLUMNS; j++) {
-				System.out.println(seatGrid[i][j]);
-			}
-		}
-	}
-	
 	/*
 	 *  creates a blank txt file to store users ticket into
 	 */
 
 	public void CreateTicketFile() {
-		for(int i=0; i< 0; i++) {
+		for(int i=0; i< events.size(); i++) {
 	    try {
 	      File myObj = new File(events.get(i).getName()+"Ticket.txt");
 	      if (myObj.createNewFile()) {
@@ -77,7 +50,7 @@ public class Location {
 	  * writes ticket information to ticket file
 	  */
 	 public void WriteTicket() {
-		 for(int i=0; i< 0; i++) {
+		 for(int i=0; i< events.size(); i++) {
 		try{
 	      FileWriter myWriter = new FileWriter(events.get(i).getName()+"Ticket.txt");
 	      myWriter.write
