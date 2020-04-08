@@ -271,7 +271,7 @@ public class Driver {
 	
 	private static void viewAccount() {
 		System.out.println("-------------------------------------------------------");
-		System.out.println(user.getUsername());
+		System.out.println("          " + user.getUsername());
 		System.out.println("-------------------------------------------------------\n");
 		System.out.println("Type of Account: " + user.getType());
 		System.out.println("Email: " + user.getEmail());
