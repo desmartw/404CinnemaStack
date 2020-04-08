@@ -18,11 +18,8 @@ public class Event {
 	private ArrayList<String> comments;
 	private ArrayList<String> dates; //MMDDYYYY
 	private double price;
-<<<<<<< HEAD
 	private String [][] seatingGrid;
-=======
-	
->>>>>>> 39ceb3056e8b02b0e563885cae1d09577e29a44e
+
 	/**
 	 * Default constructor
 	 */
