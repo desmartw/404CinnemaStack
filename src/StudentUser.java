@@ -10,7 +10,7 @@ public class StudentUser extends User {
 		username = "studentBob123";
 		password = "password";
 		email = "studentBob123@email.com";
-		wallet = new Currency[3];
+		wallet = new String[3];
 		tickets = new ArrayList<Ticket>();
 		cart =  new ArrayList<Ticket>();
 		age = 18;
@@ -32,7 +32,7 @@ public class StudentUser extends User {
 	 * @param studentIDNum
 	 */
 	public StudentUser(String username, String password, String email,
-			Currency[] wallet, ArrayList<Ticket> tickets,
+			String[] wallet, ArrayList<Ticket> tickets,
 			ArrayList<Ticket> cart, int age, int rewardPoints, 
 			double discountRate, String studentIDNum) {
 		super(username, password, email, wallet,

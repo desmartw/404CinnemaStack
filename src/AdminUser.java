@@ -14,7 +14,7 @@ public class AdminUser extends User {
 		username = "adminBob123";
 		password = "password";
 		email = "adminBob123@email.com";
-		wallet = new Currency[3];
+		wallet = new String[3];
 		tickets = new ArrayList<Ticket>();
 		cart =  new ArrayList<Ticket>();
 		age = 18;
@@ -26,7 +26,7 @@ public class AdminUser extends User {
 	 * Parameterized COnstructor
 	 */
 	public AdminUser(String username, String password, String email,
-			Currency[] wallet, ArrayList<Ticket> tickets,
+			String[] wallet, ArrayList<Ticket> tickets,
 			ArrayList<Ticket> cart, int age, int rewardPoints, 
 			double discountRate, String adminID) {
 		super(username, password, email, wallet,

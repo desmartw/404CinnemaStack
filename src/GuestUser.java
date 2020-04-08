@@ -10,7 +10,7 @@ public class GuestUser extends User {
 		username = null;
 		password = null;
 		email = null;
-		wallet = new Currency[2];
+		wallet = new String[3];
 		tickets = new ArrayList<Ticket>();
 		cart =  null;
 		age = 0;
@@ -24,7 +24,7 @@ public class GuestUser extends User {
 	 * @param wallet
 	 * @param tickets
 	 */
-	public GuestUser(int age, Currency[] wallet, ArrayList<Ticket> tickets) {
+	public GuestUser(int age, String[] wallet, ArrayList<Ticket> tickets) {
 		this.age = age;
 		this.wallet = wallet;
 		this.tickets = tickets;
