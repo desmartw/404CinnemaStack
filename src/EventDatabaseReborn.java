@@ -40,7 +40,7 @@ public class EventDatabaseReborn {
 		//int price = validatePrice();
 		
 		refreshList();
-		Event event = new Event(name, type, ratingSum, ratingNum, comments, dates, actors);
+		Event event = new Event(name, type, comments, actors);
 		writeList(event);
 	}
 	
@@ -196,16 +196,39 @@ public class EventDatabaseReborn {
         for (int i = 0; i < this.list.size(); i++)  {
         	Event temp = list.get(i);
         	if ((temp.getName()).equals(event.getName())) {
-        		System.out.println("Rating Sum" + event.getRatingSum());
-        		System.out.println("Rating Num" +  event.getRatingNum());
-        		//System.out.println("Rating Num" +  event.getAverageRating());
         		this.list.set(i, event);
         		writeList();
         		refreshList();
         	}
+        }
 	}
 	
-}
+	public void addComment() {
+		Event event = returnEventObjectByName();
+		String comment;
+		//ArrayList<String> coms = 
+		while(true) {
+			System.out.println("Enter your comment:");
+		    comment = scan.nextLine();
+		    if (comment.length() <= 0) {
+		    	System.out.println("Comment invalid.");
+		    	continue;
+			}
+			break;
+		}
+		refreshList();
+		event.addUserComment(comment);
+		// For Loop for iterating ArrayList 
+        for (int i = 0; i < this.list.size(); i++)  {
+        	Event temp = list.get(i);
+        	if ((temp.getName()).equals(event.getName())) {
+        		this.list.set(i, event);
+        		writeList();
+        		refreshList();
+        	}
+        }
+	}
+	
 	public Event returnEventObjectByName() {
 		String name = "";
 		refreshList();
