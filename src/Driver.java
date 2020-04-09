@@ -153,8 +153,8 @@ public class Driver {
 				break;
 			case VIEW_ACCOUNT:
 				user.viewAccount();
-				Service aChoice = getUserChoice(new Service[] {Service.EXIT, Service.BUY_TICKETS, Service.EMPTY_CART});
-				actOnChoice(aChoice);
+				Service vaChoice = getUserChoice(new Service[] {Service.EXIT, Service.BUY_TICKETS,Service.VIEW_CART, Service.EMPTY_CART, Service.GO_BACK, Service.RENEW_FRONT});
+				actOnChoice(vaChoice);
 				break;
 			case SEARCH_BY_NAME:
 				searchByName();
@@ -171,8 +171,8 @@ public class Driver {
 				break;
 			case VIEW_CART:
 				user.viewCart();
-				Service aChoice = getUserChoice();
-				actOnChoice(aChoice);
+				Service vcChoice = getUserChoice(new Service[] {Service.EXIT, Service.BUY_TICKETS, Service.EMPTY_CART, Service.GO_BACK, Service.RENEW_FRONT});
+				actOnChoice(vcChoice);
 				break;
 			case EMPTY_CART:
 				user.emptyCart();
@@ -190,7 +190,7 @@ public class Driver {
 				goBackChoice();
 				break;
 			case ADD_EVENT:
-				
+				enterEventToLocation();
 				break;
 			case ADD_LOCATION:
 				// TODO
@@ -308,7 +308,7 @@ public class Driver {
 		actOnChoice(choice);
 	}
 	
-	private static void enterEventToLocation() {
+  private static void enterEventToLocation() {
 		System.out.println("Enter the name of the location for the event:");
 		String loc = in.nextLine();
 		DatabaseDriver.enterNewEventWithLocation(loc);
