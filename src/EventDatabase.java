@@ -85,6 +85,7 @@ public class EventDatabase {
 		dates2.addAll(Arrays.asList(dates.toLowerCase().split(" ")));
 		Double price2 = Double.parseDouble(price);
 		loc.events.add(new Event(name, militaryTimes2, type, rating2, numOfRatings2, comments2, dates2, price2));
+		System.out.println("Event added to your location!");
 	}
 	
 	/**
