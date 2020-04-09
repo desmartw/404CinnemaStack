@@ -1,6 +1,6 @@
 /**
  * 
- * @author wilsdesmarteau
+ * @author wilsdesmarteau && Ryan Henderson
  * Class: Event
  *
  */
@@ -10,73 +10,66 @@ import java.util.List;
 public class Event {
 	
 	private String name;
-	private ArrayList<String> militaryTimes;
 	private String type;
-	private int sumOfRatings;
-	private int numOfRatings;
+	private int ratingSum;
+	private int ratingNum;
 	private ArrayList<String> comments;
-	private ArrayList<String> dates; //MMDDYYYY
-	private double price;
-	private int numRows;
-	private int numCols;
-	//@someignorething dont know it yet
-	private String [][] seatingGrid;
+	private ArrayList<String> dates;
+	private ArrayList<String> actors;
 	
 	/**
-	 * Parameterized Constructor
+     * Default Constructor - all attributes are set to empty, int values are 0
+     */
+	public Event()
+	{
+	    name = "";
+	    type = "";
+	    ratingSum = 0;
+	    ratingNum = 0;
+	    comments = new ArrayList<String>();
+	    dates = new ArrayList<String>();
+	    actors = new ArrayList<String>();
+	}
+	
+	/**
+     * Basic Parameterized Constructor - Initializes values that stay constant across venues
+     * @param name
+     * @param type
+     * @param actors
+     */
+    public Event(String name, String type, ArrayList<String> comments, ArrayList<String> actors) {
+        this.name = name;
+        this.type = type;
+        this.comments = comments;
+        this.actors = actors;
+    }
+	
+    /**
+	 * Full Parameterized Constructor
 	 * @param name
-	 * @param militaryTimes
 	 * @param type
-	 * @param sumOfRatings
-	 * @param numOfRatings
+	 * @param ratingSum
+	 * @param ratingCount
+	 * @param militaryTimes
 	 * @param comments
-	 * @param dates2
+	 * @param dates
 	 * @param price
-	 */
-	
-	 public Event()
-	    {
-	     super();
-	    }
-	public Event(String name, ArrayList<String> militaryTimes, String type, int sumOfRatings, 
-			int numOfRatings, ArrayList<String> comments, ArrayList<String> dates2, 
-			double price) {
-		this.name = name;
-		this.militaryTimes = militaryTimes;
-		this.type = type;
-		this.sumOfRatings = sumOfRatings;
-		this.numOfRatings = numOfRatings;
-		this.comments = comments;
-		this.dates = dates2;
-		this.price = price;
-		this.seatingGrid = new String[numCols][numRows];
-
+     */
+	public Event(String name, String type, int ratingSum, int ratingNum, ArrayList<String> comments,
+	             ArrayList<String> dates, ArrayList<String> actors) {
+	    this.name = name;
+	    this.type = type;
+	    this.ratingSum = ratingSum;
+	    this.ratingNum = ratingNum;
+        this.comments = comments;
+	    this.dates = dates; 	        
+	    this.actors = actors;
 	}
 	
-	public void setSumOfRatings(int sumOfRatings) {
-		this.sumOfRatings = sumOfRatings;
-	}
-	public int getNumRows() {
-		return numRows;
-	}
-	public void setNumRows(int numRows) {
-		this.numRows = numRows;
-	}
-	public int getNumCols() {
-		return numCols;
-	}
-	public void setNumCols(int numCols) {
-		this.numCols = numCols;
-	}
-	public String[][] getSeatingGrid() {
-		return seatingGrid;
-	}
-	public void setSeatingGrid(String[][] seatingGrid) {
-		this.seatingGrid = seatingGrid;
-	}
+	// TODO for prettify stage
 	/**
 	 * printEvent method returns all attributes of this event 
-	 */
+	 *
 	public void printEvent() {
 		System.out.println("\nName of event: "+ name);
 		System.out.print("Times: | ");
@@ -90,7 +83,7 @@ public class Event {
 		System.out.print("\nDates: | ");
 		dates.forEach(date ->{System.out.print(date + " | ");});
 		System.out.println("\nPrice: " + price);
-	}
+	}*/
 	
 	/**
 	 * This function prints out the times the event is happening in military time
@@ -109,29 +102,23 @@ public class Event {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public ArrayList<String> getMilitaryTimes() {
-		return militaryTimes;
-	}
-	public void setMilitaryTimes(ArrayList<String> militaryTimes) {
-		this.militaryTimes = militaryTimes;
-	}
 	public String getType() {
 		return type;
 	}
 	public void setType(String type) {
 		this.type = type;
 	}
-	public int getRating() {
-		return sumOfRatings;
+	public int getRatingSum() {
+		return ratingSum;
 	}
-	public void setRating(int sumOfRatings) {
-		this.sumOfRatings = sumOfRatings;
+	public void setRatingSum(int ratingSum) {
+		this.ratingSum = ratingSum;
 	}
-	public int getNumOfRatings() {
-		return numOfRatings;
+	public int getRatingNum() {
+		return ratingNum;
 	}
-	public void setNumOfRatings(int numOfRatings) {
-		this.numOfRatings = numOfRatings;
+	public void setRatingNum(int ratingNum) {
+		this.ratingNum = ratingNum;
 	}
 	public ArrayList<String> getComments() {
 		return comments;
@@ -145,25 +132,29 @@ public class Event {
 	public void setDates(ArrayList<String> dates) {
 		this.dates = dates;
 	}
-	public double getPrice() {
-		return price;
+	public ArrayList<String> getActors() {
+		return actors;
 	}
-	public void setPrice(double price) {
-		this.price = price;
+	public void setActors(ArrayList<String> actors) {
+		this.actors = actors;
 	}
 	
 	/**
 	 * This function adds a rating to the running average
 	 * @param rating - new rating to be added to the average rating
 	 */
-	public void addUserRating(int sumOfRatings) {
-		sumOfRatings += this.sumOfRatings;
-		this.numOfRatings++;
+	public void addUserRating(int ratingSum) {
+		ratingSum += this.ratingSum;
+		this.ratingNum++;
 	}
-	// returns the average rating of event
-	public int getSumOfRatings() {
-		if (this.numOfRatings == 0) return 0;
-		return this.sumOfRatings/this.numOfRatings;
+	
+	/**
+	 * 
+	 * @return double value of average rating 
+	 */
+	public double getAverageRating() {
+		if (this.ratingNum == 0) return 0;
+		return (double) (this.ratingSum/this.ratingNum);
 	}
 	
 	/**
@@ -173,30 +164,5 @@ public class Event {
 	 */
 	public void addUserComment(User user, String comment) {
 		comments.add("Posted by: "+ user.getUsername() + "\n" + comment);
-	}
-	
-	/*
-	 * fills the seatGrid with [X] for display, middle row is always reserved for handicap
-	 */
-	public void setSeatGrid() {
-		for(int y =0; y < numRows; y++) {
-			for(int x =0; x < numCols; x++) {
-				if(y == numCols/2) 
-					seatingGrid[x][y] = "[H]";
-				seatingGrid[x][y] = "[X]";
-			}
-		}
-	}
-	
-	/*
-	 * prints the seat grid for seat selection
-	 */
-	public void showSeatGrid(String[][] seatGrid) {
-		for(int y =0; y < numRows; y++) {
-			for(int x =0; x < numCols; x++) {
-				System.out.print(seatingGrid[x][y]);
-			}
-			System.out.println();
-		}
 	}
 }
