@@ -149,6 +149,7 @@ public class Event {
 	}
 	// returns the average rating of event
 	public int getEventRating() {
+		if (this.numOfRatings == 0) return 0;
 		return this.rating/this.numOfRatings;
 	}
 	

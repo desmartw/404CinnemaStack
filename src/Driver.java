@@ -273,6 +273,7 @@ public class Driver {
 		// TODO ask next options
 		//(DatabaseDriver.returnEvent("Frozen 2")).printEvent();
 		DatabaseDriver.displayAllEvents();
+		
 	}
 	
 	public static void main(String[] args) {

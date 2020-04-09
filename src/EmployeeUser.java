@@ -2,6 +2,8 @@ import java.util.ArrayList;
 
 public class EmployeeUser extends User {
 	public String employeeID;
+	public Location employer;
+	
 	/*
 	 * Default constructor
 	 */
