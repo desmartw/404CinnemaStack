@@ -1,7 +1,9 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class DatabaseDriver {
+	public static Scanner scan = new Scanner(System.in);
 	public static EventDatabase ev = new EventDatabase();
 	public static LocationDatabase lv = new LocationDatabase();
 	public static ScheduleDatabase sv = new ScheduleDatabase();
@@ -41,6 +43,32 @@ public class DatabaseDriver {
 	public static void enterComment(String eventName, String comment) {
 		ev.addCommentToEvent(eventName, comment);
 		System.out.println("Comment saved.");
+	}
+	
+	public static void enterRating() {
+		String name = "";
+		ArrayList<String> names = ev.getAllEventNames();
+		while(true) {
+			System.out.println("Enter the name of your event:");
+			name = scan.nextLine();
+			if (names.contains(name)) 
+				break;
+			else 
+				System.out.println("Event does not exist.");
+		}
+		int rating;
+		do {
+			System.out.println("Enter a number between 0 and 5 to rate " + name + ".");
+			while (!scan.hasNextInt()) {
+	            String input = scan.next();
+	            System.out.printf("\"%s\" is not a valid number.\n", input);
+			}
+			rating = scan.nextInt();
+			scan.nextLine();
+		} while (rating < 0 || rating > 5);
+		String ratingStr = String.valueOf(rating);
+		ev.addRatingToEvent(name, ratingStr);
+		System.out.println("Rating saved.");
 	}
 	
 	public static void enterNewLocation() {
@@ -90,8 +118,9 @@ public class DatabaseDriver {
 		//enterNewEvent(loc);
 		
 		//enterNewLocation();
-		enterNewEventWithLocation("Regal");
+		//enterNewEventWithLocation("Regal");
 		//loc.showSeatGrid(seatGrid);
+		enterRating();
 	}
 
 }

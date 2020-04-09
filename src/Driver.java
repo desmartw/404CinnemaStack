@@ -202,7 +202,7 @@ public class Driver {
 				// TODO
 				break;
 			case RATE_EVENT:
-				// TODO
+				DatabaseDriver.enterRating();
 				break;
 			// other functions should be set up so that this won't occur but 
 			// any improper case will just go back

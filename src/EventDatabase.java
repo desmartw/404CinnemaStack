@@ -423,6 +423,15 @@ public class EventDatabase {
 		eventObject.put("comments", coms);
 	}
 	
+	public void addRatingToEvent(String name, String rating) {
+		JSONObject eventObject = findEventByName(name);
+		String ratingsStr = (String) eventObject.get("rating");
+		int ratingsInt = Integer.parseInt(ratingsStr);
+		ratingsInt += Integer.parseInt(rating);
+		ratingsStr = String.valueOf(ratingsInt);
+		eventObject.put("rating", ratingsStr);
+	}
+	
 	/**
 	 * clears data from database JSON file
 	 */
