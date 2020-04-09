@@ -85,15 +85,6 @@ public class Event {
 		System.out.println("\nPrice: " + price);
 	}*/
 	
-	/**
-	 * This function prints out the times the event is happening in military time
-	 */
-	public void printMilitaryTimes() {
-		for(int i =0; i<militaryTimes.size(); i++) {
-			System.out.println(militaryTimes.get(i)+"\n");
-		}
-	}
-	
 	
 	//getters and setters
 	public String getName() {
