@@ -11,18 +11,28 @@ public class DatabaseDriver {
 	public static UserDatabase uv = new UserDatabase();
 	
 	/***** NEW STUFF ***/
+	
+	/**
+	 * static method to manipulate Event database reborn
+	 */
 	public static void enterEvent() {
 		evr.enterEvent();
 	}
-	
+	/**
+	 * static method to manipulate Event database reborn
+	 */
 	public static void readList() {
 		evr.readList();
 	}
-	
+	/**
+	 * static method to manipulate Event database reborn
+	 */
 	public static void addRating() {
 		evr.addRating();
 	}
-	
+	/**
+	 * static method to manipulate Event database reborn
+	 */
 	public static void wipeDatabase() {
 		evr.wipeDatabase();
 	}
@@ -32,37 +42,64 @@ public class DatabaseDriver {
 	public static void printAllEvents() {
 		ev.readAllEvents();
 	}
-	
+	/**
+	 * @return arraylist of events
+	 */
 	public static ArrayList<Event> returnAllEventsAsArrayList() {
 		return ev.returnAllEventsAsArrayList();
 	}
 	
+	/**
+	 *  allows creation of event in event DB
+	 */
 	public static void enterNewEvent() {
 		ev.enterEvent();
 	}
-	
+	/**
+	 * creates an event with a new location in EvnetDB
+	 * @param loc
+	 */
 	public static void enterNewEventWithLocation(String loc) {
 		
 		ev.enterEvent(loc);
 	}
 	
+	/**
+	 * clears EVDB
+	 */
 	public static void wipeEventDatabase() {
 		ev.wipeDatabase();
 	}
 	
+	/**
+	 * returns event by name
+	 * @param name
+	 * @return
+	 */
 	public static Event returnEvent(String name) {
 		return ev.returnEventObjectByName(name);
 	}
 	
+	/**
+	 * prints events from EVBD
+	 */
 	public static void displayAllEvents() {
 		ev.readAllEventsForUser();
 	}
 	
+	/**
+	 * adds a comment to the EVDB
+	 * @param eventName
+	 * @param comment
+	 */
 	public static void enterComment(String eventName, String comment) {
 		ev.addCommentToEvent(eventName, comment);
 		System.out.println("Comment saved.");
 	}
 	
+	/**
+	 * allows rating to be entered to eventDB
+	 */
 	public static void enterRating() {
 		String name = "";
 		ArrayList<String> names = ev.getAllEventNames();
@@ -89,26 +126,47 @@ public class DatabaseDriver {
 		System.out.println("Rating saved.");
 	}
 	
+	/**
+	 * allows new location to be created in LDB
+	 */
 	public static void enterNewLocation() {
 		lv.enterLocation();
 	}
+	/**
+	 * reads all location from LDB
+	 */
 	public static void readAllLocations() {
 		lv.readAllLocations();
 	}
 	
+	/**
+	 * allows creation of new schedule in SDB
+	 */
 	public static void enterNewSchedule() {
 		sv.enterSchedule();
 	}
+	/**
+	 * prints all schedules in SDB
+	 */
 	public static void printAllSchedules() {
 		sv.readAllSchedules();
 	}
 	
+	/**
+	 * allos adding new user to UDB
+	 */
 	public static void addUser() {
 		uv.enterUser();
 	}
+	/**
+	 * wipes UDB
+	 */
 	public static void wipeUserDatabase() {
 		uv.wipeDatabase();
 	}
+	/**
+	 * prints credentials
+	 */
 	public static void printCredentials() {
 		uv.readAllCredentials();
 	}
