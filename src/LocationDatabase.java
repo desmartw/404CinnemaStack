@@ -69,63 +69,6 @@ public class LocationDatabase {
 	        locationList.add(locationObject);
 	    }
 	    
-	    private int validateHandicapStartSeat() {
-			// TODO Auto-generated method stub
-	    	int hStartSeat = 0;
-	    	System.out.println("If you would like to add handicapped seats, enter a starting seat number (between 1-5). \n"
-	    			+ "If not, hit 0.");
-	    	hStartSeat = scan.nextInt();
-	    	if(hStartSeat == 0) {
-	    		return -1;
-	    	} else if(hStartSeat > 1 && hStartSeat <= 5) {
-	    		return hStartSeat;
-	    	}
-			return hStartSeat;
-		}
-		private int validateHandicapEndSeat() {
-			int hEndSeat = 0;
-			System.out.println("Where would you like the handicapped seating to stop? enter a seat number (between 1-5). \n");
-			while(true) {
-			hEndSeat = scan.nextInt();
-			if(hEndSeat < 1 || hEndSeat >= 5) {
-				System.out.println("Invalid number, try again");
-			} else {
-				System.out.println("End seat added");
-				
-			}
-			break;
-			}
-			return hEndSeat;
-		}
-		
-		private int validateSeatingCols() {
-			 int seatCols = 0;
-		        while(true) {
-		        	System.out.println("Enter the seat col you would like in range 1-25: ");
-		        	seatCols = scan.nextInt();
-		        	if(seatCols == 0 || seatCols> 25) {
-		        		System.out.println("Your seat col number is out of range");
-		        		continue;
-		        	}
-		        	System.out.println("number of Cols added");
-		        	break;
-		        }
-		        return seatCols;
-		}
-		private String validatePassword() {
-			// TODO Auto-generated method stub
-			String pwd;
-			while(true) {
-	        	System.out.println("Enter your desired password, between 3-10 char: ");
-	        	pwd = scan.nextLine();
-	        	if(pwd.length() == 0 || pwd.length() > 10) {
-	        		System.out.println("Your password is too long or too short, try again");
-	        	} 
-	        	System.out.println("Password saved.");
-	        	break;
-		}
-		  	return pwd;
-		}
 		/**
 	     * returns a JSONarray of locations
 	     * @return
@@ -205,7 +148,63 @@ public class LocationDatabase {
 	    	return description;
 	    }
 	    
-	    
+	    private int validateHandicapStartSeat() {
+			// TODO Auto-generated method stub
+	    	int hStartSeat = 0;
+	    	System.out.println("If you would like to add handicapped seats, enter a starting seat number (between 1-5). \n"
+	    			+ "If not, hit 0.");
+	    	hStartSeat = scan.nextInt();
+	    	if(hStartSeat == 0) {
+	    		return -1;
+	    	} else if(hStartSeat > 1 && hStartSeat <= 5) {
+	    		return hStartSeat;
+	    	}
+			return hStartSeat;
+		}
+		private int validateHandicapEndSeat() {
+			int hEndSeat = 0;
+			System.out.println("Where would you like the handicapped seating to stop? enter a seat number (between 1-5). \n");
+			while(true) {
+			hEndSeat = scan.nextInt();
+			if(hEndSeat < 1 || hEndSeat >= 5) {
+				System.out.println("Invalid number, try again");
+			} else {
+				System.out.println("End seat added");
+				
+			}
+			break;
+			}
+			return hEndSeat;
+		}
+		
+		private int validateSeatingCols() {
+			 int seatCols = 0;
+		        while(true) {
+		        	System.out.println("Enter the seat col you would like in range 1-25: ");
+		        	seatCols = scan.nextInt();
+		        	if(seatCols == 0 || seatCols> 25) {
+		        		System.out.println("Your seat col number is out of range");
+		        		continue;
+		        	}
+		        	System.out.println("number of Cols added");
+		        	break;
+		        }
+		        return seatCols;
+		}
+		private String validatePassword() {
+			// TODO Auto-generated method stub
+			String pwd;
+			while(true) {
+	        	System.out.println("Enter your desired password, between 3-10 char: ");
+	        	pwd = scan.nextLine();
+	        	if(pwd.length() == 0 || pwd.length() > 10) {
+	        		System.out.println("Your password is too long or too short, try again");
+	        	} 
+	        	System.out.println("Password saved.");
+	        	break;
+		}
+		  	return pwd;
+		}
 	    /**
 	     * reads and prints locations to console
 	     */
