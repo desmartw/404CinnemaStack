@@ -1,25 +1,17 @@
 import java.util.ArrayList;
 
 public class EmployeeUser extends User {
-	public String employeeID;
-	public Location employer;
 	
-	/*
+	private String employeeID;
+	private Location workplace;
+
+	/**
 	 * Default constructor
 	 */
 	public EmployeeUser() {
-		username = "employedBob123";
-		password = "password";
-		email = "employedBob123@email.com";
-		wallet = new String[3];
-		tickets = new ArrayList<Ticket>();
-		cart =  new ArrayList<Ticket>();
-		age = 18;
-		rewardPoints = 0;
-		discountRate = .1;
-		employeeID = "123LoveToWork";
-		employer = new Location();
+		
 	}
+	
 	/**
 	 * Paramaterized constructor
 	 * @param username
@@ -33,17 +25,19 @@ public class EmployeeUser extends User {
 	 * @param discountRate
 	 * @param employeeID
 	 */
-	public EmployeeUser(String username, String password, String email,
-			String[] wallet, ArrayList<Ticket> tickets,
-			ArrayList<Ticket> cart, int age, int rewardPoints, 
-			double discountRate, String employeeID) {
-		super(username, password, email, wallet,
-				tickets, cart, age, rewardPoints, discountRate);
+	public EmployeeUser(String username, String password, String email, String[] wallet, ArrayList<Ticket> tickets, 
+			ArrayList<Ticket> cart, int age, int rewardPoints, double discountRate, String employeeID, Location workplace) {
+		super(username, password, email, wallet, tickets, cart, age, rewardPoints, discountRate);
 		this.employeeID = employeeID;
+		this.workplace = workplace;
 	}
 	
 	public Location getLocation() {
-		return employer;
+		return workplace;
 	}
-
+	public void setLocation(Location location) {
+		workplace = location;
+	}
+	
+	
 }
