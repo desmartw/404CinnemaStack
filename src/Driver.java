@@ -191,6 +191,8 @@ public class Driver {
 				break;
 			case ADD_EVENT:
 				enterEventToLocation();
+				Service aeChoice = getTopChoice();
+				actOnChoice(aeChoice);
 				break;
 			case ADD_LOCATION:
 				// TODO
