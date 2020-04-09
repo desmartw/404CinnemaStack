@@ -10,9 +10,19 @@ public class DatabaseDriver {
 	public static ScheduleDatabase sv = new ScheduleDatabase();
 	public static UserDatabase uv = new UserDatabase();
 	
-	public static void enterEventAndConstruct() {
+	/***** NEW STUFF ***/
+	public static void enterEvent() {
 		evr.enterEvent();
 	}
+	
+	public static void readList() {
+		evr.readList();
+	}
+	
+	public static void addComment() {
+		evr.addComment();
+	}
+	/***** END NEW STUFF ***/
 	
 	// print all the attributes of all events
 	public static void printAllEvents() {
@@ -103,36 +113,9 @@ public class DatabaseDriver {
 	
 	
 	// find an event based on its name, return an Event object
-	
-	
 	public static void main(String[] args) {
-		//UserDatabase db = new UserDatabase();
-		//db.readAllCredentials();
-		//User user = GenerateUser.generateUser();
-		//db.readAllCredentials();
-		//printAllEvents();
-		//Event event = returnEvent("Frozen 2");
-		//event.printEvent();
-		//enterComment("Frozen 2", "I loved it so much it gave me chills");
-		//printAllEvents();
-		//enterNewEvent();
-		
-		//ArrayList<Event> events = returnAllEventsAsArrayList();
-		//Location loc = new Location("Regal", "Theater", 25, new ArrayList<Event>());
-		//enterNewEvent(loc);
-		
-		//enterNewLocation();
-		//enterNewEventWithLocation("Regal");
-		//loc.showSeatGrid(seatGrid);
-		//enterRating();
-		
-		//evr.enterEvent();
-		//evr.writeList();
-		//evr.enterEvent();
-		
-		evr.writeList();
-		
-		//evr.readList();
+		enterEvent();
+		readList();
 	}
 
 }

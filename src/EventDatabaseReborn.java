@@ -19,14 +19,14 @@ public class EventDatabaseReborn {
 	ArrayList<Event> list = new ArrayList<Event>();
 	public static Scanner scan = new Scanner(System.in);
 	File file = new File("events.json");
-	ObjectMapper objectMapper = new ObjectMapper();
+	ObjectMapper mapper = new ObjectMapper();
 	
 	// initialize event object
 	public void enterEvent() {
 		
 		// LAZY FIX ME
 		EventDatabase ev = new EventDatabase();
-
+		
 		String name = ev.validateName();
 		ArrayList<String> militaryTimes = validateTimes();
 		String type = ev.validateType();
@@ -37,8 +37,9 @@ public class EventDatabaseReborn {
 		//ArrayList<String> actors = validateActors();
 		int price = validatePrice();
 		
+		refreshList();
 		Event event = new Event(name, militaryTimes, type, ratingSum, ratingCount, comments, dates, price);
-		list.add(event);
+		writeList(event);
 	}
 	
 	public int validatePrice() {
@@ -114,104 +115,58 @@ public class EventDatabaseReborn {
 	}
 	
 	// arraylist to pretty json
-	public void writeList() {
+	public void writeList(Event event) {
 		try {
-			//objectMapper.writeValue(new File("testOfArrayList.json"), list); // works
-			/*
-			ArrayList<Event> al = new ArrayList<Event>(); 
-			Event e = new Event("test", new ArrayList<String>(), "movie", 0, 
-			0, new ArrayList<String>(), new ArrayList<String>(), 0.0);
-			al.add(e);
-			String json = objectMapper.writeValueAsString(al);
-			ArrayList<Event> el = objectMapper.readValue(json, new TypeReference<ArrayList<Event>>(){});
-			el.get(0);
-			*/
-			
-			/*
-			Event e = new Event("test", new ArrayList<String>(), "movie", 0, 0, 
-					new ArrayList<String>(), new ArrayList<String>(), 0.0);
-			String json = objectMapper.writeValue(e);
-			e = objectMapper.readValue(json, Event.class);
-			System.out.println(e.getName());
-			*/
-			
-			
-			ObjectMapper mapper = new ObjectMapper();
-			// TEST IF AL CAN BE WRITTIN AND READ
-			ArrayList<Event> al = new ArrayList<Event>(); 
-			Event e = new Event("test3", new ArrayList<String>(), "movie", 0, 
-			0, new ArrayList<String>(), new ArrayList<String>(), 0.0);
-			al.add(e);
-			String json = mapper.writeValueAsString(al);
-			
-			//Event[] ea
-			
-			//al.mapper.writeValue(new File("testOfArrayList.json"), al);
-			
-			//ArrayList<Event> el = objectMapper.readValue(json, new TypeReference<ArrayList<Event>>(){});
-		    //List<Event> events = Lists.newArrayList(e);
-			
-			/// WORKS!!!!!!!
-			// TEST IF EVENT ARRAY CAN BE WRITTEN TO FILE: WORKS
-			/*
-			Event[] ea = new Event[1];
-			ea[0] = new Event("test2", new ArrayList<String>(), "movie", 0, 0, new ArrayList<String>(), new ArrayList<String>(), 0.0);
-			mapper.writeValue(new File("testOfArrayList.json"), ea);
-			*/
-			//String jsonArray = mapper.writeValueAsString(ea);
-		    //Event[] readArray = mapper.readValue(jsonArray, Event[].class);
-		    //asArray[0].printEvent();
-			
-			
-			
-			
-		    // [{"stringValue":"a","intValue":1,"booleanValue":true},
-		    // {"stringValue":"bc","intValue":3,"booleanValue":false}]
-		 
-		    
-		    //assertThat(asArray[0], instanceOf(MyDto.class));
-		    /*
-		    List<Event> listOfEvents = Lists.newArrayList(
-		      new MyDto("a", 1, true), new MyDto("bc", 3, false));
-		    String jsonArray = mapper.writeValueAsString(listOfDtos);
-		    */
-		  
-		    // [{"stringValue":"a","intValue":1,"booleanValue":true},
-		    // {"stringValue":"bc","intValue":3,"booleanValue":false}]
-		 
-		    /*
-		    MyDto[] asArray = mapper.readValue(jsonArray, MyDto[].class);
-		    assertThat(asArray[0], instanceOf(MyDto.class));
-			*/
-		    
-			//writeValueAsBytes(new File("testOfArrayList.json"), list);
+			list.add(event);
+			mapper.writeValue(new File("testOfArrayList.json"), this.list);
 		} catch(Exception e) {
 			System.out.println("Error " + e);
 		}
 	}
 	
 	public void readList() {
+		this.list.forEach(event->event.printEvent());
+	}
+	
+	
+	public void refreshList() {
 		try {
-			//ArrayList<Event> events = objectMapper.readValue(new File("events.json"), new TypeReference<ArrayList<Event>>(){});
-			//ArrayList<Event> events = objectMapper.readValue(objectMapper.readValue(new File("events.json"), ArrayList.class, new TypeReference<ArrayList<Event>>(){}));
-			
-			//ArrayList<Event> events = objectMapper.readValue(new File("events.json"), new TypeReference<ArrayList<Event>>(){});
-			
-			// WORKS!!!!
-			/*
-			Event[] events = objectMapper.readValue(new File("testOfArrayList.json"), Event[].class);
-			events[0].printEvent();
-			*/
-			
-			//String jsonInput = objectMapper.readValue(new File("events.json"), new TypeReference<ArrayList<Event>>(){});
-			//JSONArray array = readEventList();
-			//JSONParser jsonParser = new JSONParser();
-			//String jsonArray = objectMapper.readValue()
-			//ArrayList<Event> events = objectMapper.readValue(, new TypeReference<ArrayList<Event>>(){});
-			//System.out.println(events);
+			this.list = mapper.readValue(new File("testOfArrayList.json"), new TypeReference<ArrayList<Event>>(){});
 		} catch(Exception e) {
 			System.out.println("Error " + e);
 		}
+	}
+	
+	public void addComment() {
+		String name = "";
+		ArrayList<String> names = getAllNames();
+		while(true) {
+			System.out.println("Enter the name of your event:");
+			name = scan.nextLine();
+			if (names.contains(name)) 
+				break;
+			else 
+				System.out.println("Event does not exist.");
+		}
+		int rating;
+		do {
+			System.out.println("Enter a number between 0 and 5 to rate " + name + ".");
+			while (!scan.hasNextInt()) {
+	            String input = scan.next();
+	            System.out.printf("\"%s\" is not a valid number.\n", input);
+			}
+			rating = scan.nextInt();
+			scan.nextLine();
+		} while (rating < 0 || rating > 5);
+		String ratingStr = String.valueOf(rating);
+		//ev.addRatingToEvent(name, ratingStr);
+		System.out.println("Rating saved.");
+	}
+	
+	public ArrayList<String> getAllNames() {
+		ArrayList<String> names = new ArrayList<String>();
+		this.list.forEach(event->names.add(event.getName()));
+		return names;
 	}
 	
 	public JSONArray readEventList() {

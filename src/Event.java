@@ -53,9 +53,6 @@ public class Event {
 
 	}
 	
-	public int getSumOfRatings() {
-		return sumOfRatings;
-	}
 	public void setSumOfRatings(int sumOfRatings) {
 		this.sumOfRatings = sumOfRatings;
 	}
