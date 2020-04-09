@@ -9,7 +9,8 @@ public class Driver {
 	// all the services that the program will offer, to be used in different functions
 	public enum Service {EXIT, SEARCH, LOGIN, VIEW_POPULAR, VIEW_ACCOUNT, SEARCH_BY_NAME,
 				  		 SEARCH_BY_DATE, SEARCH_BY_RATING, BUY_TICKETS, VIEW_CART, 
-				  		 EMPTY_CART, RENEW_FRONT, RENEW_CHOICE, GO_BACK}; 
+				  		 EMPTY_CART, RENEW_FRONT, RENEW_CHOICE, GO_BACK, ADD_EVENT,
+				  		 ADD_LOCATION, ADD_USER, SELECT_TICKET, RATE_EVENT}; 
 	
 	// holds the choice history of the user
 	private static ArrayList<Service> choiceHistory = new ArrayList<Service>();
@@ -33,6 +34,12 @@ public class Driver {
 		System.out.println("Please enter one of the numbers below corresponding to the action you wish to take...");
 		if (user.getType() == "guest") {
 			return getUserChoice(new Service[] {Service.EXIT, Service.LOGIN, Service.SEARCH, Service.VIEW_POPULAR});
+		} else if (user.getType() == "employee") {
+			return getUserChoice(new Service[] {Service.EXIT, Service.VIEW_ACCOUNT, Service.SEARCH, Service.VIEW_POPULAR,
+												Service.ADD_EVENT});
+		} else if (user.getType() == "admin") {
+			return getUserChoice(new Service[] {Service.EXIT, Service.VIEW_ACCOUNT, Service.SEARCH, Service.VIEW_POPULAR,
+												Service.ADD_EVENT, Service.ADD_LOCATION, Service.ADD_USER});
 		} else {
 			return getUserChoice(new Service[] {Service.EXIT, Service.VIEW_ACCOUNT, Service.SEARCH, Service.VIEW_POPULAR});
 		}
@@ -105,6 +112,12 @@ public class Driver {
 						return "Empty your current shopping cart";
 					case GO_BACK:
 						return "Go back to previous page";
+					case ADD_EVENT:
+						return "Add an event to the database";
+					case SELECT_TICKET:
+						return "Add an event from the list to your shopping cart";
+					case RATE_EVENT:
+						return "Rate an event from the list";
 						default:
 							return "An invalid Service has been used";
 							
@@ -140,7 +153,8 @@ public class Driver {
 				break;
 			case VIEW_ACCOUNT:
 				user.viewAccount();
-				goBackChoice();
+				Service aChoice = getUserChoice(new Service[] {Service.EXIT, Service.BUY_TICKETS, Service.EMPTY_CART});
+				actOnChoice(aChoice);
 				break;
 			case SEARCH_BY_NAME:
 				searchByName();
@@ -157,9 +171,11 @@ public class Driver {
 				break;
 			case VIEW_CART:
 				user.viewCart();
+				Service aChoice = getUserChoice();
+				actOnChoice(aChoice);
 				break;
 			case EMPTY_CART:
-				user.setCart(new ArrayList<Ticket>());
+				user.emptyCart();
 				System.out.println("Cart emptied ... reloading previous page ...");
 				goBackChoice();
 				break;
@@ -172,6 +188,21 @@ public class Driver {
 				// remove the choice taken to GO_BACK
 				choiceHistory.remove(choiceHistory.size()-1);
 				goBackChoice();
+				break;
+			case ADD_EVENT:
+				// TODO
+				break;
+			case ADD_LOCATION:
+				// TODO
+				break;
+			case ADD_USER:
+				// TODO
+				break;
+			case SELECT_TICKET:
+				// TODO
+				break;
+			case RATE_EVENT:
+				// TODO
 				break;
 			// other functions should be set up so that this won't occur but 
 			// any improper case will just go back
@@ -273,7 +304,8 @@ public class Driver {
 		// TODO ask next options
 		//(DatabaseDriver.returnEvent("Frozen 2")).printEvent();
 		DatabaseDriver.displayAllEvents();
-		
+		Service choice = getUserChoice(new Service[] {Service.EXIT, Service.SELECT_TICKET, Service.RATE_EVENT, Service.GO_BACK});
+		actOnChoice(choice);
 	}
 	
 	public static void main(String[] args) {
