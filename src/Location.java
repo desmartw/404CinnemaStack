@@ -1,3 +1,8 @@
+/**
+ * @author Ryan Henderson
+ * Location class 
+ */
+
 import java.util.ArrayList;
 
 public class Location {
@@ -84,7 +89,6 @@ public class Location {
 	 * @param price
 	 * @return Newly created Showtime Object
 	 */
-	@JsonIgnore
 	public Showtime createShowtime(Event event, String militaryTime, String date, double price) {
 		return (new Showtime(event.getName(), militaryTime, date, price, seatingRows, 
 							 seatingCols, handicapStartSeat, handicapEndSeat));
