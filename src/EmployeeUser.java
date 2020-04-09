@@ -1,3 +1,8 @@
+/**
+ *  @author Ryan Henderson
+ *  EmployeeUser class for employees of event locations to log in and access the app
+ */
+
 import java.util.ArrayList;
 
 public class EmployeeUser extends User {
@@ -32,11 +37,19 @@ public class EmployeeUser extends User {
 		this.workplace = workplace;
 	}
 	
+	// getters and setters
+	public String getEmployeeID() {
+		return employeeID;
+	}
+	public void setEmployeeID(String employeeID) {
+		this.employeeID = employeeID;
+	}
+	
 	public Location getLocation() {
 		return workplace;
 	}
-	public void setLocation(Location location) {
-		workplace = location;
+	public void setLocation(Location workplace) {
+		this.workplace = workplace;
 	}
 	
 	
