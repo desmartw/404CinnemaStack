@@ -166,8 +166,10 @@ public class Event {
 	 * fills the seatGrid with [X] for display
 	 */
 	public void setSeatGrid() {
-		for(int i =0; i < ROWS; i++) {
-			for(int j =0; j < COLUMNS; j++) {
+		for(int i =0; i < COLUMNS; i++) {
+			for(int j =0; j < ROWS; j++) {
+				if(j == 4) 
+					seatingGrid[i][j] = "[H]";
 				seatingGrid[i][j] = "[X]";
 			}
 		}
@@ -176,8 +178,8 @@ public class Event {
 	 * prints the seat grid for seat selection
 	 */
 	public void showSeatGrid(String[][] seatGrid) {
-		for(int i =0; i < ROWS; i++) {
-			for(int j =0; j < COLUMNS; j++) {
+		for(int i =0; i < COLUMNS; i++) {
+			for(int j =0; j < ROWS; j++) {
 				System.out.println(seatGrid[i][j]);
 			}
 		}
