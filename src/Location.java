@@ -1,76 +1,107 @@
-import java.io.File;  // Import the File class
 import java.util.ArrayList;
-import java.io.FileWriter;
-import java.io.IOException;  // Import the IOException class to handle errors
 
 public class Location {
 	
-	public String name;
-	public String description;
-	public int seatNumber; // between 1 & rows*columns
-	public ArrayList<Event> events;
-	public int totalTickets;
+	private String name;
+	private String description;
+	private String password;
+	private int seatingRows;
+	private int seatingCols;
+	private int handicapStartSeat;
+	private int handicapEndSeat;
+	private ArrayList<Showtime> showtimes;
 	
+	/**
+	 * Default Constructor - empty attributes except password = "empty"
+	 */
 	public Location() {
-		name = "Mall";
-		description = "A run-down old mall";
-		seatNumber=1;
-		events = new ArrayList<Event>();
-		totalTickets = 0;
+		name = "";
+		description = "";
+		password = "empty";
+		showtimes = new ArrayList<Showtime>();
 	}
 
-	//Simplified constructor for DB
-	public Location(String name, String description, int seatNumber, ArrayList<Event> events) {
+	/**
+	 * Full and Useful Parameterized Constructor
+	 * @param name
+	 * @param description
+	 * @param password
+	 * @param showtimes
+	 */
+	public Location(String name, String description, String password, ArrayList<Showtime> showtimes) {
 		this.name = name;
 		this.description = description;
-		this.events = events;
-		this.seatNumber= seatNumber;
+		this.password = password;
+		this.showtimes = showtimes;
 	}
-	/*
-	 *  creates a blank txt file to store users ticket into
-	 */
-
-	public void CreateTicketFile() {
-		for(int i=0; i< events.size(); i++) {
-	    try {
-	      File myObj = new File(events.get(i).getName()+"Ticket.txt");
-	      if (myObj.createNewFile()) {
-	        System.out.println("File created: " + myObj.getName());
-	        totalTickets--;
-	      } else {
-	        System.out.println("File already exists.");
-	      }
-	    } catch (IOException e) {
-	      System.out.println("An error occurred.");
-	      e.printStackTrace();
-	    }
-		}
-	 }
-	 /**
-	  * writes ticket information to ticket file
-	  */
-	 public void WriteTicket() {
-		 for(int i=0; i< events.size(); i++) {
-		try{
-	      FileWriter myWriter = new FileWriter(events.get(i).getName()+"Ticket.txt");
-	      myWriter.write
-	      ("*********************"
-	      +"**** Name: "+ events.get(i).getName()
-	      +"**** Time: "+events.get(i).getMilitaryTimes()
-	      +"**** Seat:  "+seatNumber
-	      +"*********************");
-	      myWriter.close();
-	      System.out.println("Successfully made your ticket.");
-	    } catch (IOException e) {
-	      System.out.println("An error occurred.");
-	      e.printStackTrace();
-	    }
-	  }
-		 }
 	
-	 
-	 
+	// getters and setters
+	public String getName() {
+		return name;
 	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public ArrayList<Showtime> getShowtimes() {
+		return showtimes;
+	}
+	public void setShowtimes(ArrayList<Showtime> showtimes) {
+		this.showtimes = showtimes;
+	}
+	
+	/**
+	 * Adds the passed Showtime to the Location's showtime array list
+	 * @param showtime
+	 */
+	public void addShowtime(Showtime showtime) {
+		showtimes.add(showtime);
+	}
+	
+	/**
+	 * Clears the showtime array in the Location class
+	 */
+	public void wipeShowtimes() {
+		showtimes = new ArrayList<Showtime>();
+	}
+	
+	/**
+	 * Creates a Showtime Object using specified event, time, date, and price and the class's seat values
+	 * @param event
+	 * @param militaryTime
+	 * @param date
+	 * @param price
+	 * @return Newly created Showtime Object
+	 */
+	@JsonIgnore
+	public Showtime createShowtime(Event event, String militaryTime, String date, double price) {
+		return (new Showtime(event.getName(), militaryTime, date, price, seatingRows, 
+							 seatingCols, handicapStartSeat, handicapEndSeat));
+	}
+	
+	/**
+	 * Creates a Showtime Object using specified event, time, date, and price and the class's seat value, then
+	 * it adds it to the class's Showtime ArrayList
+	 * @param event
+	 * @param militaryTime
+	 * @param date
+	 * @param price
+	 */
+	public void createAndAddShowtime(Event event, String militaryTime, String date, double price) {
+		this.addShowtime(createShowtime(event, militaryTime, date, price));
+	}
+}
 	
 	
 

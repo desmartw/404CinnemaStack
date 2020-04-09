@@ -16,7 +16,6 @@ public class Event {
 	private int ratingSum;
 	private int ratingNum;
 	private ArrayList<String> comments;
-	private ArrayList<String> dates;
 	private ArrayList<String> actors;
 	
 	/**
@@ -29,7 +28,6 @@ public class Event {
 	    ratingSum = 0;
 	    ratingNum = 0;
 	    comments = new ArrayList<String>();
-	    dates = new ArrayList<String>();
 	    actors = new ArrayList<String>();
 	}
 	
@@ -58,13 +56,12 @@ public class Event {
 	 * @param price
      */
 	public Event(String name, String type, int ratingSum, int ratingNum, ArrayList<String> comments,
-	             ArrayList<String> dates, ArrayList<String> actors) {
+	             ArrayList<String> actors) {
 	    this.name = name;
 	    this.type = type;
 	    this.ratingSum = ratingSum;
 	    this.ratingNum = ratingNum;
-        this.comments = comments;
-	    this.dates = dates; 	        
+        this.comments = comments;	        
 	    this.actors = actors;
 	}
 	
@@ -73,7 +70,6 @@ public class Event {
 	 * printEvent method returns all attributes of this event 
 	 *
 	 */
-	
 	public void printEvent() {
 		System.out.println("\nName of event: "+ name);
 		//System.out.print("Times: | ");
@@ -84,8 +80,6 @@ public class Event {
 		//System.out.println("Rating: " + sumOfRatings);
 		System.out.print("Comments: | ");
 		comments.forEach(comment ->{System.out.print(comment + " | ");});
-		System.out.print("\nDates: | ");
-		dates.forEach(date ->{System.out.print(date + " | ");});
 		System.out.println("\n");
 		//System.out.println("\nPrice: " + price);
 		
@@ -123,12 +117,6 @@ public class Event {
 	}
 	public void setComments(ArrayList<String> comments) {
 		this.comments = comments;
-	}
-	public ArrayList<String> getDates() {
-		return dates;
-	}
-	public void setDates(ArrayList<String> dates) {
-		this.dates = dates;
 	}
 	public ArrayList<String> getActors() {
 		return actors;
