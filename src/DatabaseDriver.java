@@ -17,8 +17,8 @@ public class DatabaseDriver {
 		return ev.returnAllEventsAsArrayList();
 	}
 	
-	public static void enterNewEvent() {
-		ev.enterEvent();
+	public static void enterNewEvent(Location loc) {
+		ev.enterEvent(loc);
 	}
 	
 	public static void wipeEventDatabase() {
@@ -80,6 +80,9 @@ public class DatabaseDriver {
 		//printAllEvents();
 		//enterNewEvent();
 		ArrayList<Event> events = returnAllEventsAsArrayList();
+		Location loc = new Location("Regal", "Theater", 25, new ArrayList<Event>());
+		enterNewEvent(loc);
+		//loc.showSeatGrid(seatGrid);
 	}
 
 }

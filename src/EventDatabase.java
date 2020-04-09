@@ -25,10 +25,68 @@ public class EventDatabase {
 	FileWriter file;
 	Scanner scan;
 	
+	/*
+	 * Constructor for EventDatabase
+	 */
 	public EventDatabase() {
 		eventList = new JSONArray();
 		scan = new Scanner(System.in);
 	}
+	/**
+	 * enables user to add an event to the eventList
+	 */
+	public void enterEvent(Location loc) {
+		System.out.println();
+		String name = validateName();
+		String militaryTimes = validateMilitaryTimes();
+		String type = validateType();
+		String rating = "0";
+		String numOfRatings = "0";
+		String comments = "";
+		String dates = validateDates();
+		String price = validatePrice();
+		
+		JSONObject eventDetails = new JSONObject();
+		
+		eventDetails.put("name", name);
+		eventDetails.put("militaryTimes", militaryTimes);
+		eventDetails.put("type", type);
+		eventDetails.put("rating", rating);
+		eventDetails.put("numOfRatings", numOfRatings);
+		eventDetails.put("comments", comments);
+		eventDetails.put("dates", dates);
+		eventDetails.put("price", price);
+		
+		JSONObject eventObject = new JSONObject();
+		eventObject.put("event", eventDetails);
+		
+		eventList = readEventList();
+		eventList.add(eventObject);
+		
+		try (FileWriter file = new FileWriter("events.json")) {
+			 
+            file.write(eventList.toJSONString());
+            file.flush();
+ 
+        } catch (IOException e) {
+            e.printStackTrace();
+        } 
+		
+		//add event to location
+		//Event newEvent = returnEventObjectByName(name);
+		
+		ArrayList<String> militaryTimes2 = new ArrayList<String>();
+		militaryTimes2.addAll(Arrays.asList(militaryTimes.toLowerCase().split(" ")));
+		int rating2 = Integer.parseInt(rating);
+		int numOfRatings2 = Integer.parseInt(numOfRatings);
+		ArrayList<String> comments2 = new ArrayList<String>();
+		comments2.addAll(Arrays.asList(comments.toLowerCase().split(" ")));
+		ArrayList<String> dates2 = new ArrayList<String>();
+		dates2.addAll(Arrays.asList(dates.toLowerCase().split(" ")));
+		Double price2 = Double.parseDouble(price);
+		loc.events.add(new Event(name, militaryTimes2, type, rating2, numOfRatings2, comments2, dates2, price2));
+	}
+	
 	/**
 	 * enables user to add an event to the eventList
 	 */
@@ -68,6 +126,7 @@ public class EventDatabase {
         } catch (IOException e) {
             e.printStackTrace();
         } 
+		
 	}
 	
 	/**
@@ -268,7 +327,9 @@ public class EventDatabase {
         }
 	}
 	
-	
+	/*
+	 * 
+	 */
 	public ArrayList<Event> returnAllEventsAsArrayList() {
 		ArrayList<Event> events = new ArrayList<Event>();
 		
@@ -348,10 +409,6 @@ public class EventDatabase {
 		} else {
 			return null;
 		}
-	}
-	
-	public Event returnEventObjectFromJSONObject(JSONObject object) {
-		
 	}
 	
 	public ArrayList<String> getAllEventNames() {

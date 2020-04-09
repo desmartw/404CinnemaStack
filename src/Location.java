@@ -20,10 +20,10 @@ public class Location {
 	}
 
 	//Simplified constructor for DB
-	public Location(String name, String description, int seatNumber, ArrayList<Event> event) {
+	public Location(String name, String description, int seatNumber, ArrayList<Event> events) {
 		this.name = name;
 		this.description = description;
-		this.events = event;
+		this.events = events;
 		this.seatNumber= seatNumber;
 	}
 	/*
