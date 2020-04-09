@@ -44,6 +44,7 @@ public class EventDatabaseReborn {
 		writeList(event);
 	}
 	
+	
 	/*
 	public int validatePrice() {
 		Integer price = null;
@@ -159,6 +160,7 @@ public class EventDatabaseReborn {
 	}
 	
 	public void readList() {
+		refreshList();
 		this.list.forEach(event->event.printEvent());
 	}
 	
@@ -185,13 +187,18 @@ public class EventDatabaseReborn {
 		} while (rating < 0 || rating > 5);
 		
 		refreshList();
+		/*
 		event.setRatingNum((event.getRatingNum()) + rating);
 		event.setRatingSum((event.getRatingSum()) + 1);
-		
+		*/
+		event.addUserRating(rating);
 		// For Loop for iterating ArrayList 
         for (int i = 0; i < this.list.size(); i++)  {
         	Event temp = list.get(i);
         	if ((temp.getName()).equals(event.getName())) {
+        		System.out.println("Rating Sum" + event.getRatingSum());
+        		System.out.println("Rating Num" +  event.getRatingNum());
+        		//System.out.println("Rating Num" +  event.getAverageRating());
         		this.list.set(i, event);
         		writeList();
         		refreshList();
@@ -220,14 +227,13 @@ public class EventDatabaseReborn {
 				continue;
 			}
 		}
-		Iterator it = events.iterator(); 
-	    while (it.hasNext()) {
-	    	event = ((Event) it.next());
-	    	if ((event.getName()).equals(name)) {
-	    		return ((Event) it.next());
+		for (int i = 0; i < this.list.size(); i++)  {
+			Event currEvent = ((Event) this.list.get(i));
+			if ((currEvent.getName()).equals(name)) {
+	    		event = currEvent;
 	    	}
-	    }
-	    return event;
+		}
+		return event;
 	}
 	
 	public ArrayList<String> getAllNames() {
@@ -254,5 +260,10 @@ public class EventDatabaseReborn {
         }
         
         return readEventList;
+	}
+	
+	public void wipeDatabase() {
+		this.list = new ArrayList<Event>();
+		writeList();
 	}
 }

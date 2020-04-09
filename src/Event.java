@@ -7,6 +7,8 @@
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class Event {
 	
 	private String name;
@@ -71,20 +73,24 @@ public class Event {
 	 * printEvent method returns all attributes of this event 
 	 *
 	 */
+	
 	public void printEvent() {
 		System.out.println("\nName of event: "+ name);
-		System.out.print("Times: | ");
-		militaryTimes.forEach(militaryTime ->{System.out.print(militaryTime + " | ");});
-		System.out.println("\nType: " + type);
-		System.out.println("Rating: " + sumOfRatings);
-		System.out.println("Number of ratings: " + numOfRatings);
-		System.out.println("Rating: " + sumOfRatings);
+		//System.out.print("Times: | ");
+		//militaryTimes.forEach(militaryTime ->{System.out.print(militaryTime + " | ");});
+		System.out.println("Type: " + type);
+		System.out.println("Rating: " + getAverageRating());
+		//System.out.println("Number of ratings: " + numOfRatings);
+		//System.out.println("Rating: " + sumOfRatings);
 		System.out.print("Comments: | ");
 		comments.forEach(comment ->{System.out.print(comment + " | ");});
 		System.out.print("\nDates: | ");
 		dates.forEach(date ->{System.out.print(date + " | ");});
-		System.out.println("\nPrice: " + price);
+		System.out.println("\n");
+		//System.out.println("\nPrice: " + price);
+		
 	}
+
 	
 	
 	//getters and setters
@@ -136,7 +142,7 @@ public class Event {
 	 * @param rating - new rating to be added to the average rating
 	 */
 	public void addUserRating(int ratingSum) {
-		ratingSum += this.ratingSum;
+		this.ratingSum += ratingSum;
 		this.ratingNum++;
 	}
 	
@@ -144,9 +150,14 @@ public class Event {
 	 * 
 	 * @return double value of average rating 
 	 */
+	@JsonIgnore
 	public double getAverageRating() {
-		if (this.ratingNum == 0) return 0;
-		return (double) (this.ratingSum/this.ratingNum);
+		if (this.ratingNum == 0) {
+			return 0;
+		}
+		else {
+			return (double) (this.ratingSum/this.ratingNum);
+		}
 	}
 	
 	/**

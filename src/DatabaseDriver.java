@@ -22,6 +22,10 @@ public class DatabaseDriver {
 	public static void addRating() {
 		evr.addRating();
 	}
+	
+	public static void wipeDatabase() {
+		evr.wipeDatabase();
+	}
 	/***** END NEW STUFF ***/
 	
 	// print all the attributes of all events
@@ -114,10 +118,20 @@ public class DatabaseDriver {
 	
 	// find an event based on its name, return an Event object
 	public static void main(String[] args) {
-		//enterEvent();
+		wipeDatabase();
+		enterEvent();
+		enterEvent();
+		readList();
+		//addRating();
 		//readList();
+		
 		//evr.returnEventObjectByName();
 		addRating();
+		addRating();
+		readList();
+		//int num = 12;
+		//int num2 = 13;
+		//System.out.println((double) num / num2);
 	}
 
 }
