@@ -32,12 +32,12 @@ public class Driver {
 	// starts over because they go back to the initial actions
 	private static Service getTopChoice() {
 		System.out.println("Please enter one of the numbers below corresponding to the action you wish to take...");
-		if (user.getType() == "guest") {
+		if (user.getType().equalsIgnoreCase("guest")) {
 			return getUserChoice(new Service[] {Service.EXIT, Service.LOGIN, Service.SEARCH, Service.VIEW_POPULAR});
-		} else if (user.getType() == "employee") {
+		} else if (user.getType().equalsIgnoreCase("employee")) {
 			return getUserChoice(new Service[] {Service.EXIT, Service.VIEW_ACCOUNT, Service.SEARCH, Service.VIEW_POPULAR,
 												Service.ADD_EVENT});
-		} else if (user.getType() == "admin") {
+		} else if (user.getType().equalsIgnoreCase("admin")) {
 			return getUserChoice(new Service[] {Service.EXIT, Service.VIEW_ACCOUNT, Service.SEARCH, Service.VIEW_POPULAR,
 												Service.ADD_EVENT, Service.ADD_LOCATION, Service.ADD_USER});
 		} else {
