@@ -153,7 +153,7 @@ public class Event {
 	 * @param user - User who makes the comment
 	 * @param comment - String of what the user wants to comment
 	 */
-	public void addUserComment(User user, String comment) {
-		comments.add("Posted by: "+ user.getUsername() + "\n" + comment);
+	public void addUserComment(String comment) {
+		comments.add(comment);
 	}
 }

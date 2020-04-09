@@ -33,6 +33,13 @@ public class DatabaseDriver {
 	/**
 	 * static method to manipulate Event database reborn
 	 */
+	
+	public static void addComment() {
+		evr.addComment();
+	}
+	/**
+	 * static method to wipe Event database reborn
+	 */
 	public static void wipeDatabase() {
 		evr.wipeDatabase();
 	}
@@ -176,20 +183,19 @@ public class DatabaseDriver {
 	
 	// find an event based on its name, return an Event object
 	public static void main(String[] args) {
-		wipeDatabase();
-		enterEvent();
-		enterEvent();
-		readList();
-		//addRating();
+		//wipeDatabase();
+		//enterEvent();
+		
 		//readList();
+		//addRating();
+		
 		
 		//evr.returnEventObjectByName();
+		//addRating();
 		addRating();
-		addRating();
+		//readList();
+		//addComment();
 		readList();
-		//int num = 12;
-		//int num2 = 13;
-		//System.out.println((double) num / num2);
 	}
 
 }
