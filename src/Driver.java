@@ -190,7 +190,7 @@ public class Driver {
 				goBackChoice();
 				break;
 			case ADD_EVENT:
-				// TODO
+				
 				break;
 			case ADD_LOCATION:
 				// TODO
@@ -306,6 +306,10 @@ public class Driver {
 		DatabaseDriver.displayAllEvents();
 		Service choice = getUserChoice(new Service[] {Service.EXIT, Service.SELECT_TICKET, Service.RATE_EVENT, Service.GO_BACK});
 		actOnChoice(choice);
+	}
+	
+	private static void enterEventToLocation(Location loc) {
+		DatabaseDriver.enterNewEvent(user.getLocation());
 	}
 	
 	public static void main(String[] args) {

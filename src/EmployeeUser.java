@@ -40,5 +40,7 @@ public class EmployeeUser extends User {
 				tickets, cart, age, rewardPoints, discountRate);
 		this.employeeID = employeeID;
 	}
+	
+	public get
 
 }
