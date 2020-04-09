@@ -255,6 +255,8 @@ public class Driver {
 		}
 	}
 	
+	//****************** FUNCTIONS CALLED AFTER DISPLAYING AN EVENT TO SCREEN *******//
+	
 	//******************* FUNCTIONS CALLED AFTER SELECTING SEARCH ********************//
 	
 	private static void initiateSearch() {

@@ -5,10 +5,14 @@ import java.util.Scanner;
 public class DatabaseDriver {
 	public static Scanner scan = new Scanner(System.in);
 	public static EventDatabase ev = new EventDatabase();
+	public static EventDatabaseReborn evr = new EventDatabaseReborn(); ///
 	public static LocationDatabase lv = new LocationDatabase();
 	public static ScheduleDatabase sv = new ScheduleDatabase();
 	public static UserDatabase uv = new UserDatabase();
 	
+	public static void enterEventAndConstruct() {
+		evr.enterEvent();
+	}
 	
 	// print all the attributes of all events
 	public static void printAllEvents() {
@@ -120,7 +124,15 @@ public class DatabaseDriver {
 		//enterNewLocation();
 		//enterNewEventWithLocation("Regal");
 		//loc.showSeatGrid(seatGrid);
-		enterRating();
+		//enterRating();
+		
+		//evr.enterEvent();
+		//evr.writeList();
+		//evr.enterEvent();
+		
+		evr.writeList();
+		
+		//evr.readList();
 	}
 
 }
