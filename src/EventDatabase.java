@@ -35,7 +35,7 @@ public class EventDatabase {
 	/**
 	 * enables user to add an event to the eventList
 	 */
-	public void enterEvent(Location loc) {
+	public void enterEvent(String loc) {
 		System.out.println();
 		String name = validateName();
 		String militaryTimes = validateMilitaryTimes();
@@ -71,21 +71,7 @@ public class EventDatabase {
         } catch (IOException e) {
             e.printStackTrace();
         } 
-		
-		//add event to location
-		//Event newEvent = returnEventObjectByName(name);
-		
-		ArrayList<String> militaryTimes2 = new ArrayList<String>();
-		militaryTimes2.addAll(Arrays.asList(militaryTimes.toLowerCase().split(" ")));
-		int rating2 = Integer.parseInt(rating);
-		int numOfRatings2 = Integer.parseInt(numOfRatings);
-		ArrayList<String> comments2 = new ArrayList<String>();
-		comments2.addAll(Arrays.asList(comments.toLowerCase().split(" ")));
-		ArrayList<String> dates2 = new ArrayList<String>();
-		dates2.addAll(Arrays.asList(dates.toLowerCase().split(" ")));
-		Double price2 = Double.parseDouble(price);
-		loc.events.add(new Event(name, militaryTimes2, type, rating2, numOfRatings2, comments2, dates2, price2));
-		System.out.println("Event added to your location!");
+		System.out.println("Event added to " + loc + ".");
 	}
 	
 	/**

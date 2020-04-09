@@ -17,7 +17,12 @@ public class DatabaseDriver {
 		return ev.returnAllEventsAsArrayList();
 	}
 	
-	public static void enterNewEvent(Location loc) {
+	public static void enterNewEvent() {
+		ev.enterEvent();
+	}
+	
+	public static void enterNewEventWithLocation(String loc) {
+		
 		ev.enterEvent(loc);
 	}
 	
@@ -79,9 +84,13 @@ public class DatabaseDriver {
 		//enterComment("Frozen 2", "I loved it so much it gave me chills");
 		//printAllEvents();
 		//enterNewEvent();
-		ArrayList<Event> events = returnAllEventsAsArrayList();
-		Location loc = new Location("Regal", "Theater", 25, new ArrayList<Event>());
-		enterNewEvent(loc);
+		
+		//ArrayList<Event> events = returnAllEventsAsArrayList();
+		//Location loc = new Location("Regal", "Theater", 25, new ArrayList<Event>());
+		//enterNewEvent(loc);
+		
+		//enterNewLocation();
+		enterNewEventWithLocation("Regal");
 		//loc.showSeatGrid(seatGrid);
 	}
 

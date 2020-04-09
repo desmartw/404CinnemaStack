@@ -308,8 +308,10 @@ public class Driver {
 		actOnChoice(choice);
 	}
 	
-	private static void enterEventToLocation(Location loc) {
-		DatabaseDriver.enterNewEvent(user.getLocation());
+	private static void enterEventToLocation() {
+		System.out.println("Enter the name of the location for the event:");
+		String loc = in.nextLine();
+		DatabaseDriver.enterNewEventWithLocation(loc);
 	}
 	
 	public static void main(String[] args) {

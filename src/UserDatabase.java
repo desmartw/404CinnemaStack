@@ -46,6 +46,7 @@ public class UserDatabase {
         System.out.println("ID: " + (String) userObject.get("ID"));
         System.out.println("Type: " + (String) userObject.get("type"));
         System.out.println("Discount: " + (String) userObject.get("discount"));
+        System.out.println("Location: " + (String) userObject.get("location"));
     }
 	
 	/**
@@ -154,6 +155,11 @@ public class UserDatabase {
 		userDetails.put("type", type);
 		userDetails.put("ID", ID);
 		userDetails.put("discount", discount);
+		
+		if (type.equals("employee")) {
+			
+		}
+		
 		JSONObject userObject = new JSONObject();
 		userObject.put("user", userDetails);
 		

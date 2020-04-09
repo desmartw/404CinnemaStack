@@ -18,6 +18,7 @@ public class EmployeeUser extends User {
 		rewardPoints = 0;
 		discountRate = .1;
 		employeeID = "123LoveToWork";
+		employer = new Location();
 	}
 	/**
 	 * Paramaterized constructor
@@ -41,6 +42,8 @@ public class EmployeeUser extends User {
 		this.employeeID = employeeID;
 	}
 	
-	public get
+	public Location getLocation() {
+		return employer;
+	}
 
 }
