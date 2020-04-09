@@ -66,10 +66,11 @@ public class Event {
 	    this.actors = actors;
 	}
 	
-	// TODO for prettify stage
+	
 	/**
 	 * printEvent method returns all attributes of this event 
 	 *
+	 */
 	public void printEvent() {
 		System.out.println("\nName of event: "+ name);
 		System.out.print("Times: | ");
@@ -83,7 +84,7 @@ public class Event {
 		System.out.print("\nDates: | ");
 		dates.forEach(date ->{System.out.print(date + " | ");});
 		System.out.println("\nPrice: " + price);
-	}*/
+	}
 	
 	
 	//getters and setters

@@ -19,8 +19,8 @@ public class DatabaseDriver {
 		evr.readList();
 	}
 	
-	public static void addComment() {
-		evr.addComment();
+	public static void addRating() {
+		evr.addRating();
 	}
 	/***** END NEW STUFF ***/
 	
@@ -114,8 +114,10 @@ public class DatabaseDriver {
 	
 	// find an event based on its name, return an Event object
 	public static void main(String[] args) {
-		enterEvent();
-		readList();
+		//enterEvent();
+		//readList();
+		//evr.returnEventObjectByName();
+		addRating();
 	}
 
 }
