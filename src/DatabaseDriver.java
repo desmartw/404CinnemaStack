@@ -80,6 +80,10 @@ public class DatabaseDriver {
 		return lv.enterNameAndReturnLocation();
 	}
 	
+	public static Location returnLocation(String name) {
+		return lv.returnLocation(name);
+	}
+	
 	// employee.getLocation() for location
 	public static void enterShowtime(String location) {
 		lv.enterShowtime(location);
@@ -240,12 +244,13 @@ public class DatabaseDriver {
 		//user
 		//uv.wipeDatabase();
 		//addUser();
+		//addUser();
 		//printCredentials();
 		
 		//readAllLocations();
-		enterLocation();
-		enterShowtime("Cinema 12");
-		enterShowtime("Cinema 12");
+		//enterLocation();
+		//enterShowtime("Cinema 360");
+		//enterShowtime("Cinema 360");
 		//readAllLocations();
 		
 		//System.out.println(returnLocationWithEvent("Batman").getName());

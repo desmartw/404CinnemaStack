@@ -87,6 +87,7 @@ public class GenerateUser {
         double discountRate = Double.parseDouble((String) userObject.get("discount"));
         String ID = (String) userObject.get("ID");
         String type = (String) userObject.get("type");
+        Location location = DatabaseDriver.returnLocation(((String) userObject.get("location")));
         
 		if (type.equals("handicapped"))
 			return new HandicappedUser(username, password, email, wallet, tickets, cart, age, rewardPoints, discountRate, ID);
@@ -95,7 +96,7 @@ public class GenerateUser {
 		if (type.equals("veteran"))
 			return new VeteranUser(username, password, email, wallet, tickets, cart, age, rewardPoints, discountRate, ID);
 		if (type.equals("employee"))
-			return new EmployeeUser(username, password, email, wallet, tickets, cart, age, rewardPoints, discountRate, ID);
+			return new EmployeeUser(username, password, email, wallet, tickets, cart, age, rewardPoints, discountRate, ID, location);
 		if (type.equals("teacher"))
 			return new TeacherUser(username, password, email, wallet, tickets, cart, age, rewardPoints, discountRate, ID);
 		if (type.equals("admin"))
