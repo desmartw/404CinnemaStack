@@ -5,7 +5,6 @@ public class Driver {
 
 	public static User user;
 	private static Scanner in;
-	
 	// starting page
 	static Page homePage = new Page();
 	
@@ -192,8 +191,9 @@ public class Driver {
 	}
 	
 	// employee page setup display
-	private static void setUpEventsPage() {
-		eventsPage.setDisplay(      "  ****************************************** 	 \n" +
+	private static void setUpEmployeePage() {
+		employeeOptionsPage.setDisplay( 
+									"  ****************************************** 	 \n" +
 	 		 						"  *                                        * 	 \n" +
 	 		 						"  *       EMPLOYEE USER OPTIONS PAGE       * 	 \n" +
 	 		 						"  *                                        *    \n" +
@@ -213,7 +213,7 @@ public class Driver {
 	}
 	private static void employeePageManager() {
 		employeeOptionsPage.showDisplay();
-		String searchTerm;
+		
 		// TODO get user imput 
 		while(true) {
 			System.out.println("Please Enter a number between 0-1: ");
@@ -224,9 +224,7 @@ public class Driver {
 				System.out.println("Your choice was invalid, choose again. ");
 			} else if(choice == 0) {
 				System.out.println("You selected add event, moving there. ");
-	
-				//TODO add event
-				//TODO SEARCH
+				DatabaseDriver.enterEvent();
 			} else if(choice == 1) {
 				System.out.println("You selected go home, going home... ");
 				homePageManager();
@@ -235,9 +233,35 @@ public class Driver {
 			}
 		}
 	}
+	
+	private static void setUpEventsPage() {
+		homePage.setDisplay("  *******************    ******************* 	 ******************* \n" +
+				 		 	"  *                 *    *                 * 	 *				   * \n" +
+				 		 	"  *  EVENTS PAGE    *    *  0:SHOW EVENT   * 	 * 1: GO HOME      * \n" +
+				 		 	"  *                 *    *                 *    *				   * \n" +
+				 		 	"  *******************    *******************    ******************* \n" +
+				 		 	"                                             						 \n");
+	}
 	private static void eventPageManager() {
-		// TODO display events page
-		// TODO get user input
+		eventsPage.showDisplay();
+		EventDatabaseReborn edb = new EventDatabaseReborn();
+		while(true) {
+			System.out.println("Please Enter a number between 0-1: ");
+			int choice = in.nextInt();
+			in.nextLine();
+
+			if(choice < 0 || choice > 1) {
+				System.out.println("Your choice was invalid, choose again. ");
+			} else if(choice == 0) {
+				System.out.println("You selected show all events, showing. ");
+				DatabaseDriver.readAllEvents();
+			} else if(choice == 1) {
+				System.out.println("You selected go home, going home... ");
+				homePageManager();
+			} else {
+				System.out.println("Your choice was invalid, choose again. ");
+			}
+		}
 	}
 	
 	
@@ -313,7 +337,9 @@ public class Driver {
 		
 		setUpHomePage();
 		setUpSearchPage();
-		
+		setUpAdminPage();
+		setUpEmployeePage();
+		setUpEventsPage();
 		
 		// create input stream
 		in = new Scanner(System.in);
