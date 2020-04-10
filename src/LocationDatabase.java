@@ -150,6 +150,38 @@ public class LocationDatabase {
 		return loc;
  	}
  	
+ 	public Location returnLocation(String location) {
+ 		Location currLoc = new Location();
+ 		for (int i = 0; i < this.list.size(); i++)  {
+			currLoc = ((Location) this.list.get(i));
+			if ((currLoc.getName()).equals(location)) {
+	    		return currLoc;
+	    	}
+		}
+ 		return currLoc;
+ 	}
+ 	
+ 	// employee.getLocation() for location
+ 	public void enterShowtime(String location) {
+ 		Location loc = returnLocation(location);
+		ArrayList<String> names = getAllNames();
+		ArrayList<Location> locs = this.list;
+		Event event = DatabaseDriver.returnEvent();
+		String militaryTime = DatabaseDriver.validateMilitaryTime();
+		String date = DatabaseDriver.validateDate();
+		Double price = DatabaseDriver.validatePrice();
+		refreshList();
+		loc.createAndAddShowtime(event, militaryTime, date, price);
+		for (int i = 0; i < this.list.size(); i++)  {
+        	Location temp = list.get(i);
+        	if ((temp.getName()).equals(loc.getName())) {
+        		this.list.set(i, loc);
+        		writeList();
+        		refreshList();
+        	}
+        }
+ 	}
+ 	
  	/**
 	 * searches arraylist and returns names of all locations
 	 * @return

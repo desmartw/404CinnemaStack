@@ -98,8 +98,8 @@ public class Showtime {
 	public void setSeatingGrid(int seatingRows, int seatingCols, int handicapStartSeat, int handicapEndSeat) {
 		seatingGrid = new String[seatingRows][seatingCols];
 		int seatNumber = 0;
-		for (int y = 0; y < seatingRows; y++) {
-			for (int x = 0; x < seatingCols; x++) {
+		for (int x = 0; x < seatingRows; x++) {
+			for (int y = 0; y < seatingCols; y++) {
 				seatNumber = y*seatingCols + x;
 				if (seatNumber >= handicapStartSeat && seatNumber <= handicapEndSeat) {
 					seatingGrid[x][y] = "{" + formattedSeatNumber(seatNumber) + "}";

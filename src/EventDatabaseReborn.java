@@ -78,6 +78,53 @@ public class EventDatabaseReborn {
 			}
 		}
 	}
+	
+	public String validateDate() {
+		String date = "";
+		while(true) {
+			System.out.println("Dates are stored as MMDDYYYY. Enter the date of a single showtime:");
+			date = scan.nextLine();
+			if (date.length() != 8) {
+				System.out.println("Dates must have exactly 8 digits.");
+				continue;
+			}
+			if (!(date.matches("[0-9]+"))) {
+				System.out.println("Dates must only contain numbers");
+				continue;
+			}
+			System.out.println("Date added.");
+			return date;
+		}
+	}
+	
+	/**
+	 * Makes sure price of event is valid
+	 * @return price- string
+	 */
+	public Double validatePrice() {
+		Double price = null;
+		while(true) {
+			boolean running = true;
+			while(running) {
+				try {
+					System.out.println("Enter the price of your event as a whole number:");
+					price = Double.parseDouble(scan.nextLine());
+				} catch(NumberFormatException e) {
+					System.out.println("Prices must only be integer numbers please.");
+					continue;
+				}
+				running = false;
+			}
+			if (price < 0) {
+				System.out.println("You cannot have a negative price.");
+				continue;
+			}
+			System.out.println("Event price added.");
+			break;
+		}
+		return price;
+	}
+	
 	/**
 	 * checks that actors entered name is long enough
 	 * @return list of actors -ArrayList<String>
@@ -123,6 +170,29 @@ public class EventDatabaseReborn {
 			break;
 		}
 		return name;
+	}
+	
+	/**
+	 * Makes sure time of event is valid
+	 * @return time- string
+	 */
+	public String validateMilitaryTime() {
+		String time = "";
+		while(true) {
+			System.out.println("Enter the military time of the showtime:");
+			time = scan.nextLine();
+			if (time.length() != 4) {
+				System.out.println("The military time must have 4 digits.");
+				continue;
+			}
+			if (!(time.matches("[0-9]+"))) {
+				System.out.println("The military time must only contain numbers");
+				continue;
+			}
+			System.out.println("Event time added.");
+			break;
+		}
+		return time;
 	}
 	
 	/**

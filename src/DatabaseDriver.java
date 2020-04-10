@@ -19,7 +19,7 @@ public class DatabaseDriver {
 		evr.enterEvent();
 	}
 	/**
-	 * static method to manipulate Event database reborn
+	 * static method to return all Events and their attributes
 	 */
 	public static void readAllEvents() {
 		evr.readList();
@@ -44,6 +44,21 @@ public class DatabaseDriver {
 		evr.wipeDatabase();
 	}
 	
+	public static Event returnEvent() {
+		return evr.returnEventObjectByName();
+	}
+	
+	public static String validateMilitaryTime() {
+		return evr.validateMilitaryTime();
+	}
+	
+	public static String validateDate() {
+		return evr.validateDate();
+	}
+	
+	public static Double validatePrice() {
+		return evr.validatePrice();
+	}
 	/**
 	 * allows new location to be created in LDB
 	 */
@@ -60,6 +75,12 @@ public class DatabaseDriver {
 	public static Location enterNameAndReturnLocation() {
 		return lv.enterNameAndReturnLocation();
 	}
+	
+	// employee.getLocation() for location
+	public static void enterShowtime(String location) {
+		lv.enterShowtime(location);
+	}
+	
 	
 	/***** END NEW STUFF ***/
 	
@@ -207,9 +228,13 @@ public class DatabaseDriver {
 		//readAllLocations();
 		
 		//user
-		uv.wipeDatabase();
-		addUser();
-		printCredentials();
+		//uv.wipeDatabase();
+		//addUser();
+		//printCredentials();
+		
+		readAllLocations();
+		enterShowtime("Wynnsong");
+		readAllLocations();
 	}
 
 }
