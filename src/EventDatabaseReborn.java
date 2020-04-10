@@ -3,7 +3,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Scanner;
 
 import org.json.simple.JSONArray;
@@ -14,88 +16,45 @@ import org.json.simple.parser.ParseException;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
+
+/*
+private String name;
+private String type;
+private int ratingSum;
+private int ratingNum;
+private ArrayList<String> comments;
+private ArrayList<String> actors;
+*/
 
 public class EventDatabaseReborn {
+	public static final String[] EVENT_TYPES = {"movie", "play", "concert"};
 	private ArrayList<Event> list = new ArrayList<Event>();
 	public static final Scanner scan = new Scanner(System.in);
 	private File file = new File("events.json");
 	private ObjectMapper mapper = new ObjectMapper();
 	
-	// initialize event object
+	/**
+	 * makes sure that data is good before adding to DB
+	 */
 	public void enterEvent() {
-		
-		// LAZY FIX ME
-		EventDatabase ev = new EventDatabase();
-		
-		String name = ev.validateName();
-		//ArrayList<String> militaryTimes = validateTimes();
-		String type = ev.validateType();
+		System.out.println();
+		String name = validateName();
+		String type = validateType();
 		int ratingSum = 0;
 		int ratingNum = 0;
 		ArrayList<String> comments = new ArrayList<String>();
 		ArrayList<String> dates = validateDates();
 		ArrayList<String> actors = validateActors();
-		//ArrayList<String> actors = validateActors();
-		//int price = validatePrice();
 		
 		refreshList();
 		Event event = new Event(name, type, comments, actors);
 		writeList(event);
 	}
 	
-	
-	/*
-	public int validatePrice() {
-		Integer price = null;
-		while(true) {
-			boolean running = true;
-			while(running) {
-				try {
-					System.out.println("Enter the price of your event as a whole number:");
-					price = Integer.parseInt(scan.nextLine());
-				} catch(NumberFormatException e) {
-					System.out.println("Prices must only be integer numbers please.");
-					continue;
-				}
-				running = false;
-			}
-			if (price < 0) {
-				System.out.println("You cannot have a negative price.");
-				continue;
-			}
-			System.out.println("Event price added.");
-			break;
-		}
-		return price;
-	}
-	*/
-	/*
-	
-	public ArrayList<String> validateTimes() {
-		String time = "";
-		ArrayList<String> list = new ArrayList<String>();
-		System.out.println("Enter the military time of a single showtime:");
-		time = scan.nextLine();
-		while(true) {
-			if (time.length() != 4) {
-				System.out.println("The military time must have 4 digits.");
-				continue;
-			}
-			if (!(time.matches("[0-9]+"))) {
-				System.out.println("The military time must only contain numbers");
-				continue;
-			}
-			list.add(time);
-			System.out.println("Event time added.");
-			System.out.println("Enter another military time or type [Enter] to finish.");
-			time = scan.nextLine();
-			if ((time.toLowerCase()).equals("")) {
-				return list;
-			}
-		}
-	}
-	*/
+	/**
+	 * checks that dates entered fit format
+	 * @return list of dates -ArrayList<String>
+	 */
 	public ArrayList<String> validateDates() {
 		String date = "";
 		ArrayList<String> list = new ArrayList<String>();
@@ -119,7 +78,10 @@ public class EventDatabaseReborn {
 			}
 		}
 	}
-	
+	/**
+	 * checks that actors entered name is long enough
+	 * @return list of actors -ArrayList<String>
+	 */
 	public ArrayList<String> validateActors() {
 		String actor = "";
 		ArrayList<String> list = new ArrayList<String>();
@@ -139,8 +101,55 @@ public class EventDatabaseReborn {
 			}
 		}
 	}
+	/**
+	 * Ensures that whatever name is entered is a valid one
+	 * @return name - String - validated name
+	 */
+	public String validateName() {
+		String name = "";
+		ArrayList<String> names = getAllNames();
+		while(true) {
+			System.out.println("Enter the name of your event:");
+			name = scan.nextLine();
+			if (names.contains(name)) {
+				System.out.println("Event name already exists.");
+				continue;
+			}
+			if (name.length() == 0) {
+				System.out.println("The name of your event cannot be empty.");
+				continue;
+			}
+			System.out.println("Event name added.");
+			break;
+		}
+		return name;
+	}
 	
-	// arraylist to pretty json
+	/**
+	 * Checks that the type of event user enters is actually an event type
+	 * @return type -  String - verified type of event
+	 */
+	public String validateType() {
+		String type = "";
+		List<String> types = new ArrayList<String>();
+		types = Arrays.asList(EVENT_TYPES); 
+		while(true) {
+			System.out.println("Enter the type of your event:");
+			type = scan.nextLine();
+			if(!(types.contains(type))) {
+				System.out.println("You may only enter one of the following types.");
+				System.out.println(Arrays.toString(types.toArray()));
+				continue;
+			}
+			System.out.println("Event type added.");
+			break;
+		}
+		return type;
+	}
+	/**
+	 * Writes from JSON file to list
+	 * @param event
+	 */
 	public void writeList(Event event) {
 		try {
 			list.add(event);
@@ -150,7 +159,9 @@ public class EventDatabaseReborn {
 		}
 	}
 	
-	// arraylist to pretty json
+	/**
+	 * Writes from JSON file to list
+	 */
 	public void writeList() {
 		try {
 			mapper.writeValue(new File("testOfArrayList.json"), this.list);
@@ -159,12 +170,17 @@ public class EventDatabaseReborn {
 		}
 	}
 	
+	/**
+	 * reads list and prints 
+	 */
 	public void readList() {
 		refreshList();
 		this.list.forEach(event->event.printEvent());
 	}
 	
-	
+	/**
+	 * updates list from JSON file
+	 */
 	public void refreshList() {
 		try {
 			this.list = mapper.readValue(new File("testOfArrayList.json"), new TypeReference<ArrayList<Event>>(){});
@@ -173,6 +189,10 @@ public class EventDatabaseReborn {
 		}
 	}
 	
+	/**
+	 * adds a raitng to event 
+	 * @return void
+	 */
 	public void addRating() {
 		Event event = returnEventObjectByName();
 		int rating;
@@ -202,7 +222,9 @@ public class EventDatabaseReborn {
         	}
         }
 	}
-	
+	/**
+	 * enables adding comments to list
+	 */
 	public void addComment() {
 		Event event = returnEventObjectByName();
 		String comment;
@@ -228,7 +250,10 @@ public class EventDatabaseReborn {
         	}
         }
 	}
-	
+	/**
+	 * returns event object after asking user for the name
+	 * @return Event
+	 */
 	public Event returnEventObjectByName() {
 		String name = "";
 		refreshList();
@@ -258,13 +283,19 @@ public class EventDatabaseReborn {
 		}
 		return event;
 	}
-	
+	/**
+	 * searches arraylist and returns names of all events
+	 * @return
+	 */
 	public ArrayList<String> getAllNames() {
 		ArrayList<String> names = new ArrayList<String>();
 		this.list.forEach(event->names.add(event.getName()));
 		return names;
 	}
-	
+	/**
+	 * reads list of events and returns a JSONArray
+	 * @return readEventList-JSONArray
+	 */
 	public JSONArray readEventList() {
 		JSONParser jsonParser = new JSONParser();
         JSONArray readEventList = new JSONArray();
@@ -284,7 +315,9 @@ public class EventDatabaseReborn {
         
         return readEventList;
 	}
-	
+	/**
+	 * clears the database 
+	 */
 	public void wipeDatabase() {
 		this.list = new ArrayList<Event>();
 		writeList();
