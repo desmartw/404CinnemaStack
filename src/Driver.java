@@ -65,9 +65,7 @@ public class Driver {
 	}
 	private static void homePageManager() {
 		// TODO display home page
-		System.out.println("HELLO");
 		homePage.showDisplay();
-		System.out.println("HELLO");
 		// TODO ask for user input
 		while(true) {
 			System.out.println("Please Enter a number between 0-4: ");
@@ -159,14 +157,6 @@ public class Driver {
 				System.out.println("Your choice was invalid, choose again. ");
 			}
 		}
-		// TODO 0 use db stuff to search for showtimes by user specified title
-			// TODO list these for the user if exists, redo searchPageManager if not
-			// TODO ask if want to add it to cart
-				// TODO if so, they enter the number of tickets for event
-				// TODO if not, redo searchPageManager
-		// TODO 1 use db stuff to search for showtimes on a specified date
-			// TODO list these for user if exitsts, redo searchPageManager if not
-				// TODO ask if user wants to add any showtimes to cart
 		
 	}
 	
@@ -247,12 +237,16 @@ public class Driver {
 				 		 	"  *                 *    *                 *    *				   * \n" +
 				 		 	"  *******************    *******************    ******************* \n" +
 				 		 	"                                             						 \n"+
-				 		 	"  ****************************************** 	 \n" +
-		 				    "  *                                        * 	 \n" +
-		 					"  *        2: VIEW SHOWTIME INFO           * 	 \n" +
-		 					"  *                                        *    \n" +
-		 					"  ******************************************    ");
+				 		 	"  *******************    *******************    ******************* \n" +
+				 		 	"  *                 *    * 			    *    *			 	   * \n" +
+	 		 				"  *2: ViewShowtimes *    *   3:Review      *    *    4: Exit      * \n" +
+	 		 				"  *                 *    * 			    *    *				   * \n" +
+							"  *******************    *******************    ******************* \n");
 	}
+	
+	// needs working view showtime info
+	// then needs to add desired events to cart
+	// then 
 	private static void eventPageManager() {
 		eventsPage.showDisplay();
 		while(true) {
@@ -261,7 +255,7 @@ public class Driver {
 			String name;
 			in.nextLine();
 
-			if(choice < 0 || choice > 1) {
+			if(choice < 0 || choice > 4) {
 				System.out.println("Your choice was invalid, choose again. ");
 			} 
 			else if(choice == 0) {
@@ -275,6 +269,7 @@ public class Driver {
 					(shtimes.get(i)).printShowtime();
 				}
 				while(true) {
+					
 					System.out.println("Enter the number of the showtime you want to purhcase tickets for.");
 					choice = in.nextInt();
 					in.nextLine();
@@ -283,17 +278,40 @@ public class Driver {
 					while(true) {
 						System.out.println("Enter a seat number:");
 						String answer = in.nextLine();
-						if(answer.length() < 3 || answer.length() > 3) {
+						if(answer.length() != 3) {
 							System.out.println("Invalid.");
 						}
 						
 					}
+					user.addToCart(ticket);
+					user.purchaseTickets();
 				}
 			} 
 			else if(choice == 1) {
 				System.out.println("You selected go home, going home... ");
 				homePageManager();
 			} 
+			else if(choice == 2) {
+				//TODO add showtime info
+			} 
+			else if(choice == 3) {
+				// add comment or rating
+				System.out.println("Press 1 to add a comment, or 2 to add a rating: ");
+				choice = in.nextInt();
+				in.nextLine();
+				if(choice < 1 || choice > 2) {
+					System.out.println("Your choice was invalid, choose again. ");
+				} else if(choice == 1) {
+					//TODO add comment
+					DatabaseDriver.addComment();
+				} else if(choice == 2) {
+					//TODO add rating
+					DatabaseDriver.addRating();
+				}
+			}
+			else if(choice == 4) {
+				
+			}
 			else {
 				System.out.println("Your choice was invalid, choose again. ");
 			}

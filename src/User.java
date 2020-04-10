@@ -28,6 +28,9 @@ public abstract class User {
 		rewardPoints = 0;
 		discountRate = .1;
 	}
+	public void addToCart(Ticket ticket) {
+		cart.add(ticket);
+	}
 	
 	/**
 	 * Parameterized constructor
