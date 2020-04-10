@@ -62,6 +62,7 @@ public class Driver {
 				 		 	"\n\n IF YOU ARE EMPLOYEE OR ADMIN --- 4: Go to your functionality");
 	}
 	private static void homePageManager() {
+		// TODO display home page
 		// TODO ask for user input
 		
 		// TODO 0 go to Search Page
@@ -70,6 +71,10 @@ public class Driver {
 			// TODO done with that path
 		// TODO 2 go to EVents page
 			// TODO done with that path
+		// TODO 3 System.exit(0); we outcha
+			// TODO done with that path
+		// TODO 4 check admin or employee,
+			// TODO go to page or stay and redo homePageManager()
 	}
 	
 	// searchpage setup display
@@ -87,6 +92,17 @@ public class Driver {
 	 		 				  "  *******************    *******************    ******************* \n");
 	}
 	private static void searchPageManager() {
+		// TODO display search page
+		// TODO get user imput 
+		
+		// TODO 0 use db stuff to search for showtimes by user specified title
+			// TODO list these for the user if exists, redo searchPageManager if not
+			// TODO ask if want to add it to cart
+				// TODO if so, they enter the number of tickets for event
+				// TODO if not, redo searchPageManager
+		// TODO 1 use db stuff to search for showtimes on a specified date
+			// TODO list these for user if exitsts, redo searchPageManager if not
+				// TODO ask if user wants to add any showtimes to cart
 		
 	}
 	
@@ -100,21 +116,49 @@ public class Driver {
 	 		 						"                                             	 \n" +
 	 		 						"  *******************    ******************* 	 \n" +
 	 		 						"  *                 *    *                 * 	 \n" +
-	 		 						"  *  0: Add Account *    * 1: Add Location * 	 \n" +
+	 		 						"  *   0: Add User   *    * 1: Add Location * 	 \n" +
 	 		 						"  *                 *    *                 * 	 \n" +
 	 		 						"  *******************    ******************* 	 \n" +
-	 		 					  "\n  2: Go Back to Home Page");
+	 		 						"                                                  " +
+	 		 						"  ****************************************** 	 \n" +
+	 		 						"  *                                        * 	 \n" +
+	 		 						"  *        3: GO BACK TO HOME PAGE         * 	 \n" +
+	 		 						"  *                                        *    \n" +
+	 		 						"  ******************************************    ");
 	}
 	private static void adminPageManager() {
-		
+		// TODO display admin page
+		// TODO get user input
 	}
 	
-	private static void setUpAccountPage() {
-		accountPage.setDisplay(     "  ****************************************** 	 \n" +
+	// employee page setup display
+	private static void setUpEventsPage() {
+		eventsPage.setDisplay(      "  ****************************************** 	 \n" +
 	 		 						"  *                                        * 	 \n" +
-	 		 						"  *          ACCOUNT OPTIONS PAGE          * 	 \n" +
+	 		 						"  *       EMPLOYEE USER OPTIONS PAGE       * 	 \n" +
 	 		 						"  *                                        *    \n" +
 	 		 						"  ******************************************    \n" +
+	 		 						"                                             	 \n" +
+	 		 						"  *******************    ******************* 	 \n" +
+	 		 						"  *                 *    *     -     -     * 	 \n" +
+	 		 						"  *  0: Add Event   *    *   ^        ^    * 	 \n" +
+	 		 						"  *                 *    *     \\_____/     * 	 \n" +
+	 		 						"  *******************    ******************* 	 \n" +
+	 		 						"                                                  " +
+	 		 						"  ****************************************** 	 \n" +
+	 		 						"  *                                        * 	 \n" +
+	 		 						"  *        1: GO BACK TO HOME PAGE         * 	 \n" +
+	 		 						"  *                                        *    \n" +
+	 		 						"  ******************************************    "););
+	}
+	private static void eventPageManager() {
+		// TODO display events page
+		// TODO get user input
+	}
+	
+	
+	private static void setUpAccountPage() {
+		accountPage.setDisplay(     
 	 		 						"                                             	 \n" +
 	 		 						"  *******************    ******************* 	 \n" +
 	 		 						"  *                 *    *                 * 	 \n" +
@@ -135,7 +179,8 @@ public class Driver {
 									"  *******************    ******************* 	 \n");
 	}
 	private static void accountPageManager() {
-		
+		// TODO display account page
+		// TODO get user input
 	}
 	
 	// welcomes the user with greeting messages
