@@ -116,10 +116,10 @@ public class Showtime {
 		this.seatingGrid = seatingGrid;
 	}
 	public void setSeatingGrid(int seatingRows, int seatingCols, int handicapStartSeat, int handicapEndSeat) {
-		seatingGrid = new String[seatingRows][seatingCols];
+		seatingGrid = new String[seatingCols][seatingRows];
 		int seatNumber = 0;
-		for (int x = 0; x < seatingRows; x++) {
-			for (int y = 0; y < seatingCols; y++) {
+		for (int x = 0; x < seatingCols; x++) {
+			for (int y = 0; y < seatingRows; y++) {
 				seatNumber = y*seatingCols + x;
 				if (seatNumber >= handicapStartSeat && seatNumber <= handicapEndSeat) {
 					seatingGrid[x][y] = "{" + formattedSeatNumber(seatNumber) + "}";
@@ -128,6 +128,14 @@ public class Showtime {
 				}
 			}
 		}
+	}
+	public void closeSeat(int seatNumber) {
+		int seatX = seatNumber % seatingGrid[0].length;
+		int seatY = (seatNumber - seatX) / seatingGrid[0].length;
+		seatingGrid[seatX][seatY] = seatingGrid[seatX][seatY].substring(0,1) + formattedSeatNumber(seatNumber) + seatingGrid[seatX][seatY].substring(4);
+	}
+	public void openSeat(int seatNumber) {
+		
 	}
 	
 	public String getEventName() {

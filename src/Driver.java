@@ -173,7 +173,7 @@ public class Driver {
 	 		 						"  *   0: Add User   *    * 1: Add Location * 	 \n" +
 	 		 						"  *                 *    *                 * 	 \n" +
 	 		 						"  *******************    ******************* 	 \n" +
-	 		 						"                                                  " +
+	 		 						"                                                \n" +
 	 		 						"  ****************************************** 	 \n" +
 	 		 						"  *                                        * 	 \n" +
 	 		 						"  *        3: GO BACK TO HOME PAGE         * 	 \n" +
@@ -199,7 +199,7 @@ public class Driver {
 	 		 						"  *  0: Add Event   *    *   ^        ^    * 	 \n" +
 	 		 						"  *                 *    *     \\_____/    * 	 \n" +
 	 		 						"  *******************    ******************* 	 \n" +
-	 		 						"                                                  " +
+	 		 						"                                                \n" +
 	 		 						"  ****************************************** 	 \n" +
 	 		 						"  *                                        * 	 \n" +
 	 		 						"  *        1: GO BACK TO HOME PAGE         * 	 \n" +
@@ -231,17 +231,17 @@ public class Driver {
 	}
 	
 	private static void setUpEventsPage() {
-		eventsPage.setDisplay("  *******************    ******************* 	 ******************* \n" +
-				 		 	"  *                 *    *                 * 	 *				   * \n" +
-				 		 	"  *  EVENTS PAGE    *    *  0:SHOW EVENTS  * 	 * 1: GO HOME      * \n" +
-				 		 	"  *                 *    *                 *    *				   * \n" +
-				 		 	"  *******************    *******************    ******************* \n" +
-				 		 	"                                             						 \n"+
-				 		 	"  *******************    *******************    ******************* \n" +
-				 		 	"  *                 *    * 			    *    *			 	   * \n" +
-	 		 				"  *2: ViewShowtimes *    *   3:Review      *    *    4: Exit      * \n" +
-	 		 				"  *                 *    * 			    *    *				   * \n" +
-							"  *******************    *******************    ******************* \n");
+		eventsPage.setDisplay("  *******************    *******************    ******************* \n" +
+				 		 	  "  *                 *    *                 *    *				 * \n" +
+				 		 	  "  *  EVENTS PAGE    *    * 0: Show Events  *    *   1: Go Home    * \n" +
+				 		 	  "  *                 *    *                 *    *				 * \n" +
+				 		 	  "  *******************    *******************    ******************* \n" +
+				 		 	  "                                             						 \n"+
+				 		 	  "  *******************    *******************    ******************* \n" +
+				 		 	  "  *                 *    * 			      *    *			 	 * \n" +
+	 		 				  "  *2: ViewShowtimes *    *   3:Review      *    *    4: Exit      * \n" +
+	 		 				  "  *                 *    * 			      *    *				 * \n" +
+							  "  *******************    *******************    ******************* \n");
 	}
 	
 	// needs working view showtime info
@@ -250,7 +250,7 @@ public class Driver {
 	private static void eventPageManager() {
 		eventsPage.showDisplay();
 		while(true) {
-			System.out.println("Please Enter a number between 0-1: ");
+			System.out.println("Please enter your choice: ");
 			int choice = in.nextInt();
 			String name;
 			in.nextLine();
@@ -263,26 +263,27 @@ public class Driver {
 				DatabaseDriver.readAllEvents();
 				String nameOfEvent = DatabaseDriver.returnEvent().getName();
 				Location loc = DatabaseDriver.returnLocationWithEvent(nameOfEvent);
-				ArrayList<Showtime> shtimes = loc.getShowtimes();
-				for(int i = 0; i < shtimes.size(); i++) {
+				ArrayList<Showtime> showtimes = loc.getShowtimes();
+				for(int i = 0; i < showtimes.size(); i++) {
 					System.out.println("Choice: " + (i+1));
-					(shtimes.get(i)).printShowtime();
+					(showtimes.get(i)).printShowtime();
 				}
 				while(true) {
 					
 					System.out.println("Enter the number of the showtime you want to purhcase tickets for.");
 					choice = in.nextInt();
 					in.nextLine();
-					if(choice < 1 || choice > shtimes.size())
+					String answer = "";
+					if(choice < 1 || choice > showtimes.size())
 						continue;
 					while(true) {
 						System.out.println("Enter a seat number:");
-						String answer = in.nextLine();
+						answer = in.nextLine();
 						if(answer.length() != 3) {
 							System.out.println("Invalid.");
 						}
 						// need to go from a seat number to a ticket
-						
+						Ticket 
 					}
 					// need to add said ticket to cart and purchase
 					user.addToCart(ticket);
