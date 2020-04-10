@@ -44,9 +44,11 @@ public class UserDatabase {
         System.out.println("Age: " + (String) userObject.get("age"));
         System.out.println("Cool Points: " + (String) userObject.get("points"));
         System.out.println("ID: " + (String) userObject.get("ID"));
-        System.out.println("Type: " + (String) userObject.get("type"));
+        String type = (String) userObject.get("type");
+        System.out.println("Type: " + type);
         System.out.println("Discount: " + (String) userObject.get("discount"));
-        System.out.println("Location: " + (String) userObject.get("location"));
+        if (type.equals("employee"))
+        	System.out.println("Location: " + (String) userObject.get("location"));
     }
 	
 	/**
@@ -131,6 +133,11 @@ public class UserDatabase {
 		return (String) userObject.get("type");  
 	}
 	
+	public String parseLocation(JSONObject user) {
+		JSONObject userObject = (JSONObject) user.get("user");
+		return (String) userObject.get("location");  
+	}
+	
 	/**
 	 * Adds a user to the database
 	 */
@@ -145,6 +152,9 @@ public class UserDatabase {
 		System.out.println("For each question, please enter the number corresponding to the answer choice that fits you.\n");
 		String type = validateType();
 		String ID = validateID(type);
+		String location = "";
+		if (type.equals("employee"))
+			location = validateLocation();
 		String discount = validateDiscount(type);
 		JSONObject userDetails = new JSONObject();
 		userDetails.put("username", username);
@@ -155,6 +165,7 @@ public class UserDatabase {
 		userDetails.put("type", type);
 		userDetails.put("ID", ID);
 		userDetails.put("discount", discount);
+		userDetails.put("location", location);
 		
 		if (type.equals("employee")) {
 			
@@ -389,6 +400,17 @@ public class UserDatabase {
 		else
 			return "standard";
 	}
+	
+	
+	public String validateLocation() {
+		System.out.println("Enter the name of the location you work at:");
+		String loc = scan.nextLine();
+		
+		// check that location exists first
+		// add to user
+		
+	}
+	
 	
 	/**
 	 * reads a password from database

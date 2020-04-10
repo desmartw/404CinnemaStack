@@ -9,7 +9,6 @@ public class Location {
 	
 	private String name;
 	private String description;
-	private String password;
 	private int seatingRows;
 	private int seatingCols;
 	private int handicapStartSeat;
@@ -22,7 +21,6 @@ public class Location {
 	public Location() {
 		name = "";
 		description = "";
-		password = "empty";
 		showtimes = new ArrayList<Showtime>();
 	}
 
@@ -33,10 +31,9 @@ public class Location {
 	 * @param password
 	 * @param showtimes
 	 */
-	public Location(String name, String description, String password, ArrayList<Showtime> showtimes) {
+	public Location(String name, String description, ArrayList<Showtime> showtimes) {
 		this.name = name;
 		this.description = description;
-		this.password = password;
 		this.showtimes = showtimes;
 	}
 	
@@ -52,12 +49,6 @@ public class Location {
 	}
 	public void setDescription(String description) {
 		this.description = description;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
 	}
 	public ArrayList<Showtime> getShowtimes() {
 		return showtimes;
