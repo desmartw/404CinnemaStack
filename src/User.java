@@ -267,6 +267,7 @@ public abstract class User {
 					System.out.println("Please only enter numbers");
 					continue;
 				}
+				wallet[choice] = cardNum;
 				printReceipt(choice);
 				break;
 			}
@@ -280,7 +281,7 @@ public abstract class User {
 		System.out.println("~                       Printing Receipt        ~");
 		System.out.println(" Charging card XXXX XXXX XXXX " + wallet[walletSlot].substring(wallet[walletSlot].length()-4));
 		for (int i = 0; i < cart.size(); i++) {
-			cart.get(i).toString();
+			System.out.println(cart.get(i).toString());
 		}
 		System.out.println(" Cart subtotal: " + getCartSubTotal());
 		System.out.println(" Cart total: " + getCartTotal());

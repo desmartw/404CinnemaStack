@@ -73,7 +73,7 @@ public class Ticket {
 	 */
 	public String toString() {
 		return "_______________________________________________________" +
-			   "*~*                  -Ticket-                       *~*"+
+			   "\n*~*                  -Ticket-                       *~*"+
 				"\n---- Name: " + name + 
 				"\n---- Seat number: "+ seatNumber  +
 				"\n---- Price: " + price  +

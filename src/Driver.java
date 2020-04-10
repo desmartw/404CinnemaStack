@@ -61,7 +61,7 @@ public class Driver {
 				 		 	"  * 2: View Events  *    *     3: Exit     * 	 \n" +
 				 		 	"  *                 *    *                 * 	 \n" +
 				 		 	"  *******************    ******************* 	 \n" +
-				 		 	"\n\n IF YOU ARE EMPLOYEE OR ADMIN --- 4: Go to your functionality");
+				 		 	"\n\nIF YOU ARE EMPLOYEE OR ADMIN --- 4: Go to your functionality\n");
 	}
 	private static void homePageManager() {
 		// TODO display home page
@@ -226,7 +226,7 @@ public class Driver {
 		EmployeeUser eu = (EmployeeUser) user;
 		// TODO get user imput 
 		while(true) {
-			System.out.println("Please Enter a number between 0-1: ");
+			System.out.println("Please Enter a number between 0-2: ");
 			int choice = in.nextInt();
 			in.nextLine();
 
@@ -245,6 +245,7 @@ public class Driver {
 			}
 			break;
 		}
+		eventPageManager();
 	}
 	
 	private static void setUpEventsPage() {
