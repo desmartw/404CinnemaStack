@@ -281,8 +281,10 @@ public class Driver {
 						if(answer.length() != 3) {
 							System.out.println("Invalid.");
 						}
+						// need to go from a seat number to a ticket
 						
 					}
+					// need to add said ticket to cart and purchase
 					user.addToCart(ticket);
 					user.purchaseTickets();
 				}
