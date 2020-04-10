@@ -264,10 +264,12 @@ public class Driver {
 				System.out.println("You selected show all events, showing. ");
 				DatabaseDriver.readAllEvents();
 				System.out.println("Enter the number of the event you would like to view details of");
-				DatabaseDriver.enterNameAndReturnLocation().
-				
-				
-				
+				String nameOfEvent = DatabaseDriver.returnEvent().getName();
+				Location loc = DatabaseDriver.returnLocationWithEvent(nameOfEvent);
+				ArrayList<Showtime> shtimes = loc.getShowtimes();
+				for(int i =0; i < shtimes.size(); i++) {
+					shtimes.get(i).toString();
+				}
 			} else if(choice == 1) {
 				System.out.println("You selected go home, going home... ");
 				homePageManager();

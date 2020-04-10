@@ -60,9 +60,6 @@ public class Showtime {
 		this.seatingGrid = seatingGrid;
 	}
 	
-	public String toString() {
-		return militaryTime;
-	}
 	
 	/**
 	 * Helper method for setSeatingGrid(int,int,int,int)
@@ -137,4 +134,5 @@ public class Showtime {
 	public void setPrice(double price) {
 		this.price = price;
 	}
+	
 }
