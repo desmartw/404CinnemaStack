@@ -48,6 +48,10 @@ public class DatabaseDriver {
 		return evr.returnEventObjectByName();
 	}
 	
+	public static String returnEventName() {
+		return (evr.returnEventObjectByName()).getName();
+	}
+	
 	public static String validateMilitaryTime() {
 		return evr.validateMilitaryTime();
 	}
@@ -81,6 +85,10 @@ public class DatabaseDriver {
 		lv.enterShowtime(location);
 	}
 	
+	public static Location returnLocationWithEvent(String event) {
+		return lv.returnLocationWith(event);
+		
+	}
 	
 	/***** END NEW STUFF ***/
 	
@@ -232,9 +240,11 @@ public class DatabaseDriver {
 		//addUser();
 		//printCredentials();
 		
-		readAllLocations();
-		enterShowtime("Wynnsong");
-		readAllLocations();
+		//readAllLocations();
+		//enterShowtime("Wynnsong");
+		//readAllLocations();
+		
+		System.out.println(returnLocationWithEvent("Batman").getName());
 	}
 
 }

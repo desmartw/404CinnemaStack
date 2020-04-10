@@ -193,9 +193,21 @@ public class LocationDatabase {
 		return names;
 	}
  	
- 	// takes in user.getLocation();
- 	public void addShowtime() {
+ 	public Location returnLocationWith(String event) {
+ 		refreshList();
+ 		for (int i = 0; i < this.list.size(); i++)  {
+        	Location temp = list.get(i);
+        	ArrayList<Showtime> currList = temp.getShowtimes();
+        	if (currList.size() == 0)
+        		continue;
+        	String currEventName = currList.get(0).getEventName();
+        	if (currEventName.equals(event)) {
+        		return temp;
+        	}
+ 		}
  		
+        return null;
+        
  	}
     
  	// old shit
