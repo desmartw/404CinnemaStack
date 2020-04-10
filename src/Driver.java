@@ -255,6 +255,7 @@ public class Driver {
 		while(true) {
 			System.out.println("Please Enter a number between 0-1: ");
 			int choice = in.nextInt();
+			String name;
 			in.nextLine();
 
 			if(choice < 0 || choice > 1) {
@@ -262,12 +263,14 @@ public class Driver {
 			} else if(choice == 0) {
 				System.out.println("You selected show all events, showing. ");
 				DatabaseDriver.readAllEvents();
+				System.out.println("Enter the number of the event you would like to view details of");
+				DatabaseDriver.enterNameAndReturnLocation().
+				
+				
+				
 			} else if(choice == 1) {
 				System.out.println("You selected go home, going home... ");
 				homePageManager();
-			} else if(choice == 3) {
-				System.out.println("Showing showtime info");
-				DatabaseDriver.
 			} else {
 				System.out.println("Your choice was invalid, choose again. ");
 			}
@@ -375,6 +378,8 @@ public class Driver {
 		setUpAdminPage();
 		setUpEmployeePage();
 		setUpEventsPage();
+		setUpShowtimePage();
+		setUpAccountPage();
 		
 		// create input stream
 		in = new Scanner(System.in);
