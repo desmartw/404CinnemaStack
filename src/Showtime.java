@@ -60,6 +60,10 @@ public class Showtime {
 		this.seatingGrid = seatingGrid;
 	}
 	
+	public String toString() {
+		return militaryTime;
+	}
+	
 	/**
 	 * Helper method for setSeatingGrid(int,int,int,int)
 	 * @param seatNumber - Number of the current seat

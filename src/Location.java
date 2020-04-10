@@ -31,16 +31,74 @@ public class Location {
 	 * @param password
 	 * @param showtimes
 	 */
+	public Location(String name, String description, int seatingRows, int seatingCols, 
+			int handicapStartSeat, int handicapEndSeat, ArrayList<Showtime> showtimes) {
+		this.name = name;
+		this.description = description;
+		this.seatingRows = seatingRows;
+		this.seatingCols = seatingCols; 
+		this.handicapStartSeat = handicapStartSeat;
+		this.handicapEndSeat = handicapEndSeat;
+		this.showtimes = showtimes;
+	}
+	/*
 	public Location(String name, String description, ArrayList<Showtime> showtimes) {
 		this.name = name;
 		this.description = description;
 		this.showtimes = showtimes;
 	}
+	*/
+	
+	public void printLocation() {
+		System.out.println("Name: " + name);
+		System.out.println("Description: " + description);
+		System.out.println("Seat Rows: " + seatingRows);
+		System.out.println("Seat Cols: " + seatingCols);
+		System.out.println("Starting Handicap Seat: " + handicapStartSeat);
+		System.out.println("Ending Handicap Seat: " + handicapEndSeat);
+		System.out.print("Showtimes: | ");
+		showtimes.forEach(st ->{System.out.print(st + " | ");});
+		System.out.println("\n");
+	}
 	
 	// getters and setters
+	
+	
 	public String getName() {
 		return name;
 	}
+	public int getSeatingRows() {
+		return seatingRows;
+	}
+
+	public void setSeatingRows(int seatingRows) {
+		this.seatingRows = seatingRows;
+	}
+
+	public int getSeatingCols() {
+		return seatingCols;
+	}
+
+	public void setSeatingCols(int seatingCols) {
+		this.seatingCols = seatingCols;
+	}
+
+	public int getHandicapStartSeat() {
+		return handicapStartSeat;
+	}
+
+	public void setHandicapStartSeat(int handicapStartSeat) {
+		this.handicapStartSeat = handicapStartSeat;
+	}
+
+	public int getHandicapEndSeat() {
+		return handicapEndSeat;
+	}
+
+	public void setHandicapEndSeat(int handicapEndSeat) {
+		this.handicapEndSeat = handicapEndSeat;
+	}
+
 	public void setName(String name) {
 		this.name = name;
 	}

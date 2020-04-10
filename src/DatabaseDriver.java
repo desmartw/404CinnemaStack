@@ -21,7 +21,7 @@ public class DatabaseDriver {
 	/**
 	 * static method to manipulate Event database reborn
 	 */
-	public static void readList() {
+	public static void readAllEvents() {
 		evr.readList();
 	}
 	/**
@@ -54,7 +54,7 @@ public class DatabaseDriver {
 	 * reads all location from LDB
 	 */
 	public static void readAllLocations() {
-		lv.readAllLocations();
+		lv.readList();
 	}
 	
 	/***** END NEW STUFF ***/
@@ -200,6 +200,7 @@ public class DatabaseDriver {
 		
 		//location
 		enterLocation();
+		readAllLocations();
 	}
 
 }

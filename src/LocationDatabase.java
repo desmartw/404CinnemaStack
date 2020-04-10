@@ -57,29 +57,23 @@ public class LocationDatabase {
         int handicapEndSeat = validateHandicapSeatCount();
         if (handicapEndSeat == NONE)
         	handicapStartSeat = NONE;
+        
+        System.out.println("Starting Handicap Seat: " + handicapStartSeat);
+		System.out.println("Ending Handicap Seat: " + handicapEndSeat);
+        
         ArrayList<Showtime> showtimes = new ArrayList<Showtime>();
         refreshList();
         Location loc = new Location(name, description, seatingRows, seatingCols, handicapStartSeat, handicapEndSeat, showtimes);      ////change
         writeList(loc);
-        /*
-        org.json.JSONObject locationDetails = new JSONObject();
-        
-        locationDetails.put("Name",  name);
-        locationDetails.put("Description", description);
-        locationDetails.put("Password", password);
-        locationDetails.put("SeatRows", seatingRows);
-        locationDetails.put("SeatCols", seatingCols);
-        locationDetails.put("HandicapStartSeat", handicapStartSeat);
-        locationDetails.put("HandicapEndSeat", handicapStartSeat);
-        locationDetails.put("Showtimes", showtimes);
-        
-        JSONObject locationObject = new JSONObject();
-        locationObject.put("Location", locationDetails);
-        
-        locationList = readLocationList();
-        locationList.add(locationObject);
-        */
     }
+    
+    /**
+	 * reads list and prints 
+	 */
+	public void readList() {
+		refreshList();
+		this.list.forEach(loc->loc.printLocation());
+	}
     
     public int validateHandicapSeatCount() {
     	int count = 0;
