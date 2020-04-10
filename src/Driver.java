@@ -210,20 +210,20 @@ public class Driver {
 	 		 						"  ******************************************    \n" +
 	 		 						"                                             	 \n" +
 	 		 						"  *******************    ******************* 	 \n" +
-	 		 						"  *                 *    *     -     -     * 	 \n" +
-	 		 						"  *  0: Add Event   *    *   ^         ^   * 	 \n" +
-	 		 						"  *                 *    *     \\_____/    * 	 \n" +
+	 		 						"  *                 *    *                 * 	 \n" +
+	 		 						"  *  0: Add Event   *    *1: Add Showtimes * 	 \n" +
+	 		 						"  *                 *    *                 * 	 \n" +
 	 		 						"  *******************    ******************* 	 \n" +
 	 		 						"                                                \n" +
 	 		 						"  ****************************************** 	 \n" +
 	 		 						"  *                                        * 	 \n" +
-	 		 						"  *        1: GO BACK TO HOME PAGE         * 	 \n" +
+	 		 						"  *        2: GO BACK TO HOME PAGE         * 	 \n" +
 	 		 						"  *                                        *    \n" +
 	 		 						"  ******************************************    ");
 	}
 	private static void employeePageManager() {
 		employeeOptionsPage.showDisplay();
-		
+		EmployeeUser eu = (EmployeeUser) user;
 		// TODO get user imput 
 		while(true) {
 			System.out.println("Please Enter a number between 0-1: ");
@@ -236,6 +236,8 @@ public class Driver {
 				System.out.println("You selected add event, moving there. ");
 				DatabaseDriver.enterEvent();
 			} else if(choice == 1) {
+				DatabaseDriver.enterShowtime(eu.getLocation().getName());
+			} else if(choice == 2) {
 				System.out.println("You selected go home, going home... ");
 				homePageManager();
 			} else {
