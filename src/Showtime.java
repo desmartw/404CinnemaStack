@@ -160,14 +160,6 @@ public class Showtime {
 		this.date = date;
 	}
 	
-	public static void main(String[] args) {
-		Showtime showtime = new Showtime("name", "time", "date", 40, 10, 10, 5, 10);
-		showtime.printShowtime();
-		showtime.closeSeat(10);
-		showtime.closeSeat(3);
-		showtime.printShowtime();
-	}
-	
 	public double getPrice() {
 		return price;
 	}

@@ -75,7 +75,7 @@ public class Ticket {
 		return "--------------" + "\nName: " + name + "--------------" +
 				"\nSeat number: " + seatNumber +
 				"\nPrice: " + price +
-				"\nTime of show (24hr): "+militaryTime+
+				"\nTime of show (24hr): "+militaryTime;
 	}
 
 }

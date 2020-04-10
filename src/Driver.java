@@ -31,7 +31,7 @@ public class Driver {
 	 * @param highestChoice
 	 * @return int - value corresponding to a choice given to the user
 	 */
-	private static int getValidatedChoice(int highestChoice) {
+	public static int getValidatedChoice(int highestChoice) {
 		while (true) {
 			String strChoice = in.nextLine();
 			if (!strChoice.matches("[0-9]+")) {
@@ -107,15 +107,15 @@ public class Driver {
 	// searchpage setup display
 	private static void setUpSearchPage() {
 		searchPage.setDisplay("  *******************    *******************    ******************* \n" +
-	 		 				  "  *                 *    *                 *    *				 * \n" +
-	 		 				  "  *   SEARCH PAGE   *    *   0: By Title   *    *   1: By Date	 * \n" +
-	 		 				  "  *                 *    *                 *    *				 * \n" +
+	 		 				  "  *                 *    *                 *    *                 * \n" +
+	 		 				  "  *   SEARCH PAGE   *    *   0: By Title   *    *   1: By Date    * \n" +
+	 		 				  "  *                 *    *                 *    *                 * \n" +
 	 		 				  "  *******************    *******************    ******************* \n" +
 	 		 				  "                                             					   \n" +
 	 		 				  "  *******************    *******************    ******************* \n" +
-	 		 				  "  *                 *    * 			      *    *				 * \n" +
-	 		 				  "  *   2: By Rating  *    *   3: By Actor   *    *  4: Home Page	 * \n" +
-	 		 				  "  *                 *    * 			      *    *				 * \n" +
+	 		 				  "  *                 *    *                 *    *                 * \n" +
+	 		 				  "  *   2: By Rating  *    *   3: By Actor   *    *  4: Home Page   * \n" +
+	 		 				  "  *                 *    *                 *    *                 * \n" +
 	 		 				  "  *******************    *******************    ******************* \n");
 	}
 	private static void searchPageManager() {
@@ -176,13 +176,28 @@ public class Driver {
 	 		 						"                                                \n" +
 	 		 						"  ****************************************** 	 \n" +
 	 		 						"  *                                        * 	 \n" +
-	 		 						"  *        3: GO BACK TO HOME PAGE         * 	 \n" +
+	 		 						"  *        2: GO BACK TO HOME PAGE         * 	 \n" +
 	 		 						"  *                                        *    \n" +
 	 		 						"  ******************************************    ");
 	}
 	private static void adminPageManager() {
-		// TODO display admin page
-		// TODO get user input
+		System.out.println("Enter choice");
+		int choice = getValidatedChoice(2);
+		
+		switch(choice) {
+		case 0:
+			// TODO add user
+			break;
+		case 1:
+			DatabaseDriver.enterLocation();
+			break;
+		case 2:
+			homePageManager();
+			break;
+			default:
+				adminPageManager();
+				break;
+		}
 	}
 	
 	// employee page setup display
@@ -196,7 +211,7 @@ public class Driver {
 	 		 						"                                             	 \n" +
 	 		 						"  *******************    ******************* 	 \n" +
 	 		 						"  *                 *    *     -     -     * 	 \n" +
-	 		 						"  *  0: Add Event   *    *   ^        ^    * 	 \n" +
+	 		 						"  *  0: Add Event   *    *   ^         ^   * 	 \n" +
 	 		 						"  *                 *    *     \\_____/    * 	 \n" +
 	 		 						"  *******************    ******************* 	 \n" +
 	 		 						"                                                \n" +
@@ -232,15 +247,15 @@ public class Driver {
 	
 	private static void setUpEventsPage() {
 		eventsPage.setDisplay("  *******************    *******************    ******************* \n" +
-				 		 	  "  *                 *    *                 *    *				 * \n" +
+				 		 	  "  *                 *    *                 *    *                 * \n" +
 				 		 	  "  *  EVENTS PAGE    *    * 0: Show Events  *    *   1: Go Home    * \n" +
-				 		 	  "  *                 *    *                 *    *				 * \n" +
+				 		 	  "  *                 *    *                 *    *                 * \n" +
 				 		 	  "  *******************    *******************    ******************* \n" +
-				 		 	  "                                             						 \n"+
+				 		 	  "                                             					   \n"+
 				 		 	  "  *******************    *******************    ******************* \n" +
-				 		 	  "  *                 *    * 			      *    *			 	 * \n" +
+				 		 	  "  *                 *    *                 *    *                 * \n" +
 	 		 				  "  *2: ViewShowtimes *    *   3:Review      *    *    4: Exit      * \n" +
-	 		 				  "  *                 *    * 			      *    *				 * \n" +
+	 		 				  "  *                 *    *                 *    *                 * \n" +
 							  "  *******************    *******************    ******************* \n");
 	}
 	
@@ -248,8 +263,8 @@ public class Driver {
 	// then needs to add desired events to cart
 	// then 
 	private static void eventPageManager() {
-		eventsPage.showDisplay();
 		while(true) {
+			eventsPage.showDisplay();
 			System.out.println("Please enter your choice: ");
 			int choice = in.nextInt();
 			String name;
