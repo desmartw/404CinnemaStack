@@ -118,8 +118,43 @@ public class Driver {
 	}
 	private static void searchPageManager() {
 		// TODO display search page
+		searchPage.showDisplay();
+		String searchTerm;
 		// TODO get user imput 
-		
+		while(true) {
+			System.out.println("Please Enter a number between 0-4: ");
+			int choice = in.nextInt();
+			in.nextLine();
+			
+			if(choice < 0 || choice > 4) {
+				System.out.println("Your choice was invalid, choose again. ");
+			} else if(choice == 0) {
+				System.out.println("You selected Search by Title, moving there. ");
+				System.out.println("Enter a title to search by: ");
+				searchTerm = in.nextLine();
+				//TODO SEARCH
+			} else if(choice == 1) {
+				System.out.println("You selected search by date, moving there. ");
+				System.out.println("Enter a date to search by: ");
+				searchTerm = in.nextLine();
+				
+			} else if(choice == 2) {
+				System.out.println("You selected search by rating, moving there. ");
+				System.out.println("Enter a title to search by: ");
+				searchTerm = in.nextLine();
+				//TODO SEARCH
+			} else if(choice == 3) {
+				System.out.println("You selected search by actor, moving there. ");
+				System.out.println("Enter a title to search by: ");
+				searchTerm = in.nextLine();
+				//TODO SEARCH
+			} else if(choice == 4) {
+				System.out.println("You selected go home, going home... ");
+				homePageManager();
+			} else {
+				System.out.println("Your choice was invalid, choose again. ");
+			}
+		}
 		// TODO 0 use db stuff to search for showtimes by user specified title
 			// TODO list these for the user if exists, redo searchPageManager if not
 			// TODO ask if want to add it to cart
@@ -155,9 +190,6 @@ public class Driver {
 		// TODO display admin page
 		// TODO get user input
 	}
-	private static void employeePageManager() {
-		
-	}
 	
 	// employee page setup display
 	private static void setUpEventsPage() {
@@ -177,7 +209,31 @@ public class Driver {
 	 		 						"  *                                        * 	 \n" +
 	 		 						"  *        1: GO BACK TO HOME PAGE         * 	 \n" +
 	 		 						"  *                                        *    \n" +
-	 		 						"  ******************************************    "););
+	 		 						"  ******************************************    ");
+	}
+	private static void employeePageManager() {
+		employeeOptionsPage.showDisplay();
+		String searchTerm;
+		// TODO get user imput 
+		while(true) {
+			System.out.println("Please Enter a number between 0-1: ");
+			int choice = in.nextInt();
+			in.nextLine();
+
+			if(choice < 0 || choice > 1) {
+				System.out.println("Your choice was invalid, choose again. ");
+			} else if(choice == 0) {
+				System.out.println("You selected add event, moving there. ");
+	
+				//TODO add event
+				//TODO SEARCH
+			} else if(choice == 1) {
+				System.out.println("You selected go home, going home... ");
+				homePageManager();
+			} else {
+				System.out.println("Your choice was invalid, choose again. ");
+			}
+		}
 	}
 	private static void eventPageManager() {
 		// TODO display events page
@@ -207,8 +263,42 @@ public class Driver {
 									"  *******************    ******************* 	 \n");
 	}
 	private static void accountPageManager() {
-		// TODO display account page
-		// TODO get user input
+		accountPage.showDisplay();
+		
+			while(true) {
+			System.out.println("Please Enter a number between 0-5: ");
+			int choice = in.nextInt();
+			in.nextLine();
+			
+			if(choice < 0 || choice > 5) {
+				System.out.println("Your choice was invalid, choose again. ");
+			} else if(choice == 0) {
+				System.out.println("You selected View Wallet, viewing. ");
+				user.viewWallet();
+				accountPageManager();
+			} else if(choice == 1) {
+				System.out.println("You selected view cart, viewing. ");
+				user.viewCart();
+				accountPageManager();
+			} else if(choice == 2) {
+				System.out.println("You selected Purchase ticket, moving there. ");
+				user.purchaseTickets();
+				accountPageManager();
+			} else if(choice == 3) {
+				System.out.println("You selected view tickets, viewing. ");
+				user.viewTickets();
+				accountPageManager();
+			} else if(choice == 4) {
+				System.out.println("You selected empty cart, emptying... ");
+				user.emptyCart();
+				accountPageManager();
+			} else if(choice == 5) {
+					System.out.println("You selected exit, exiting... ");
+					System.exit(0);
+			} else {
+				System.out.println("Your choice was invalid, choose again. ");
+			}
+		}
 	}
 	
 	// welcomes the user with greeting messages
