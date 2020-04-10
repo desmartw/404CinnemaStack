@@ -40,7 +40,7 @@ public class DatabaseDriver {
 	/**
 	 * static method to wipe Event database reborn
 	 */
-	public static void wipeDatabase() {
+	public static void wipeEventDatabase() {
 		evr.wipeDatabase();
 	}
 	
@@ -118,12 +118,14 @@ public class DatabaseDriver {
 		ev.enterEvent(loc);
 	}
 	
+	/*
 	/**
 	 * clears EVDB
-	 */
+	 *
 	public static void wipeEventDatabase() {
 		ev.wipeDatabase();
 	}
+	*/
 	
 	/**
 	 * returns event by name
@@ -241,10 +243,20 @@ public class DatabaseDriver {
 		//printCredentials();
 		
 		//readAllLocations();
-		//enterShowtime("Wynnsong");
+		enterLocation();
+		enterShowtime("Cinema 12");
+		enterShowtime("Cinema 12");
 		//readAllLocations();
 		
-		System.out.println(returnLocationWithEvent("Batman").getName());
+		//System.out.println(returnLocationWithEvent("Batman").getName());
+		
+		//wipeEventDatabase();
+		
+		//enterEvent();
+		//enterEvent();
+		//enterEvent();
+		
+		//readAllEvents();
 	}
 
 }

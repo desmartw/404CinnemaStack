@@ -65,7 +65,9 @@ public class Driver {
 	}
 	private static void homePageManager() {
 		// TODO display home page
+		System.out.println("HELLO");
 		homePage.showDisplay();
+		System.out.println("HELLO");
 		// TODO ask for user input
 		while(true) {
 			System.out.println("Please Enter a number between 0-4: ");
@@ -234,11 +236,12 @@ public class Driver {
 			} else {
 				System.out.println("Your choice was invalid, choose again. ");
 			}
+			break;
 		}
 	}
 	
 	private static void setUpEventsPage() {
-		homePage.setDisplay("  *******************    ******************* 	 ******************* \n" +
+		eventsPage.setDisplay("  *******************    ******************* 	 ******************* \n" +
 				 		 	"  *                 *    *                 * 	 *				   * \n" +
 				 		 	"  *  EVENTS PAGE    *    *  0:SHOW EVENTS  * 	 * 1: GO HOME      * \n" +
 				 		 	"  *                 *    *                 *    *				   * \n" +
@@ -260,23 +263,43 @@ public class Driver {
 
 			if(choice < 0 || choice > 1) {
 				System.out.println("Your choice was invalid, choose again. ");
-			} else if(choice == 0) {
+			} 
+			else if(choice == 0) {
 				System.out.println("You selected show all events, showing. ");
 				DatabaseDriver.readAllEvents();
-				System.out.println("Enter the number of the event you would like to view details of");
 				String nameOfEvent = DatabaseDriver.returnEvent().getName();
 				Location loc = DatabaseDriver.returnLocationWithEvent(nameOfEvent);
 				ArrayList<Showtime> shtimes = loc.getShowtimes();
-				for(int i =0; i < shtimes.size(); i++) {
-					shtimes.get(i).toString();
+				for(int i = 0; i < shtimes.size(); i++) {
+					System.out.println("Choice: " + (i+1));
+					(shtimes.get(i)).printShowtime();
 				}
-			} else if(choice == 1) {
+				while(true) {
+					System.out.println("Enter the number of the showtime you want to purhcase tickets for.");
+					choice = in.nextInt();
+					in.nextLine();
+					if(choice < 1 || choice > shtimes.size())
+						continue;
+					while(true) {
+						System.out.println("Enter a seat number:");
+						String answer = in.nextLine();
+						if(answer.length() < 3 || answer.length() > 3) {
+							System.out.println("Invalid.");
+						}
+						
+					}
+				}
+			} 
+			else if(choice == 1) {
 				System.out.println("You selected go home, going home... ");
 				homePageManager();
-			} else {
+			} 
+			else {
 				System.out.println("Your choice was invalid, choose again. ");
 			}
+			
 		}
+		
 	}
 	
 	

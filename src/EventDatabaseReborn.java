@@ -141,7 +141,7 @@ public class EventDatabaseReborn {
 			}
 			list.add(actor);
 			System.out.println("Actor added.");
-			System.out.println("Enter another date or type [Enter] to finish.");
+			System.out.println("Enter another actor or type [Enter] to finish.");
 			actor = scan.nextLine();
 			if ((actor.toLowerCase()).equals("")) {
 				return list;
@@ -223,7 +223,7 @@ public class EventDatabaseReborn {
 	public void writeList(Event event) {
 		try {
 			list.add(event);
-			mapper.writeValue(new File("testOfArrayList.json"), this.list);
+			mapper.writeValue(new File("events.json"), this.list);
 		} catch(Exception e) {
 			System.out.println("Error " + e);
 		}
@@ -234,7 +234,7 @@ public class EventDatabaseReborn {
 	 */
 	public void writeList() {
 		try {
-			mapper.writeValue(new File("testOfArrayList.json"), this.list);
+			mapper.writeValue(new File("events.json"), this.list);
 		} catch(Exception e) {
 			System.out.println("Error " + e);
 		}
@@ -253,7 +253,7 @@ public class EventDatabaseReborn {
 	 */
 	public void refreshList() {
 		try {
-			this.list = mapper.readValue(new File("testOfArrayList.json"), new TypeReference<ArrayList<Event>>(){});
+			this.list = mapper.readValue(new File("events.json"), new TypeReference<ArrayList<Event>>(){});
 		} catch(Exception e) {
 			System.out.println("Error " + e);
 		}

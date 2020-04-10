@@ -77,13 +77,26 @@ public class Showtime {
 			return "" + seatNumber;
 		}
 	}
-	public String toString() {
-		return  "Name: " + eventName +
-				"Time: " + militaryTime +
-				"Date: " + date +
-				"Price: "+ price +
-				"Seating Grid: \n"+
-				seatingGrid;
+	public void printShowtime() {
+		String ret =  "Name: " + eventName +
+				"\nTime: " + militaryTime +
+				"\nDate: " + date +
+				"\nPrice: "+ price +
+				"\nSeating Grid: \n"+
+				gridString();
+		System.out.println(ret);
+	}
+	
+	public String gridString() {
+		String[][] sg = getSeatingGrid();
+		String grid = "";
+		for (int x = 0; x < sg.length; x++) {
+			for (int y = 0; y < sg[x].length; y++) {
+				grid += sg[x][y];
+			}
+			grid += "\n";
+		}
+		return grid;
 	}
 	// getters and setters
 	// TODO search through event db to get event 
