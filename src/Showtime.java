@@ -116,27 +116,28 @@ public class Showtime {
 		this.seatingGrid = seatingGrid;
 	}
 	public void setSeatingGrid(int seatingRows, int seatingCols, int handicapStartSeat, int handicapEndSeat) {
-		seatingGrid = new String[seatingCols][seatingRows];
+		seatingGrid = new String[seatingRows][seatingCols];
 		int seatNumber = 0;
-		for (int x = 0; x < seatingCols; x++) {
-			for (int y = 0; y < seatingRows; y++) {
-				seatNumber = y*seatingCols + x;
+		for (int y = 0; y < seatingRows; y++) {
+			for (int x = 0; x < seatingCols; x++) {
 				if (seatNumber >= handicapStartSeat && seatNumber <= handicapEndSeat) {
-					seatingGrid[x][y] = "{" + formattedSeatNumber(seatNumber) + "}";
+					seatingGrid[y][x] = "{" + formattedSeatNumber(seatNumber) + "}";
 				} else {
-					seatingGrid[x][y] = "[" + formattedSeatNumber(seatNumber) + "]";
+					seatingGrid[y][x] = "[" + formattedSeatNumber(seatNumber) + "]";
 				}
+				seatNumber++;
 			}
 		}
 	}
 	public void closeSeat(int seatNumber) {
 		int seatX = seatNumber % seatingGrid[0].length;
 		int seatY = (seatNumber - seatX) / seatingGrid[0].length;
-		seatingGrid[seatX][seatY] = seatingGrid[seatX][seatY].substring(0,1) + formattedSeatNumber(seatNumber) + seatingGrid[seatX][seatY].substring(4);
+		seatingGrid[seatY][seatX] = seatingGrid[seatX][seatY].substring(0,1) + "XXX" + seatingGrid[seatX][seatY].substring(4);
 	}
 	public void openSeat(int seatNumber) {
 		
 	}
+	// TODO String returnSeat(seatnumber)
 	
 	public String getEventName() {
 		return eventName;
@@ -145,7 +146,7 @@ public class Showtime {
 		this.eventName = eventName;
 	}
 	
-	public String militaryTime() {
+	public String getMilitaryTime() {
 		return militaryTime;
 	}
 	public void setMilitaryTime(String militaryTime) {
@@ -157,6 +158,14 @@ public class Showtime {
 	}
 	public void setDate(String date) {
 		this.date = date;
+	}
+	
+	public static void main(String[] args) {
+		Showtime showtime = new Showtime("name", "time", "date", 40, 10, 10, 5, 10);
+		showtime.printShowtime();
+		showtime.closeSeat(10);
+		showtime.closeSeat(3);
+		showtime.printShowtime();
 	}
 	
 	public double getPrice() {

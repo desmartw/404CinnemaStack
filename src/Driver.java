@@ -50,10 +50,10 @@ public class Driver {
 	// Page setup and initialization
 	// homepage setup display and 
 	private static void setUpHomePage() {
-		homePage.setDisplay("  *******************    ******************* 	 ******************* \n" +
-				 		 	"  *                 *    *                 * 	 *				   * \n" +
-				 		 	"  *    HOME PAGE    *    *    0: Search    * 	 * 1: View Account * \n" +
-				 		 	"  *                 *    *                 *    *				   * \n" +
+		homePage.setDisplay("  *******************    *******************    ******************* \n" +
+				 		 	"  *                 *    *                 *    *                 * \n" +
+				 		 	"  *    HOME PAGE    *    *    0: Search    *    * 1: View Account * \n" +
+				 		 	"  *                 *    *                 *    *                 * \n" +
 				 		 	"  *******************    *******************    ******************* \n" +
 				 		 	"                                             						 \n" +
 				 		 	"  *******************    ******************* 	 \n" +
@@ -265,30 +265,26 @@ public class Driver {
 				Location loc = DatabaseDriver.returnLocationWithEvent(nameOfEvent);
 				ArrayList<Showtime> showtimes = loc.getShowtimes();
 				for(int i = 0; i < showtimes.size(); i++) {
-					System.out.println("Choice: " + (i+1));
+					System.out.println("Choice: " + (i));
 					(showtimes.get(i)).printShowtime();
 				}
-				while(true) {
-					
-					System.out.println("Enter the number of the showtime you want to purhcase tickets for.");
-					choice = in.nextInt();
-					in.nextLine();
-					String answer = "";
-					if(choice < 1 || choice > showtimes.size())
-						continue;
-					while(true) {
-						System.out.println("Enter a seat number:");
-						answer = in.nextLine();
-						if(answer.length() != 3) {
-							System.out.println("Invalid.");
-						}
-						// need to go from a seat number to a ticket
-						Ticket 
-					}
-					// need to add said ticket to cart and purchase
-					user.addToCart(ticket);
-					user.purchaseTickets();
+				System.out.println("Enter the number of the Showtime you wish to purchase (You can specify no purchase in the next step)");
+				int showtimeChoice = getValidatedChoice(showtimes.size()-1);
+				Showtime chosenShowtime = showtimes.get(showtimeChoice);
+				System.out.println("You chose: ");
+				chosenShowtime.printShowtime();
+				System.out.println("How many tickets would you like to purchase");
+				// TODO get actual max in getNumberOfSeats
+				int ticketNumChoice = getValidatedChoice(chosenShowtime.getNumberOfSeats()); // TODO won't show the right error
+				for (int i = 0; i < ticketNumChoice; i++) {
+					System.out.println("Enter the seat you want to reserve:"); // TODO validate the seat is open
+					int seatChoice = getValidatedChoice(chosenShowtime.getNumberOfSeats()); // TODO validate right;
+					Ticket ticket = new Ticket(chosenShowtime.getEventName(), seatChoice,
+										       chosenShowtime.getMilitaryTime(), chosenShowtime.getDate(),
+										       chosenShowtime.getPrice());
+					user.cart.add(ticket);
 				}
+				System.out.println("Tickets added");
 			} 
 			else if(choice == 1) {
 				System.out.println("You selected go home, going home... ");

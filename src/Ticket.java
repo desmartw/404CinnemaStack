@@ -5,22 +5,22 @@
  * Types of ticket: Movie, play, concert
  *
  */
-public abstract class Ticket {
-	protected String name;
-	protected String seatNumber;
-	protected int militaryTime;
-	protected double price;
-	protected int ticketNumber;
+public class Ticket {
+	private String name;
+	private int seatNumber;
+	private String militaryTime;
+	private String date;
+	private double price;
 	
 	/**
 	 * default const
 	 */
 	public Ticket() {
 		name = "";
-		seatNumber="";
-		militaryTime= 0;
+		seatNumber= 0;
+		militaryTime= "";
+		date = "";
 		price = 0;
-		ticketNumber = 0;
 	}	
 	/**
 	 * Paramaterized constructor
@@ -30,44 +30,42 @@ public abstract class Ticket {
 	 * @param militaryTime
 	 * @param ticketNumber
 	 */
-	public Ticket(String name, String seatNumber, double price, 
-			int militaryTime,int ticketNumber) {
+	public Ticket(String name, int seatNumber, String militaryTime, String date, double price) {
 		this.name = name;
 		this.seatNumber=seatNumber;
 		this.price = price;
 		this.militaryTime = militaryTime;
-		this.ticketNumber = ticketNumber;
 	}
 	// Getters and setters
 	public String getName() {
 		return name;
 	}
-	public String getSeatNumber() {
+	public int getSeatNumber() {
 		return seatNumber;
 	}
 	public double getPrice() {
 		return price;
 	}
-	public int getTicketNumber() {
-		return ticketNumber;
-	}
-	public int getMilitaryTime() {
+	public String getMilitaryTime() {
 		return militaryTime;
+	}
+	public String getDate() {
+		return date;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
-	public void setSeatNumber(String seatNumber) {
+	public void setSeatNumber(int seatNumber) {
 		this.seatNumber = seatNumber;
 	}
 	public void setTicketPrice(double price) {
 		this.price = price;
 	}
-	public void setTicketNumber(int ticketNumber) {
-		this.ticketNumber = ticketNumber;
-	}
-	public void setMilitaryTime(int militaryTime) {
+	public void setMilitaryTime(String militaryTime) {
 		this.militaryTime = militaryTime;
+	}
+	public void setDate() {
+		this.date = date;
 	}
 	
 	/**
@@ -78,7 +76,6 @@ public abstract class Ticket {
 				"\nSeat number: " + seatNumber +
 				"\nPrice: " + price +
 				"\nTime of show (24hr): "+militaryTime+
-				"\nTicket Number: "+ ticketNumber;
 	}
 
 }
