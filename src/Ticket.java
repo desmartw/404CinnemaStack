@@ -72,10 +72,13 @@ public class Ticket {
 	 * ToString
 	 */
 	public String toString() {
-		return "--------------" + "\nName: " + name + "--------------" +
-				"\nSeat number: " + seatNumber +
-				"\nPrice: " + price +
-				"\nTime of show (24hr): "+militaryTime;
+		return "_______________________________________________________" +
+			   "*~*                  -Ticket-                       *~*"+
+				"\n---- Name: " + name + 
+				"\n---- Seat number: "+ seatNumber  +
+				"\n---- Price: " + price  +
+				"\n---- Time of show (24hr): " + militaryTime +
+				"\n____________________________________________________";
 	}
 
 }
