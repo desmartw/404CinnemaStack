@@ -115,7 +115,59 @@ public class LocationDatabase {
  			System.out.println("Error " + e);
  		}
  	}
+ 	
+ 	/**
+	 * returns Location object matching to name
+	 * @return Event
+	 */
+ 	public Location enterNameAndReturnLocation() {
+ 		String name = "";
+		ArrayList<String> names = getAllNames();
+		ArrayList<Location> locs = this.list;
+		Location loc = null;
+		while(true) {
+			System.out.println("Enter the name of your location:");
+			name = scan.nextLine();
+			if (name.length() == 0) {
+				System.out.println("The name of your event cannot be empty.");
+				continue;
+			}
+			if (names.contains(name)) {
+				break;
+			}
+			else {
+				System.out.println("Event does not exist.");
+				continue;
+			}
+		}
+		for (int i = 0; i < this.list.size(); i++)  {
+			Location currLoc = ((Location) this.list.get(i));
+			if ((currLoc.getName()).equals(name)) {
+	    		loc = currLoc;
+	    	}
+		}
+		System.out.println("Location " + loc.getName() +" found.");
+		return loc;
+ 	}
+ 	
+ 	/**
+	 * searches arraylist and returns names of all locations
+	 * @return
+	 */
+	public ArrayList<String> getAllNames() {
+		refreshList();
+		ArrayList<String> names = new ArrayList<String>();
+		this.list.forEach(loc->names.add(loc.getName()));
+		return names;
+	}
+ 	
+ 	// takes in user.getLocation();
+ 	public void addShowtime() {
+ 		
+ 	}
     
+ 	// old shit
+ 	
 	/**
      * returns a JSONarray of locations
      * @return

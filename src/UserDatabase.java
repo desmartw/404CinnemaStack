@@ -403,14 +403,12 @@ public class UserDatabase {
 	
 	
 	public String validateLocation() {
-		System.out.println("Enter the name of the location you work at:");
-		String loc = scan.nextLine();
-		
+		Location loc = DatabaseDriver.enterNameAndReturnLocation();
+		return loc.getName();
 		// check that location exists first
 		// add to user
 		
 	}
-	
 	
 	/**
 	 * reads a password from database
