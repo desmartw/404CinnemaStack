@@ -77,7 +77,14 @@ public class Showtime {
 			return "" + seatNumber;
 		}
 	}
-	
+	public String toString() {
+		return  "Name: " + eventName +
+				"Time: " + militaryTime +
+				"Date: " + date +
+				"Price: "+ price +
+				"Seating Grid: \n"+
+				seatingGrid;
+	}
 	// getters and setters
 	// TODO search through event db to get event 
 	@JsonIgnore
