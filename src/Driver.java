@@ -194,9 +194,9 @@ public class Driver {
 		case 2:
 			homePageManager();
 			break;
-			default:
-				adminPageManager();
-				break;
+		default:
+			adminPageManager();
+			break;
 		}
 	}
 	

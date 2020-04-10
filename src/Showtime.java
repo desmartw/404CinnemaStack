@@ -68,7 +68,7 @@ public class Showtime {
 	 * @param seatNumber - Number of the current seat
 	 * @return Formatted String of a seatNumber 
 	 */
-	private static String formattedSeatNumber(int seatNumber) {
+	public static String formattedSeatNumber(int seatNumber) {
 		if (seatNumber < 10) {
 			return "00" + seatNumber;
 		} else if (seatNumber < 100) {

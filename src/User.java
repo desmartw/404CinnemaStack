@@ -157,6 +157,21 @@ public abstract class User {
 	}
 	
 	/**
+	 * Returns a value for the cost fo the user's cart before tax
+	 */
+	public double getCartSubTotal() {
+		double cost = 0;
+		if (cart.isEmpty()) {
+			return cost;
+		} else {
+			for (int i=0; i < cart.size(); i++) {
+				cost += cart.get(i).getPrice();
+			}
+			return cost*(1.0-discountRate);
+		}
+	}
+	
+	/**
 	 * Prints out the account details of this user, including their wallet, cart, and purchased tickets
 	 */
 	public void viewAccount() {
@@ -238,12 +253,7 @@ public abstract class User {
 		viewWallet();
 		int choice = Driver.getValidatedChoice(3);
 		if(wallet[choice] != null) {
-			System.out.println("-----------------------------------");
-			System.out.println("~         Printing Receipt        ~");
-			System.out.println(" Charging card XXXX XXXX XXXX " + wallet[choice].substring(wallet[choice].length()-4));
-			System.out.println(" Cart total: " + getCartTotal());
-			System.out.println("~         Printing Done           ~");
-			System.out.println("-----------------------------------");
+			printReceipt(choice);
 		} else {
 			System.out.println("You need to add a payment method! ");
 			System.out.println("Enter your 16 digit card number with no spaces or dashes: ");
@@ -257,17 +267,24 @@ public abstract class User {
 					System.out.println("Please only enter numbers");
 					continue;
 				}
-				System.out.println("-----------------------------------");
-				System.out.println("~         Printing Receipt        ~");
-				System.out.println(" Charging card XXXX XXXX XXXX " + cardNum.substring(cardNum.length()-4));
-				System.out.println(" Cart total: " + getCartTotal());
-				System.out.println("~         Printing Done           ~");
-				System.out.println("-----------------------------------");
+				printReceipt(choice);
 				break;
 			}
 		}
 		System.out.println("Success! Emptying your cart to tickets now ... ");
 		tickets.addAll(cart);
 		cart = new ArrayList<Ticket>();
+	}
+	private void printReceipt(int walletSlot) {
+		System.out.println("-----------------------------------------------------------------");
+		System.out.println("~                       Printing Receipt        ~");
+		System.out.println(" Charging card XXXX XXXX XXXX " + wallet[walletSlot].substring(wallet[walletSlot].length()-4));
+		for (int i = 0; i < cart.size(); i++) {
+			cart.get(i).toString();
+		}
+		System.out.println(" Cart subtotal: " + getCartSubTotal());
+		System.out.println(" Cart total: " + getCartTotal());
+		System.out.println("~                       Printing Done           ~");
+		System.out.println("-----------------------------------------------------------------");
 	}
 }
