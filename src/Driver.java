@@ -6,44 +6,77 @@ public class Driver {
 	public static User user;
 	private static Scanner in;
 	
-	// Page construction
-	Page homePage = new Page();
+	// starting page
+	static Page homePage = new Page();
 	
-	// search pages
-	Page searchPage = new Page();
-	Page searchByTitlePage = new Page();
-	Page searchByDatePage = new Page();
-	Page searchByRatingPage = new Page();
-	Page searchByActorPage = new Page();
+	// search pages and links
+	static Page searchPage = new Page();
 	
-	Page accountPage = new Page();
-	Page eventsPage = new Page();
+	// admin page
+	static Page adminOptionsPage = new Page();
+	
+	// employee page
+	static Page employeeOptionsPage = new Page();
+	
+	// account pages and links
+	static Page accountPage = new Page();
+	
+	// view popular pages and links
+	static Page eventsPage = new Page();
+	
+	/**
+	 * helper method to easily validate user input for choices
+	 * @param highestChoice
+	 * @return int - value corresponding to a choice given to the user
+	 */
+	private static int getValidatedChoice(int highestChoice) {
+		while (true) {
+			String strChoice = in.nextLine();
+			if (!strChoice.matches("[0-9]+")) {
+				System.out.println("Error, please enter an integer value ...");
+				continue;
+			}
+			int intChoice = Integer.parseInt(strChoice);
+			if (intChoice < 0 || intChoice > highestChoice) {
+				System.out.println("Error, please choose an integer within the range 0 to " + highestChoice + " inclusive");
+				continue;
+			}
+			return intChoice;
+		}
+	}
 	
 	// Page setup and initialization
 	// homepage setup display and 
-	public void setUpHomePage() {
-		homePage.setDisplay("  *******************    ******************* \n" +
-				 		 	"  *                 *    *                 * \n" +
-				 		 	"  *    HOME PAGE    *    *    0: Search    * \n" +
-				 		 	"  *                 *    *                 * \n" +
-				 		 	"  *******************    ******************* \n" +
-				 		 	"                                             \n" +
-				 		 	"  *******************    ******************* \n" +
-				 		 	"  *                 *    *       View      * \n" +
-				 		 	"  * 1: View Account *    *   2: Popular    * \n" +
-				 		 	"  *                 *    *      Events     * \n" +
-				 		 	"  *******************    ******************* \n" +
-				 		 	homePage.goToAdminOptions(user) + homePage.goToEmployeeOptions(user) + "\n");
-		homePage.getLinks().add(searchPage);
-		homePage.getLinks().add(accountPage);
-		homePage.getLinks().add(eventsPage);
+	private static void setUpHomePage() {
+		homePage.setDisplay("  *******************    ******************* 	 ******************* \n" +
+				 		 	"  *                 *    *                 * 	 *				   * \n" +
+				 		 	"  *    HOME PAGE    *    *    0: Search    * 	 * 1: View Account * \n" +
+				 		 	"  *                 *    *                 *    *				   * \n" +
+				 		 	"  *******************    *******************    ******************* \n" +
+				 		 	"                                             						 \n" +
+				 		 	"  *******************    ******************* 	 \n" +
+				 		 	"  *                 *    *                 * 	 \n" +
+				 		 	"  * 2: View Events  *    *     3: Exit     * 	 \n" +
+				 		 	"  *                 *    *                 * 	 \n" +
+				 		 	"  *******************    ******************* 	 \n" +
+				 		 	"\n\n IF YOU ARE EMPLOYEE OR ADMIN --- 4: Go to your functionality");
+	}
+	private static void homePageManager() {
+		// TODO ask for user input
+		
+		// TODO 0 go to Search Page
+		   // TODO done with that path
+		// TODO 1 go to Account Page
+			// TODO done with that path
+		// TODO 2 go to EVents page
+			// TODO done with that path
 	}
 	
 	// searchpage setup display
-	public void setUpSearchPage() {
+	private static void setUpSearchPage() {
 		searchPage.setDisplay("  *******************    *******************    ******************* \n" +
 	 		 				  "  *                 *    *                 *    *				 * \n" +
-	 		 				  "  *   Search Page   *    *   0: By Title   *    *   1: By Date	 * \n" +
+	 		 				  "  *   SEARCH PAGE   *    *   0: By Title   *    *   1: By Date	 * \n" +
 	 		 				  "  *                 *    *                 *    *				 * \n" +
 	 		 				  "  *******************    *******************    ******************* \n" +
 	 		 				  "                                             					   \n" +
@@ -51,13 +84,58 @@ public class Driver {
 	 		 				  "  *                 *    * 			      *    *				 * \n" +
 	 		 				  "  *   2: By Rating  *    *   3: By Actor   *    *  4: Home Page	 * \n" +
 	 		 				  "  *                 *    * 			      *    *				 * \n" +
-	 		 				  "  *******************    *******************    ******************* \n\n" +
-	 		 				  "  Pick the number for the criteria you wish to search by: " +
-	 		 				  homePage.goToAdminOptions(user) + homePage.goToEmployeeOptions(user) + "\n");
-		homePage.getLinks().add(searchByTitlePage);
-		homePage.getLinks().add(searchByDatePage);
-		homePage.getLinks().add(searchByRatingPage);
-		homePage.getLinks().add(searchByActorPage);
+	 		 				  "  *******************    *******************    ******************* \n");
+	}
+	private static void searchPageManager() {
+		
+	}
+	
+	// adminpage setup display
+	private static void setUpAdminPage() {
+		adminOptionsPage.setDisplay("  ****************************************** 	 \n" +
+	 		 						"  *                                        * 	 \n" +
+	 		 						"  *        ADMIN USER OPTIONS PAGE         * 	 \n" +
+	 		 						"  *                                        *    \n" +
+	 		 						"  ******************************************    \n" +
+	 		 						"                                             	 \n" +
+	 		 						"  *******************    ******************* 	 \n" +
+	 		 						"  *                 *    *                 * 	 \n" +
+	 		 						"  *  0: Add Account *    * 1: Add Location * 	 \n" +
+	 		 						"  *                 *    *                 * 	 \n" +
+	 		 						"  *******************    ******************* 	 \n" +
+	 		 					  "\n  2: Go Back to Home Page");
+	}
+	private static void adminPageManager() {
+		
+	}
+	
+	private static void setUpAccountPage() {
+		accountPage.setDisplay(     "  ****************************************** 	 \n" +
+	 		 						"  *                                        * 	 \n" +
+	 		 						"  *          ACCOUNT OPTIONS PAGE          * 	 \n" +
+	 		 						"  *                                        *    \n" +
+	 		 						"  ******************************************    \n" +
+	 		 						"                                             	 \n" +
+	 		 						"  *******************    ******************* 	 \n" +
+	 		 						"  *                 *    *                 * 	 \n" +
+	 		 						"  *  0: View Wallet *    *  1: View Cart   * 	 \n" +
+	 		 						"  *                 *    *                 * 	 \n" +
+	 		 						"  *******************    ******************* 	 \n" +
+	 		 						"                                             	 \n" +
+	 		 						"  *******************    ******************* 	 \n" +
+	 		 						"  *                 *    *                 * 	 \n" +
+	 		 						"  * 2: Purchase Tix *    * 3: View Tickets * 	 \n" +
+	 		 						"  *                 *    *                 * 	 \n" +
+	 		 						"  *******************    ******************* 	 \n" +
+	 		 						"                                                \n" +
+	 		 						"  *******************    ******************* 	 \n" +
+	 		 						"  *                 *    *                 * 	 \n" +
+	 		 						"  *  4: Empty Cart  *    *     5: Exit     * 	 \n" +
+	 		 						"  *                 *    *                 * 	 \n" +
+									"  *******************    ******************* 	 \n");
+	}
+	private static void accountPageManager() {
+		
 	}
 	
 	// welcomes the user with greeting messages
@@ -70,6 +148,9 @@ public class Driver {
 	
 	public static void main(String[] args) {
 		
+		setUpHomePage();
+		setUpSearchPage();
+		
 		
 		// create input stream
 		in = new Scanner(System.in);
@@ -80,10 +161,8 @@ public class Driver {
 		// get the user to login or continue as guest
 		user = GenerateUser.generateUser();
 		
-		if (!user.getType().equalsIgnoreCase("admin") && !user.getType().equalsIgnoreCase("employee")) {
-			System.out.println("Hello " + user.getUsername() + " please enter the number of your next move:");
-			System.out.println("1: View Account")
-		}
+		// start user off on the home page
+		homePageManager();
 		
 		// close input stream
 		in.close();
