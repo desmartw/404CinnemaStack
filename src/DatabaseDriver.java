@@ -57,6 +57,10 @@ public class DatabaseDriver {
 		lv.readList();
 	}
 	
+	public static Location enterNameAndReturnLocation() {
+		return lv.enterNameAndReturnLocation();
+	}
+	
 	/***** END NEW STUFF ***/
 	
 	// print all the attributes of all events
@@ -199,8 +203,13 @@ public class DatabaseDriver {
 		//readList();
 		
 		//location
-		enterLocation();
-		readAllLocations();
+		//enterLocation();
+		//readAllLocations();
+		
+		//user
+		uv.wipeDatabase();
+		addUser();
+		printCredentials();
 	}
 
 }
