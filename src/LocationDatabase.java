@@ -53,18 +53,13 @@ public class LocationDatabase {
         String description = validateDescription();
         int seatingRows = validateSeatingRows();
         int seatingCols = validateSeatingCols();
-        int handicapStartSeat = validateHandicapStartSeat();
-        int handicapEndSeat;
-        if(handicapStartSeat ==  0)
-        	handicapStartSeat = handicapEndSeat = NONE ;
-        else if(handicapStartSeat ==  1)
-        	handicapStartSeat = handicapEndSeat = 1;
-        else
-        	handicapEndSeat = validateHandicapEndSeat();
+        int handicapStartSeat = 1;
+        int handicapEndSeat = validateHandicapSeatCount();
+        if (handicapEndSeat == NONE)
+        	handicapStartSeat = NONE;
         ArrayList<Showtime> showtimes = new ArrayList<Showtime>();
-        
         refreshList();
-        Location loc = new Location(name, description, showtimes);      ////change
+        Location loc = new Location(name, description, seatingRows, seatingCols, handicapStartSeat, handicapEndSeat, showtimes);      ////change
         writeList(loc);
         /*
         org.json.JSONObject locationDetails = new JSONObject();
@@ -84,6 +79,20 @@ public class LocationDatabase {
         locationList = readLocationList();
         locationList.add(locationObject);
         */
+    }
+    
+    public int validateHandicapSeatCount() {
+    	int count = 0;
+    	System.out.println("Enter the number of handicapp seats in your theater between 0-5:");
+    	count = scan.nextInt();
+    	scan.nextLine();
+    	if(count <= 0) {
+    		return NONE;
+    	} 
+    	else if(count >= 1 && count <= 5) {
+    		return count;
+    	}
+		return NONE;
     }
     
     public void refreshList() {

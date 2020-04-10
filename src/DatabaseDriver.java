@@ -43,6 +43,20 @@ public class DatabaseDriver {
 	public static void wipeDatabase() {
 		evr.wipeDatabase();
 	}
+	
+	/**
+	 * allows new location to be created in LDB
+	 */
+	public static void enterLocation() {
+		lv.enterLocation();
+	}
+	/**
+	 * reads all location from LDB
+	 */
+	public static void readAllLocations() {
+		lv.readAllLocations();
+	}
+	
 	/***** END NEW STUFF ***/
 	
 	// print all the attributes of all events
@@ -134,19 +148,6 @@ public class DatabaseDriver {
 	}
 	
 	/**
-	 * allows new location to be created in LDB
-	 */
-	public static void enterNewLocation() {
-		lv.enterLocation();
-	}
-	/**
-	 * reads all location from LDB
-	 */
-	public static void readAllLocations() {
-		lv.readAllLocations();
-	}
-	
-	/**
 	 * allows creation of new schedule in SDB
 	 */
 	public static void enterNewSchedule() {
@@ -192,10 +193,13 @@ public class DatabaseDriver {
 		
 		//evr.returnEventObjectByName();
 		//addRating();
-		addRating();
+		//addRating();
 		//readList();
 		//addComment();
-		readList();
+		//readList();
+		
+		//location
+		enterLocation();
 	}
 
 }
