@@ -1,3 +1,5 @@
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * 
  * @author Ryan Henderson
@@ -78,11 +80,12 @@ public class Showtime {
 	
 	// getters and setters
 	// TODO search through event db to get event 
+	@JsonIgnore
 	public Event getEvent() {
 		return new Event();
 	}
 	// TODO methods to return relevant Event fields corresponding to eventName
-	
+	@JsonIgnore
 	public int getNumberOfSeats() {
 		return seatingGrid[0].length*seatingGrid.length;
 	}
