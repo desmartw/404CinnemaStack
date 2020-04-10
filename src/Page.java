@@ -20,4 +20,7 @@ public class Page {
 	public void setDisplay(String display) {
 		this.display = display;
 	}
+	public void showDisplay() {
+		System.out.println(this.display);
+	}
 }

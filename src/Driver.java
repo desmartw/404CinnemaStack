@@ -63,18 +63,43 @@ public class Driver {
 	}
 	private static void homePageManager() {
 		// TODO display home page
+		homePage.showDisplay();
 		// TODO ask for user input
-		
-		// TODO 0 go to Search Page
-		   // TODO done with that path
-		// TODO 1 go to Account Page
-			// TODO done with that path
-		// TODO 2 go to EVents page
-			// TODO done with that path
-		// TODO 3 System.exit(0); we outcha
-			// TODO done with that path
-		// TODO 4 check admin or employee,
-			// TODO go to page or stay and redo homePageManager()
+		while(true) {
+			System.out.println("Please Enter a number between 0-4: ");
+			int choice = in.nextInt();
+			in.nextLine();
+			
+			if(choice < 0 || choice > 4) {
+				System.out.println("Your choice was invalid, choose again. ");
+			} else if(choice == 0) {
+				System.out.println("You selected Search, moving there. ");
+				searchPageManager();
+			} else if(choice == 1) {
+				System.out.println("You selected View Account, moving there. ");
+				accountPageManager();
+			} else if(choice == 2) {
+				System.out.println("You selected View Events, moving there. ");
+				eventPageManager();
+			} else if(choice == 3) {
+				System.out.println("You selected Exit, exiting. ");
+				System.exit(0);
+			} else if(choice == 4) {
+				System.out.println("You selected Employee or Admin, verifying... ");
+				if(user.getType().equalsIgnoreCase("employee")) {
+					System.out.println("You are an Employee, moving foward... ");
+					employeePageManager();
+				} else if(user.getType().equalsIgnoreCase("admin")) {
+					System.out.println("You are an Admin, moving foward... ");
+					adminPageManager();
+				} else {
+					System.out.println("You are not qualified to move there... try again");
+					continue;
+				}
+			} else {
+				System.out.println("Your choice was invalid, choose again. ");
+			}
+		}
 	}
 	
 	// searchpage setup display
@@ -130,6 +155,9 @@ public class Driver {
 		// TODO display admin page
 		// TODO get user input
 	}
+	private static void employeePageManager() {
+		
+	}
 	
 	// employee page setup display
 	private static void setUpEventsPage() {
@@ -142,7 +170,7 @@ public class Driver {
 	 		 						"  *******************    ******************* 	 \n" +
 	 		 						"  *                 *    *     -     -     * 	 \n" +
 	 		 						"  *  0: Add Event   *    *   ^        ^    * 	 \n" +
-	 		 						"  *                 *    *     \\_____/     * 	 \n" +
+	 		 						"  *                 *    *     \\_____/    * 	 \n" +
 	 		 						"  *******************    ******************* 	 \n" +
 	 		 						"                                                  " +
 	 		 						"  ****************************************** 	 \n" +
