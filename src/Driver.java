@@ -23,6 +23,9 @@ public class Driver {
 	// view popular pages and links
 	static Page eventsPage = new Page();
 	
+	// view showtime information
+	static Page showtimePage = new Page();
+	
 	/**
 	 * helper method to easily validate user input for choices
 	 * @param highestChoice
@@ -237,14 +240,18 @@ public class Driver {
 	private static void setUpEventsPage() {
 		homePage.setDisplay("  *******************    ******************* 	 ******************* \n" +
 				 		 	"  *                 *    *                 * 	 *				   * \n" +
-				 		 	"  *  EVENTS PAGE    *    *  0:SHOW EVENT   * 	 * 1: GO HOME      * \n" +
+				 		 	"  *  EVENTS PAGE    *    *  0:SHOW EVENTS  * 	 * 1: GO HOME      * \n" +
 				 		 	"  *                 *    *                 *    *				   * \n" +
 				 		 	"  *******************    *******************    ******************* \n" +
-				 		 	"                                             						 \n");
+				 		 	"                                             						 \n"+
+				 		 	"  ****************************************** 	 \n" +
+		 				    "  *                                        * 	 \n" +
+		 					"  *        2: VIEW SHOWTIME INFO           * 	 \n" +
+		 					"  *                                        *    \n" +
+		 					"  ******************************************    ");
 	}
 	private static void eventPageManager() {
 		eventsPage.showDisplay();
-		EventDatabaseReborn edb = new EventDatabaseReborn();
 		while(true) {
 			System.out.println("Please Enter a number between 0-1: ");
 			int choice = in.nextInt();
@@ -258,6 +265,9 @@ public class Driver {
 			} else if(choice == 1) {
 				System.out.println("You selected go home, going home... ");
 				homePageManager();
+			} else if(choice == 3) {
+				System.out.println("Showing showtime info");
+				DatabaseDriver.
 			} else {
 				System.out.println("Your choice was invalid, choose again. ");
 			}
@@ -324,6 +334,31 @@ public class Driver {
 			}
 		}
 	}
+	
+	
+	private static void setUpShowtimePage() {
+		showtimePage.setDisplay(     
+	 		 						"                                             	 \n" +
+	 		 						"  *******************    ******************* 	 \n" +
+	 		 						"  *                 *    *                 * 	 \n" +
+	 		 						"  *  0: View Seats  *    *  1: View Cart   * 	 \n" +
+	 		 						"  *                 *    *                 * 	 \n" +
+	 		 						"  *******************    ******************* 	 \n" +
+	 		 						"                                             	 \n" +
+	 		 						"  *******************    ******************* 	 \n" +
+	 		 						"  *                 *    *                 * 	 \n" +
+	 		 						"  * 2: Purchase Tix *    * 3: View Tickets * 	 \n" +
+	 		 						"  *                 *    *                 * 	 \n" +
+	 		 						"  *******************    ******************* 	 \n" +
+	 		 						"                                                \n" +
+	 		 						"  *******************    ******************* 	 \n" +
+	 		 						"  *                 *    *                 * 	 \n" +
+	 		 						"  *  4: Empty Cart  *    *     5: Exit     * 	 \n" +
+	 		 						"  *                 *    *                 * 	 \n" +
+									"  *******************    ******************* 	 \n");
+	}
+	
+	
 	
 	// welcomes the user with greeting messages
 	private static void welcomeUser() {
