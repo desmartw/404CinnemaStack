@@ -69,6 +69,20 @@ public class UserDatabase {
         return null;
 	}
 	
+	
+	
+	public JSONArray getUserList() {
+		return userList;
+	}
+
+	public static String getAdminPassword() {
+		return ADMIN_PASSWORD;
+	}
+
+	public static String getEmployeePassword() {
+		return EMPLOYEE_PASSWORD;
+	}
+
 	/**
 	 * Finds users password
 	 * @param user
@@ -76,7 +90,10 @@ public class UserDatabase {
 	 */
 	public String getUserPassword(String user) {
 		JSONObject userObject = findUser(user);
-		return (String) userObject.get("password");
+		if (userObject != null)
+			return (String) userObject.get("password");
+		else
+			return null;
 	}
 	
 	/**
@@ -86,56 +103,86 @@ public class UserDatabase {
 	 */
 	public String getType(String user) {
 		JSONObject userObject = findUser(user);
-		return (String) userObject.get("type");
+		if (userObject != null)
+			return (String) userObject.get("type");
+		else
+			return null;
 	}
 	
 	// Parse methods find and return respective variables
 	public String parseUsername(JSONObject user) 
     {
         JSONObject userObject = (JSONObject) user.get("user");
-        return (String) userObject.get("username");    
+        if (userObject != null)
+        	return (String) userObject.get("username");   
+        else
+        	return null;
     }
 	
 	public String parsePassword(JSONObject user) 
     {
         JSONObject userObject = (JSONObject) user.get("user");
-        return (String) userObject.get("password");    
+        if (userObject != null)
+        	return (String) userObject.get("password");   
+        else
+        	return null;    
     }
 	
 	public String parseEmail(JSONObject user)
 	{
 		JSONObject userObject = (JSONObject) user.get("user");
-        return (String) userObject.get("email");   
+		if (userObject != null)
+        	return (String) userObject.get("email");   
+        else
+        	return null;  
 	}
 	
 	public String parseAge(JSONObject user) {
 		JSONObject userObject = (JSONObject) user.get("user");
-        return (String) userObject.get("age");   
+		if (userObject != null)
+        	return (String) userObject.get("age");   
+        else
+        	return null;   
 	}
 	
 	public String parsePoints(JSONObject user) {
 		JSONObject userObject = (JSONObject) user.get("user");
-		return (String) userObject.get("points");  
+		if (userObject != null)
+        	return (String) userObject.get("points");   
+        else
+        	return null; 
 	}
 	
 	public String parseID(JSONObject user) {
 		JSONObject userObject = (JSONObject) user.get("user");
-		return (String) userObject.get("ID");  
+		if (userObject != null)
+        	return (String) userObject.get("ID");   
+        else
+        	return null;  
 	}
 	
 	public String parseDiscount(JSONObject user) {
 		JSONObject userObject = (JSONObject) user.get("user");
-		return (String) userObject.get("discount");  
+		if (userObject != null)
+        	return (String) userObject.get("discount");   
+        else
+        	return null;  
 	}
 	
 	public String parseType(JSONObject user) {
 		JSONObject userObject = (JSONObject) user.get("user");
-		return (String) userObject.get("type");  
+		if (userObject != null)
+        	return (String) userObject.get("type");   
+        else
+        	return null; 
 	}
 	
 	public String parseLocation(JSONObject user) {
 		JSONObject userObject = (JSONObject) user.get("user");
-		return (String) userObject.get("location");  
+		if (userObject != null)
+        	return (String) userObject.get("location");   
+        else
+        	return null;  
 	}
 	
 	/**
@@ -355,7 +402,9 @@ public class UserDatabase {
 	 * @return
 	 */
 	public String validateDiscount(String type) {
-		if (type.equals("student") || type.equals("veteran") || type.equals("teacher") || type.equals("employee") || type.equals("handicapped"))
+		if (type == null)
+			return "0";
+		else if (type.equals("student") || type.equals("veteran") || type.equals("teacher") || type.equals("employee") || type.equals("handicapped"))
 			return ".1";
 		else
 			return "0";
@@ -405,9 +454,6 @@ public class UserDatabase {
 	public String validateLocation() {
 		Location loc = DatabaseDriver.enterNameAndReturnLocation();
 		return loc.getName();
-		// check that location exists first
-		// add to user
-		
 	}
 	
 	/**
