@@ -12,6 +12,21 @@ public class Page {
 	
 	String display;
 	
+	/**
+	 * Default Constructor
+	 */
+	public Page() {
+		display = "";
+	}
+	
+	/**
+	 * Parameterized Constructor
+	 * @param display - String value that displays page information in text format for the user
+	 */
+	public Page(String display) {
+		this.display = display;
+	}
+	
 	// getters and setters
 	public String getDisplay() {
 		return display;
