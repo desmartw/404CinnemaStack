@@ -28,11 +28,33 @@ private ArrayList<String> actors;
 
 public class EventDatabaseReborn {
 	public static final String[] EVENT_TYPES = {"movie", "play", "concert"};
-	private ArrayList<Event> list = new ArrayList<Event>();
 	public static final Scanner scan = new Scanner(System.in);
-	private File file = new File("events.json");
-	private ObjectMapper mapper = new ObjectMapper();
+	private ArrayList<Event> list;
+	private File file;
+	private ObjectMapper mapper;
 	
+	/*
+	 * Constructor
+	 */
+	public EventDatabaseReborn() {
+		this.list = new ArrayList<Event>();
+		this.file = new File("events.json");
+		this.mapper = new ObjectMapper();
+	}
+	
+	// getters and setters
+	public ArrayList<Event> getList() {
+		return list;
+	}
+
+	public ObjectMapper getMapper() {
+		return mapper;
+	}
+
+	public static String[] getEventTypes() {
+		return EVENT_TYPES;
+	}
+
 	/**
 	 * makes sure that data is good before adding to DB
 	 */

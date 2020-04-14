@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class DatabaseDriver {
 	public static Scanner scan = new Scanner(System.in);
-	public static EventDatabaseReborn evr = new EventDatabaseReborn(); ///
+	public static EventDatabaseReborn evr = new EventDatabaseReborn();
 	public static LocationDatabase lv = new LocationDatabase();
 	public static UserDatabase uv = new UserDatabase();
 	

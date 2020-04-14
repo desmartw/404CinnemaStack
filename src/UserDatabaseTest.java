@@ -9,11 +9,11 @@ import org.junit.Test;
 
 public class UserDatabaseTest extends TestCase{
 	protected UserDatabase db;
-	String user;
-	String invalidUser;
-	JSONObject userDetails;
-	JSONObject userObject;
-	JSONObject invalidObject;
+	protected String user;
+	protected String invalidUser;
+	protected JSONObject userDetails;
+	protected JSONObject userObject;
+	protected JSONObject invalidObject;
 
 	// assigning the values
 	protected void setUp(){
