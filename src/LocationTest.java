@@ -1,10 +1,10 @@
 import static org.junit.Assert.*;
-
+import junit.framework.*;
 import java.util.ArrayList;
 
 import org.junit.Test;
 
-public class LocationTest {
+public class LocationTest extends TestCase {
 	
 	protected String name;
 	protected String description;
@@ -37,13 +37,11 @@ public class LocationTest {
 	}
 	@Test
 	public void testLocationCreation() {
-		setUp();
 		assertNotNull(loc);
 		tearDown();
 	}
 	@Test
 	public void testTwoLocationsNotEqual() {
-		setUp();
 		String name2 = "Cinema 0";
 		String description2 = "No Cinema";
 		int seatingRows2 = 0;
@@ -54,65 +52,47 @@ public class LocationTest {
 		Location loc2 = new Location(name2, description2, seatingRows2, 
 				seatingCols2, handicapStartSeat2, handicapEndSeat2, showtimes2);
 		assertNotEquals(loc, loc2);
-		tearDown();
 	}
 	@Test
 	public void testGetName() {
-		setUp();
 		assertEquals(name, loc.getName());
-		tearDown();
 	}
 	@Test
 	public void testGetDescription() {
-		setUp();
 		assertEquals(description, loc.getDescription());
-		tearDown();
 	}
 	@Test
 	public void testGetSeatingRows() {
-		setUp();
 		assertEquals(seatingRows, loc.getSeatingRows());
-		tearDown();
 	}
 	@Test
 	public void testGetSeatingCols() {
-		setUp();
 		assertEquals(seatingCols, loc.getSeatingCols());
-		tearDown();
 	}
 	@Test
 	public void testGetHandicapStartSeat() {
-		setUp();
 		assertEquals(handicapStartSeat, loc.getHandicapStartSeat());
-		tearDown();
 		
 	}
 	@Test
 	public void testGetHandicapEndSeat() {
-		setUp();
 		assertEquals(handicapEndSeat, loc.getHandicapEndSeat());
-		tearDown();
+
 	}
 	@Test
 	public void testGetSbowtimes() {
-		setUp();
 		assertEquals(showtimes, loc.getShowtimes());
-		tearDown();
 	}
 	
 	@Test
 	public void testWipeShowtimes() {
-		setUp();
 		loc.wipeShowtimes();
 		assertNull(showtimes);
-		tearDown();
 	}
 	@Test
 	public void addNullShowtime() {
-		setUp();
 		loc.addShowtime(null);
 		assertNull(showtimes);
-		tearDown();
 	}
 	
 

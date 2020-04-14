@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-public class EventTest {
+import junit.framework.TestCase;
+
+public class EventTest extends TestCase{
 	protected String name;
 	protected String type;
 	protected ArrayList<String> comments;
@@ -27,7 +29,6 @@ public class EventTest {
 	public void testCreateEvent() {
 		event = new Event(name, type, comments, actors);
 		assertNotNull(event);
-		tearDown();
 	}
 	@Test
 	public void testTwoEventsArentEqual() {
@@ -44,7 +45,6 @@ public class EventTest {
 		actors.add("Elsa");
 		Event event2 = new Event(name2, type2, comments2, actors2);
 		assertNotEquals(event, event2);
-		tearDown();
 	}
 	@Test
 	public void testCreateNullEvent() {
@@ -54,30 +54,25 @@ public class EventTest {
 		actors = null;
 		event = new Event(name, type, comments, actors);
 		assertNull(event);
-		tearDown();
 	}
 	@Test
 	public void testGetName() {
 		assertEquals(event.getName(), name);
-		tearDown();
 	}
 	@Test
 	public void testGetType() {
-
 		assertEquals(event.getType(), type);
-		tearDown();
 	}
 	@Test
 	public void testGetComments() {
 
 		assertEquals(event.getComments(), comments);
-		tearDown();
 	}
 	@Test
 	public void testGetActors() {
 
 		assertEquals(event.getActors(), actors);
-		tearDown();
+
 	}
 	@Test
 	public void testAddComments() {
@@ -85,7 +80,6 @@ public class EventTest {
 		String comment = "User comment";
 		event.addUserComment(comment);
 		assertEquals(event.getComments(), comments);
-		tearDown();
 	}
 	@Test
 	public void testAddEmptyComments() {
@@ -93,14 +87,12 @@ public class EventTest {
 		String comment = null;
 		event.addUserComment(comment);
 		assertEquals(event.getComments(), comments);
-		tearDown();
 	}
 	@Test
 	public void testAddNullActors() {
 
 		actors.add(null);
 		assertNull(event.getActors());
-		tearDown();
 	}
 
 
