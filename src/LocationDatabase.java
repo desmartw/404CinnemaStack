@@ -25,26 +25,32 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class LocationDatabase {
 	public static final int NONE = -1;
-	
-	private ArrayList<Location> list = new ArrayList<Location>();
 	public static final Scanner scan = new Scanner(System.in);
-	private File file = new File("locations.json");
-	private ObjectMapper mapper = new ObjectMapper();
-	
-	// deleteme
-    JSONArray locationList;
+	private ArrayList<Location> list;
+	private File file;
+	private ObjectMapper mapper;
     
-    /*
     /**
      * default constructor
-     *
+     */
     public LocationDatabase() {
-        locationList = new JSONArray();
-        scan = new Scanner(System.in);
+    	list = new ArrayList<Location>();
+    	file = new File("locations.json");
+    	mapper = new ObjectMapper();
     }
-    */
     
-    /**
+    //getters
+    public ArrayList<Location> getList() {
+		return list;
+	}
+	public ObjectMapper getMapper() {
+		return mapper;
+	}
+	public static int getNone() {
+		return NONE;
+	}
+
+	/**
      * Allows creation of new locations
      */
     public void enterLocation() {
@@ -151,6 +157,7 @@ public class LocationDatabase {
  	}
  	
  	public Location returnLocation(String location) {
+ 		refreshList();
  		Location currLoc = new Location();
  		for (int i = 0; i < this.list.size(); i++)  {
 			currLoc = ((Location) this.list.get(i));
@@ -158,7 +165,7 @@ public class LocationDatabase {
 	    		return currLoc;
 	    	}
 		}
- 		return currLoc;
+ 		return null;
  	}
  	
  	// employee.getLocation() for location
@@ -205,36 +212,9 @@ public class LocationDatabase {
         		return temp;
         	}
  		}
- 		
         return null;
-        
  	}
     
- 	// old shit
- 	
-	/**
-     * returns a JSONarray of locations
-     * @return
-     */
-    public JSONArray readLocationList() {
-		JSONParser jsonParser = new JSONParser();
-        JSONArray readLocationList = new JSONArray();
-        
-        try (FileReader reader = new FileReader("location.json"))
-        {
-            //Read JSON file
-            Object obj = jsonParser.parse(reader);
-            readLocationList = (JSONArray) obj;
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        
-        return readLocationList;
-	}
     /**
      * checks name is valid
      * @return
@@ -324,6 +304,7 @@ public class LocationDatabase {
     	}
 		return 0;
 	}
+    
 	private int validateHandicapEndSeat() {
 		int hEndSeat = 0;
 		System.out.println("Where would you like the handicapped seating to stop? enter a seat number (between 2-5). \n");
@@ -356,38 +337,9 @@ public class LocationDatabase {
         	break;
 	}
 	  	return pwd;
-	}
-    /**
-     * reads and prints locations to console
-     */
-    public void readAllLocations() {
-		// reading
-        JSONParser jsonParser = new JSONParser();
-        JSONArray readLocationList = readLocationList();
-        try (FileReader reader = new FileReader("users.json"))
-        {
-            System.out.println(readLocationList);
-            //Iterate over user array
-            readLocationList.forEach( location -> parseLocationObject( (JSONObject) location ) );
-            
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } 
-	}
-	/**
-	 * creates a location from a JSON object
-	 * @param location
-	 */
-	public void parseLocationObject(JSONObject location) {
-		JSONObject locationObject = (JSONObject) location.get("Location");
-        System.out.println("\nName: " + (String) locationObject.get("Name")); 
-        System.out.println("\nDescription: "+ (String) locationObject.get("Description"));
-        System.out.println("\nSeat Number: "+ (int) locationObject.get("SeatNumber"));
-        System.out.println("\nEvents: "+ (Event) locationObject.get("Events"));
-        }
-	}
+	}	
+	
+}
 	    
 	
 
