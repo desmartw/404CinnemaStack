@@ -35,6 +35,7 @@ public class Ticket {
 		this.seatNumber=seatNumber;
 		this.price = price;
 		this.militaryTime = militaryTime;
+		this.date = date;
 	}
 	// Getters and setters
 	public String getName() {
@@ -58,13 +59,13 @@ public class Ticket {
 	public void setSeatNumber(int seatNumber) {
 		this.seatNumber = seatNumber;
 	}
-	public void setTicketPrice(double price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 	public void setMilitaryTime(String militaryTime) {
 		this.militaryTime = militaryTime;
 	}
-	public void setDate() {
+	public void setDate(String date) {
 		this.date = date;
 	}
 	

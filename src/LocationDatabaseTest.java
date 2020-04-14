@@ -8,10 +8,16 @@ import org.junit.Test;
 import junit.framework.TestCase;
 
 public class LocationDatabaseTest extends TestCase{
-protected LocationDatabase db;
+	protected LocationDatabase db;
+	protected String cinema;
+	protected String movie;
+	protected int none;
 	
 	protected void setUp() throws Exception {
 		db = new LocationDatabase();
+		cinema = "Cinema 1";
+		movie = "Frozen 2";
+		none = -1;
 	}
 
 	@Test
@@ -32,7 +38,7 @@ protected LocationDatabase db;
 	
 	@Test
 	public void testingGetNone() {
-		assertEquals(db.getNone(), -1);
+		assertEquals(db.getNone(), none);
 	}
 	
 	@Test
@@ -43,7 +49,7 @@ protected LocationDatabase db;
 	
 	@Test
 	public void testingReturnLocationValid() {
-		assertEquals(db.returnLocation("Cinema 1").getName(), "Cinema 1");
+		assertEquals(db.returnLocation(cinema).getName(), cinema);
 	}
 	
 	@Test
@@ -58,11 +64,11 @@ protected LocationDatabase db;
 	
 	@Test
 	public void testingReturnLocationWithValid() {
-		assertEquals(db.returnLocationWith("Frozen 2").getName(), "Cinema 1");
+		assertEquals(db.returnLocationWith(movie).getName(), cinema);
 	}
 	
 	@Test
 	public void testingReturnLocationWithInvalid() {
-		assertNull(db.returnLocationWith(""));
+		assertNull(db.returnLocationWith(null));
 	}
 }
