@@ -112,6 +112,15 @@ public class EventTest {
 		event.addUserComment(comment);
 		assertEquals(event.getComments(), comments);
 	}
+	public void testAddNullActors() {
+		String name = "Frozen";
+		String type = "movie";
+		ArrayList<String> comments = new ArrayList<String>();
+		comments.add("good film");
+		ArrayList<String> actors = new ArrayList<String>();
+		Event event = new Event(name, type, comments, actors);
+		assertNull(event.getActors());
+	}
 
 
 }
