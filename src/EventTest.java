@@ -5,28 +5,35 @@ import java.util.ArrayList;
 import org.junit.Test;
 
 public class EventTest {
+	protected String name;
+	protected String type;
+	protected ArrayList<String> comments;
+	protected ArrayList<String> actors;
+	protected Event event;
 	
-	
-
+	protected void setUp() {
+		String name = "Frozen";
+		String type = "movie";
+		ArrayList<String> comments = new ArrayList<String>();
+		ArrayList<String> actors = new ArrayList<String>();
+	}
+	protected void tearDown() {
+		String name = null;
+		String type = null;
+		ArrayList<String> comments = null;
+		ArrayList<String> actors = null;
+	}
 	@Test
 	public void testCreateEvent() {
-		String name = "Frozen";
-		String type = "movie";
-		ArrayList<String> comments = new ArrayList<String>();
-		comments.add("good film");
-		ArrayList<String> actors = new ArrayList<String>();
-		actors.add("brad pitt");
-		Event event = new Event(name, type, comments, actors);
+		event = new Event(name, type, comments, actors);
 		assertNotNull(event);
 	}
+	@Test
 	public void testTwoEventsArentEqual() {
-		String name = "Frozen";
-		String type = "movie";
-		ArrayList<String> comments = new ArrayList<String>();
 		comments.add("good film");
-		ArrayList<String> actors = new ArrayList<String>();
 		actors.add("brad pitt");
-		Event event = new Event(name, type, comments, actors);
+		event = new Event(name, type, comments, actors);
+		
 		String name2 = "Frozen";
 		String type2 = "movie";
 		ArrayList<String> comments2 = new ArrayList<String>();
@@ -37,88 +44,46 @@ public class EventTest {
 		Event event2 = new Event(name2, type2, comments2, actors2);
 		assertNotEquals(event, event2);
 	}
+	@Test
 	public void testCreateNullEvent() {
-		String name = null;
-		String type = null;
-		ArrayList<String> comments = null;
-		ArrayList<String> actors = null;
-		Event event = new Event(name, type, comments, actors);
+		name = null;
+		type = null;
+		comments = null;
+		actors = null;
+		event = new Event(name, type, comments, actors);
 		assertNull(event);
 	}
-	
+	@Test
 	public void testGetName() {
-		String name = "Frozen";
-		String type = "movie";
-		ArrayList<String> comments = new ArrayList<String>();
-		comments.add("good film");
-		ArrayList<String> actors = new ArrayList<String>();
-		actors.add("brad pitt");
-		Event event = new Event(name, type, comments, actors);
 		assertEquals(event.getName(), name);
 	}
-	
+	@Test
 	public void testGetType() {
-		String name = "Frozen";
-		String type = "movie";
-		ArrayList<String> comments = new ArrayList<String>();
-		comments.add("good film");
-		ArrayList<String> actors = new ArrayList<String>();
-		actors.add("brad pitt");
-		Event event = new Event(name, type, comments, actors);
 		assertEquals(event.getType(), type);
 	}
-	
+	@Test
 	public void testGetComments() {
-		String name = "Frozen";
-		String type = "movie";
-		ArrayList<String> comments = new ArrayList<String>();
-		comments.add("good film");
-		ArrayList<String> actors = new ArrayList<String>();
-		actors.add("brad pitt");
-		Event event = new Event(name, type, comments, actors);
 		assertEquals(event.getComments(), comments);
 	}
+	@Test
 	public void testGetActors() {
-		String name = "Frozen";
-		String type = "movie";
-		ArrayList<String> comments = new ArrayList<String>();
-		comments.add("good film");
-		ArrayList<String> actors = new ArrayList<String>();
-		actors.add("brad pitt");
-		Event event = new Event(name, type, comments, actors);
 		assertEquals(event.getActors(), actors);
 	}
+	@Test
 	public void testAddComments() {
-		String name = "Frozen";
-		String type = "movie";
-		String comment =  "test comment";
-		ArrayList<String> comments = new ArrayList<String>();
-		comments.add("good film");
-		ArrayList<String> actors = new ArrayList<String>();
-		actors.add("brad pitt");
-		Event event = new Event(name, type, comments, actors);
+		String comment = "User comment";
 		event.addUserComment(comment);
 		assertEquals(event.getComments(), comments);
 	}
+	@Test
 	public void testAddEmptyComments() {
-		String name = "Frozen";
-		String type = "movie";
-		String comment =  null;
-		ArrayList<String> comments = new ArrayList<String>();
-		comments.add("good film");
-		ArrayList<String> actors = new ArrayList<String>();
-		actors.add("brad pitt");
-		Event event = new Event(name, type, comments, actors);
+		String comment = null;
 		event.addUserComment(comment);
 		assertEquals(event.getComments(), comments);
 	}
+	@Test
 	public void testAddNullActors() {
-		String name = "Frozen";
-		String type = "movie";
-		ArrayList<String> comments = new ArrayList<String>();
-		comments.add("good film");
-		ArrayList<String> actors = new ArrayList<String>();
-		Event event = new Event(name, type, comments, actors);
+		actors.add(null);
 		assertNull(event.getActors());
 	}
 
