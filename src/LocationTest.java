@@ -58,21 +58,49 @@ public class LocationTest extends TestCase {
 		assertEquals(name, loc.getName());
 	}
 	@Test
+	public void testSetName() {
+		String name2 = "new name";
+		loc.setName(name2);
+		assertEquals(name2, loc.getName());
+	}
+	@Test
 	public void testGetDescription() {
+		assertEquals(description, loc.getDescription());
+	}
+	@Test 
+	public void testSetDescription() {
+		String description2 = "new desc";
+		loc.setDescription(description);
 		assertEquals(description, loc.getDescription());
 	}
 	@Test
 	public void testGetSeatingRows() {
 		assertEquals(seatingRows, loc.getSeatingRows());
 	}
+	@Test 
+	public void testSetSeatingRows() {
+		int numRows = 7;
+		loc.setSeatingRows(numRows);
+		assertEquals(seatingRows, loc.getSeatingRows());
+	}
 	@Test
 	public void testGetSeatingCols() {
+		assertEquals(seatingCols, loc.getSeatingCols());
+	}
+	public void testSetSeatingCols() {
+		int numCols = 7;
+		loc.setSeatingRows(numCols);
 		assertEquals(seatingCols, loc.getSeatingCols());
 	}
 	@Test
 	public void testGetHandicapStartSeat() {
 		assertEquals(handicapStartSeat, loc.getHandicapStartSeat());
-		
+	}
+	@Test
+	public void testSetHandicapStartSeat() {
+		int numHSeat = 2;
+		loc.setSeatingRows(numHSeat);
+		assertEquals(handicapStartSeat, loc.getHandicapStartSeat());
 	}
 	@Test
 	public void testGetHandicapEndSeat() {
@@ -80,10 +108,21 @@ public class LocationTest extends TestCase {
 
 	}
 	@Test
+	public void testSetHandicapEndSeat() {
+		int numHSeat = 3;
+		loc.setSeatingRows(numHSeat);
+		assertEquals(handicapEndSeat, loc.getHandicapEndSeat());
+	}
+	@Test
 	public void testGetSbowtimes() {
 		assertEquals(showtimes, loc.getShowtimes());
 	}
-	
+	@Test
+	public void testSetSbowtimes() {
+		ArrayList<Showtime> showtimes = new ArrayList<Showtime>();
+		loc.setShowtimes(showtimes);
+		assertEquals(showtimes, loc.getShowtimes());
+	}
 	@Test
 	public void testWipeShowtimes() {
 		loc.wipeShowtimes();
@@ -94,6 +133,7 @@ public class LocationTest extends TestCase {
 		loc.addShowtime(null);
 		assertNull(showtimes);
 	}
+	
 	
 
 }

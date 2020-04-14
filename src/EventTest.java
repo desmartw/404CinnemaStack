@@ -12,12 +12,17 @@ public class EventTest extends TestCase{
 	protected ArrayList<String> comments;
 	protected ArrayList<String> actors;
 	protected Event event;
+	protected int ratingSum;
+	protected int ratingNum;
 	
 	protected void setUp() {
 		String name = "Frozen";
 		String type = "movie";
 		ArrayList<String> comments = new ArrayList<String>();
 		ArrayList<String> actors = new ArrayList<String>();
+		ratingSum = 0;
+		ratingNum = 0;
+		
 	}
 	protected void tearDown() {
 		String name = null;
@@ -75,25 +80,68 @@ public class EventTest extends TestCase{
 
 	}
 	@Test
-	public void testAddComments() {
+	public void testSetName() {
+		String name_ = "new name";
+		event.setName(name_);
+		assertEquals(event.getName(), name_);
+	}
+	@Test
+	public void testSetType() {
+		String type_ = "new Type";
+		event.setType(type_);
+		assertEquals(event.getType(), type);
+	}
+	@Test
+	public void testSetComments() {
+		ArrayList<String> comments_ = new ArrayList<String>();
+		event.setComments(comments_);
+		assertEquals(event.getComments(), comments_);
+	}
+	@Test
+	public void testSetActors() {
+		ArrayList<String> actors_ = new ArrayList<String>();
+		event.setActors(actors_);
+		assertEquals(event.getActors(), actors_);
 
+	}
+	@Test
+	public void testAddComments() {
 		String comment = "User comment";
 		event.addUserComment(comment);
 		assertEquals(event.getComments(), comments);
 	}
 	@Test
 	public void testAddEmptyComments() {
-
 		String comment = null;
 		event.addUserComment(comment);
 		assertEquals(event.getComments(), comments);
 	}
 	@Test
 	public void testAddNullActors() {
-
 		actors.add(null);
 		assertNull(event.getActors());
 	}
+	@Test
+	public void testGetRatingSum() {
+		assertEquals(ratingSum, event.getRatingSum());
+	}
+	@Test
+	public void testSetRatingSum() {
+		int newSum = 10;
+		event.setRatingSum(newSum);
+		assertEquals(newSum, event.getRatingSum());
 
+	}
+	@Test
+	public void testGetRatingNum() {
+		assertEquals(ratingNum, event.getRatingNum());
 
+	}
+	@Test
+	public void testSetRatingNum() {
+		int newNum = 5;
+		event.setRatingNum(newNum);
+		assertEquals(newNum, event.getRatingNum());
+
+	}
 }
