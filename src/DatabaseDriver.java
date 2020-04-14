@@ -250,6 +250,9 @@ public class DatabaseDriver {
 		//readAllLocations();
 		//enterLocation();
 		//enterShowtime("Cinema 360");
+		
+		//User user = new User();
+		//EmployeeUser emp = (EmployeeUser) user;
 		//enterShowtime("Cinema 360");
 		//readAllLocations();
 		
@@ -257,9 +260,28 @@ public class DatabaseDriver {
 		
 		//wipeEventDatabase();
 		
+		
 		//enterEvent();
 		//enterEvent();
 		//enterEvent();
+		
+		//enterLocation();
+		//enterLocation();
+		//enterLocation();
+		
+		//readAllEvents();
+		//readAllLocations();
+		
+		enterShowtime("Cinema 1");
+		enterShowtime("Cinema 1");
+		
+		enterShowtime("Cinema 2");
+		enterShowtime("Cinema 2");
+		
+		enterShowtime("PlaysRUs");
+		enterShowtime("PlaysRUs");
+		
+		readAllLocations();
 		
 		//readAllEvents();
 	}
