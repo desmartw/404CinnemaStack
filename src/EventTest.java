@@ -15,6 +15,7 @@ public class EventTest extends TestCase{
 	protected int ratingSum;
 	protected int ratingNum;
 	
+	
 	protected void setUp() {
 		String name = "Frozen";
 		String type = "movie";
@@ -22,6 +23,8 @@ public class EventTest extends TestCase{
 		ArrayList<String> actors = new ArrayList<String>();
 		ratingSum = 0;
 		ratingNum = 0;
+		event = new Event(name, type, comments, actors);
+		System.out.println("initalizing");
 		
 	}
 	protected void tearDown() {
@@ -37,17 +40,13 @@ public class EventTest extends TestCase{
 	}
 	@Test
 	public void testTwoEventsArentEqual() {
-		comments.add("good film");
-		actors.add("brad pitt");
-		event = new Event(name, type, comments, actors);
-		
 		String name2 = "Frozen";
 		String type2 = "movie";
 		ArrayList<String> comments2 = new ArrayList<String>();
-		comments.add("hated it");
+		comments2.add("hated it");
 		ArrayList<String> actors2 = new ArrayList<String>();
-		actors.add("Anna");
-		actors.add("Elsa");
+		actors2.add("Anna");
+		actors2.add("Elsa");
 		Event event2 = new Event(name2, type2, comments2, actors2);
 		assertNotEquals(event, event2);
 	}
@@ -118,30 +117,30 @@ public class EventTest extends TestCase{
 	}
 	@Test
 	public void testAddNullActors() {
+		actors = new ArrayList<String>();
 		actors.add(null);
 		assertNull(event.getActors());
 	}
 	@Test
 	public void testGetRatingSum() {
-		assertEquals(ratingSum, event.getRatingSum());
+		assertEquals( event.getRatingSum(), ratingSum);
 	}
 	@Test
 	public void testSetRatingSum() {
 		int newSum = 10;
 		event.setRatingSum(newSum);
-		assertEquals(newSum, event.getRatingSum());
+		assertEquals(event.getRatingSum(), newSum);
 
 	}
 	@Test
 	public void testGetRatingNum() {
-		assertEquals(ratingNum, event.getRatingNum());
+		assertEquals(event.getRatingNum(), ratingNum);
 
 	}
 	@Test
 	public void testSetRatingNum() {
-		int newNum = 5;
-		event.setRatingNum(newNum);
-		assertEquals(newNum, event.getRatingNum());
+		event.setRatingNum(ratingNum);
+		assertEquals(event.getRatingNum(), ratingNum);
 
 	}
 }
