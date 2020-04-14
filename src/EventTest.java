@@ -27,6 +27,7 @@ public class EventTest {
 	public void testCreateEvent() {
 		event = new Event(name, type, comments, actors);
 		assertNotNull(event);
+		tearDown();
 	}
 	@Test
 	public void testTwoEventsArentEqual() {
@@ -43,6 +44,7 @@ public class EventTest {
 		actors.add("Elsa");
 		Event event2 = new Event(name2, type2, comments2, actors2);
 		assertNotEquals(event, event2);
+		tearDown();
 	}
 	@Test
 	public void testCreateNullEvent() {
@@ -52,39 +54,54 @@ public class EventTest {
 		actors = null;
 		event = new Event(name, type, comments, actors);
 		assertNull(event);
+		tearDown();
 	}
 	@Test
 	public void testGetName() {
+		setUp();
 		assertEquals(event.getName(), name);
+		tearDown();
 	}
 	@Test
 	public void testGetType() {
+		setUp();
 		assertEquals(event.getType(), type);
+		tearDown();
 	}
 	@Test
 	public void testGetComments() {
+		setUp();
 		assertEquals(event.getComments(), comments);
+		tearDown();
 	}
 	@Test
 	public void testGetActors() {
+		setUp();
 		assertEquals(event.getActors(), actors);
+		tearDown();
 	}
 	@Test
 	public void testAddComments() {
+		setUp();
 		String comment = "User comment";
 		event.addUserComment(comment);
 		assertEquals(event.getComments(), comments);
+		tearDown();
 	}
 	@Test
 	public void testAddEmptyComments() {
+		setUp();
 		String comment = null;
 		event.addUserComment(comment);
 		assertEquals(event.getComments(), comments);
+		tearDown();
 	}
 	@Test
 	public void testAddNullActors() {
+		setUp();
 		actors.add(null);
 		assertNull(event.getActors());
+		tearDown();
 	}
 
 
