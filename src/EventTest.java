@@ -58,31 +58,30 @@ public class EventTest {
 	}
 	@Test
 	public void testGetName() {
-		setUp();
 		assertEquals(event.getName(), name);
 		tearDown();
 	}
 	@Test
 	public void testGetType() {
-		setUp();
+
 		assertEquals(event.getType(), type);
 		tearDown();
 	}
 	@Test
 	public void testGetComments() {
-		setUp();
+
 		assertEquals(event.getComments(), comments);
 		tearDown();
 	}
 	@Test
 	public void testGetActors() {
-		setUp();
+
 		assertEquals(event.getActors(), actors);
 		tearDown();
 	}
 	@Test
 	public void testAddComments() {
-		setUp();
+
 		String comment = "User comment";
 		event.addUserComment(comment);
 		assertEquals(event.getComments(), comments);
@@ -90,7 +89,7 @@ public class EventTest {
 	}
 	@Test
 	public void testAddEmptyComments() {
-		setUp();
+
 		String comment = null;
 		event.addUserComment(comment);
 		assertEquals(event.getComments(), comments);
@@ -98,7 +97,7 @@ public class EventTest {
 	}
 	@Test
 	public void testAddNullActors() {
-		setUp();
+
 		actors.add(null);
 		assertNull(event.getActors());
 		tearDown();
