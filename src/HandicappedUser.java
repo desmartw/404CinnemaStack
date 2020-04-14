@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class HandicappedUser extends User {
-	public String handicappedTagNum;
+	private String handicappedTagNum;
 	
 	/**
 	 * User subclass handicapped
@@ -40,4 +40,11 @@ public class HandicappedUser extends User {
 		this.handicappedTagNum = handicappedTagNum;
 	}
 
+	public String getHandicappedTagNum() {
+		return handicappedTagNum;
+	}
+	public void setHandicappedTagNum(String handicappedTagNum) {
+		this.handicappedTagNum = handicappedTagNum;
+	}
+	
 }

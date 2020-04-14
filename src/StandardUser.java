@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 public class StandardUser extends User{
-	public String ID;
+	private String ID;
 	/**
 	 * User with no discount rate
 	 * does not fit in any other category
@@ -36,6 +36,13 @@ public class StandardUser extends User{
 			double discountRate, String ID) {
 		super(username, password, email, wallet,
 				tickets, cart, age, rewardPoints, discountRate);
+		this.ID = ID;
+	}
+	
+	public String getID() {
+		return ID;
+	}
+	public void setID(String ID) {
 		this.ID = ID;
 	}
 }

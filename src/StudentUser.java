@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class StudentUser extends User {
-	public String studentIDNum;
+	public String studentID;
 	
 	/**
 	 * Student user
@@ -16,7 +16,7 @@ public class StudentUser extends User {
 		age = 18;
 		rewardPoints = 0;
 		discountRate = .1;
-		studentIDNum= "123LoveToStudy";
+		studentID= "123LoveToStudy";
 	}
 	/**
 	 * Paramaterized constructor
@@ -37,7 +37,14 @@ public class StudentUser extends User {
 			double discountRate, String studentIDNum) {
 		super(username, password, email, wallet,
 				tickets, cart, age, rewardPoints, discountRate);
-		this.studentIDNum = studentIDNum;
+		this.studentID = studentIDNum;
 	}
-
+	
+	public String getStudentID() {
+		return studentID;
+	}
+	public void setStudentID(String studentID) {
+		this.studentID = studentID;
+	}
+	
 }

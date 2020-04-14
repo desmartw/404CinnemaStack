@@ -19,7 +19,7 @@ public class Location {
 	 * Default Constructor - empty attributes except password = "empty"
 	 */
 	public Location() {
-		name = "";
+		name = "default";
 		description = "";
 		showtimes = new ArrayList<Showtime>();
 	}

@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class TeacherUser extends User {
-	public String teacherID;
+	private String teacherID;
 	/**
 	 * Teacher account
 	 */
@@ -38,5 +38,11 @@ public class TeacherUser extends User {
 				tickets, cart, age, rewardPoints, discountRate);
 		this.teacherID = teacherID;
 	}
-
+	
+	public String getTeacherID() {
+		return teacherID;
+	}
+	public void setTeacherID(String teacherID) {
+		this.teacherID = teacherID;
+	}
 }

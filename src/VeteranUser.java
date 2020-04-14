@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class VeteranUser extends User {
-	public String militaryID;
+	private String militaryID;
 	
 	/**
 	 * vertertan user
@@ -38,6 +38,14 @@ public class VeteranUser extends User {
 			double discountRate, String militaryID) {
 		super(username, password, email, wallet,
 				tickets, cart, age, rewardPoints, discountRate);
+		this.militaryID = militaryID;
+	}
+	
+	// getters and setters
+	public String getMilitaryID() {
+		return militaryID;
+	}
+	public void setMilitaryID(String militaryID) {
 		this.militaryID = militaryID;
 	}
 

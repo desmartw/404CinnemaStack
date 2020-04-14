@@ -36,5 +36,10 @@ public class AdminUser extends User {
 	
 	//TODO admin abilities :
 	// add/delete venue, user, event
-
+	public String getAdminID() {
+		return adminID;
+	}
+	public void setAdminID(String adminID) {
+		this.adminID = adminID;
+	}
 }
